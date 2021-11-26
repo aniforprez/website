@@ -1,0 +1,20 @@
+{
+  "name": "aniforprez-website",
+  "version": "1.0.0",
+  "description": "aniforprez's website",
+  "scripts": {
+    "dev": "NODE_ENV=development ./node_modules/tailwindcss/lib/cli.js -i ./static/css/tailwind.css -o ./static/css/main.css --jit -w",
+    "build": "NODE_ENV=production ./node_modules/tailwindcss/lib/cli.js -i ./static/css/tailwind.css -o ./static/css/main.css --jit --minify"
+  },
+  "keywords": [
+    "website",
+    "zola",
+    "tailwind"
+  ],
+  "author": "Anirudh Sylendranath (aniforprez)",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.4.1",
+    "tailwindcss": "^2.2.19"
+  }
+}
