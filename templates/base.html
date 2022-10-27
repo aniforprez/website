@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
   <head>
     <meta charset="utf-8" />
@@ -56,12 +56,10 @@
                         class="absolute left-0 w-0 h-1 transition-all bg-gray-900 -bottom-2 group-hover:w-full dark:bg-slate-100"></span>
                 </p>
               </a>
-              <a href="#" class="box-border h-full p-4 pt-3 text-3xl" id="light-toggle" onclick="toggleDarkMode(false)">
-                <i class="bx bxs-sun bx-spin-hover"></i>
-              </a>
-              <a href="#" class="box-border h-full p-4 pt-3 text-3xl" id="dark-toggle" onclick="toggleDarkMode(true)">
-                <i class="bx bxs-moon bx-tada-hover"></i>
-              </a>
+              <button onclick="toggleDarkMode()" class="relative h-full p-3 -mt-4 text-3xl">
+                <i class="absolute transition bx bxs-sun bx-spin-hover" id="light-toggle"></i>
+                <i class="absolute transition bx bxs-moon bx-tada-hover" id="dark-toggle"></i>
+              </button>
             </div>
           </div>
         </header>

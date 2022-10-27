@@ -36,8 +36,8 @@ feed_limit = 10
 #     ]
 #
 taxonomies = [
-  {name = "tags"}, # you can have taxonomies with the same name in multiple languages
-  {name = "categories", paginate_by = 5},  # 5 items per page for a term
+  { name = "tags" },                        # you can have taxonomies with the same name in multiple languages
+  { name = "categories", paginate_by = 5 }, # 5 items per page for a term
 ]
 
 # Whether to build a search index to be used later on by a JavaScript library
