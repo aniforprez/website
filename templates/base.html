@@ -20,8 +20,7 @@
     {% block css %}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Quattrocento+Sans&display=swap"
-          rel="stylesheet" />
+
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ get_url(path='css/main.css') | safe }}" />
@@ -41,7 +40,7 @@
               <span
                     class="absolute left-0 w-0 h-1 transition-all bg-gray-900 -bottom-2 group-hover:w-full dark:bg-slate-100"></span>
             </div>
-            <div class="flex items-center h-full text-lg sm:text-xl">
+            <div class="flex items-center h-full text-lg font-semibold sm:text-xl">
               <a href="{{ get_url(path='@/about.md') }}" class="box-border h-full p-4 pt-3 group">
                 <p class="relative">
                   <span class="">About</span>
@@ -56,14 +55,14 @@
                         class="absolute left-0 w-0 h-1 transition-all bg-gray-900 -bottom-2 group-hover:w-full dark:bg-slate-100"></span>
                 </p>
               </a>
-              <button onclick="toggleDarkMode()" class="relative h-full p-3 -mt-4 text-3xl">
+              <button onclick="toggleDarkMode()" class="relative p-3 mr-8 -mt-4 text-2xl sm:text-3xl h-fit w-fit">
                 <i class="absolute transition bx bxs-sun bx-spin-hover" id="light-toggle"></i>
                 <i class="absolute transition bx bxs-moon bx-tada-hover" id="dark-toggle"></i>
               </button>
             </div>
           </div>
         </header>
-        <div class="max-w-3xl px-4 py-8 mx-auto grow sm:px-6 lg:max-w-4xl xl:max-w-5xl">
+        <div class="w-5/6 px-4 pt-16 pb-8 mx-auto grow sm:px-6">
           {% block content %}{% endblock content %}
         </div>
         <footer class="flex-none mx-8">

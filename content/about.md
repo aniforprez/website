@@ -1,6 +1,8 @@
 +++
 title = "About aniforprez"
 description = "About Anirudh"
+
+template = "about.html"
 +++
 
 ## Briefly

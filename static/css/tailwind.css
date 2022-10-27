@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Quattrocento Sans';
+  src: url("../fonts/QuattrocentoSans-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Quattrocento Sans';
+  src: url("../fonts/QuattrocentoSans-BoldItalic.ttf");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Quattrocento Sans';
+  src: url("../fonts/QuattrocentoSans-Italic.ttf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Quattrocento Sans';
+  src: url("../fonts/QuattrocentoSans-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url("../fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url("../fonts/PlayfairDisplay-VariableFont_wght.ttf");
+}
