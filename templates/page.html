@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <article class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl dark:text-primary text-secondary">
-    <header>
-        <h1>
-            {{ page.title }}
-        </h1>
-    </header>
+<article class="prose-sm prose prose-slate dark:prose-invert sm:prose lg:prose-lg xl:prose-xl">
+  <header>
+    <h1>{{ page.title }}</h1>
+  </header>
 
-    {{ page.content | safe }}
-  </article>
+  {{ page.content | safe }}
+</article>
 {% endblock %}
