@@ -1,0 +1,158 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Anirudh Sylendranath",
+    "email": "me@aniforprez.dev",
+    "phone": "+91 9886973731",
+    "website": "https://aniforprez.dev",
+    "label": "Senior Software Engineer",
+    "location": {
+      "address": "Bengaluru, India"
+    },
+    "summary": "Senior Software Engineer at Synup Digital, developing and maintaining great services and teams. Proficient in designing and architecting new systems and improvements to existing systems. Well-versed in developer experience tools and have worked tirelessly to make development simpler and improve code quality better for multiple companies. Experienced in Python web frameworks like Django and Flask, DBs like Postgres and Mongo, Bitbucket Pipelines, Git VCS and more",
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "aniforprez",
+        "url": "https://github.com/aniforprez"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Synup Digital",
+      "location": "Bengaluru, India",
+      "position": "Senior Software Engineer",
+      "website": "",
+      "endDate": "2023",
+      "highlights": [
+        "Designing, architecting and developing new customer facing features such as a real-time integration with Google Business Messaging to allow clients to communicate with customers",
+        "Leading efforts to improve developer experience and raise code quality standards using language upgrades, linting, formatting, CI/CD checks",
+        "Mentoring, leading and guiding junior developers across projects"
+      ],
+      "startDate": "2021-06"
+    },
+    {
+      "highlights": [
+        "Developed a unified external services platform for company-wide use integrating with third-party SMS, Credit reporting and Money transfer services",
+        "Leading efforts to upgrade older apps to modern standards using new dependency tools, 12-factor practices, containerization, deploying on AWS Fargate",
+        "Leading efforts to develop internal tools easing developer experience such as a tool to preview PDFs for frontend developers",
+        "Mentoring, leading and guiding junior developers across projects"
+      ],
+      "name": "eSthenos Technologies",
+      "position": "Technical Lead",
+      "location": "Bengaluru, India",
+      "startDate": "2020-09",
+      "endDate": "2021-05"
+    },
+    {
+      "highlights": [
+        "Owned client projects and lead teams contributing to new features, updates and bug fixes",
+        "Planned processes to convert projects from Python 2 to 3 and updated multiple projects",
+        "Built integrations to Credit reporting, Money transfer and client CRM services for projects",
+        "Setup CI pipelines in Bitbucket to automate code health checks, tests and deployments"
+      ],
+      "position": "Senior Python Developer",
+      "location": "Bengaluru, India",
+      "startDate": "2018-12",
+      "endDate": "2020-08",
+      "name": "eSthenos Technologies"
+    },
+    {
+      "highlights": [
+        "Worked on APIs for a custom backend framework serving an ERP solution",
+        "Worked in an advisory capacity to move existing Angular based frontend to React"
+      ],
+      "name": "Fulfil.io",
+      "position": "Software Developer",
+      "location": "Bengaluru, India",
+      "startDate": "2018-08",
+      "endDate": "2018-10"
+    },
+    {
+      "highlights": [
+        "Developed an API and frontend system to generate PPT files for financial presentations",
+        "Developed Python Analytics APIs that performed analytics from existing financial data",
+        "Rapid prototyping of various new frontend data displays for different datasets for clients"
+      ],
+      "name": "Canopy (Mesitis)",
+      "position": "Contract Full Stack Developer",
+      "location": "Bengaluru, India (Remote)",
+      "startDate": "2017-03",
+      "endDate": "2018-02"
+    },
+    {
+      "highlights": [
+        "Developed APIs in Django and the Frontend UI including UI/UX design in AngularJS as an SPA for a real-time Call Center solution using Twilio and Plivo WebRTC APIs",
+        "Developed a custom build system for Angular using Gulp supporting translations for unlimited languages",
+        "Developing numerous features and widgets using Django and Javascript to improve the UX of the product",
+        "Worked with analytics team to develop a frontend for data points generated from Apache Spark"
+      ],
+      "name": "CallHub.io",
+      "position": "Full Stack Developer",
+      "location": "Bengaluru, India",
+      "startDate": "2015-08",
+      "endDate": "2017-02"
+    },
+    {
+      "highlights": [
+        "Developed Blender Python scripts to import models from an online scene builder to be used to make realistic renders in Blender for clients like Urban Ladder",
+        "Developed a custom CMS admin panel in AngularJS to manage a database of 3D models online for a client",
+        "Rewrote numerous Flash kids’ educational games in Javascript using the Phaser framework",
+        "Developed and managed company website"
+      ],
+      "name": "House of Blue Beans",
+      "position": "Web Developer",
+      "location": "Bengaluru, India",
+      "startDate": "2014-11",
+      "endDate": "2015-08"
+    },
+    {
+      "highlights": [
+        "Bug squashing of COBOL code on Remote Mainframe Systems",
+        "Instrumental in efforts to convert existing JCL project to to Java/Hadoop"
+      ],
+      "name": "Cognizant Technology Solutions",
+      "position": "Programmer Analyst",
+      "location": "Coimbatore, India",
+      "startDate": "2013-02",
+      "endDate": "2014-08"
+    }
+  ],
+  "skills": [
+    {
+      "level": "",
+      "keywords": ["Python (Django/Flask)", "Ruby (Rails)", "JS", "GoLang"],
+      "name": "Programming Languages"
+    },
+    {
+      "keywords": ["PostgreSQL", "MongoDB"],
+      "name": "Databases"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Amrita School of Engineering",
+      "area": "Computer Science and Engineering",
+      "studyType": "B.Tech",
+      "startDate": "2008",
+      "endDate": "2013"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English"
+    },
+    {
+      "language": "Malayalam"
+    },
+    {
+      "language": "Tamil"
+    }
+  ],
+  "meta": {
+    "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2017-12-24T15:53:00"
+  }
+}
