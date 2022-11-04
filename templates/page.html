@@ -1,7 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="relative prose prose-slate dark:prose-invert sm:prose lg:prose-lg xl:prose-xl">
-  {{ page.content | safe }}
-</article>
+<div class="flex flex-col h-full">
+  <h1 class="py-4">
+    <span class="font-serif text-3xl font-bold lg:text-4xl">{{ page.title }}</span>
+  </h1>
+  <div class="w-full py-8 border-t-2">
+    <div class="text-lg">
+      <span class="text-gray-600 dark:text-slate-400">
+        <i class='bx bxs-calendar'></i>
+        {{ page.date | date(format="%d, %B %Y") }}
+      </span>
+      <span>
+        {% for tag in page.taxonomies.tags %}
+        <a href="/tags/{{ tag }}" class="text-black dark:text-blue-100 hover:text-blue-600 dark:hover:text-blue-600">
+          <span class="px-2">#{{tag}}</span>
+        </a>
+        {% endfor %}
+      </span>
+    </div>
+    <article class="relative mt-8 prose prose-slate dark:prose-invert sm:prose lg:prose-lg xl:prose-xl">
+      {{ page.content | safe }}
+    </article>
+  </div>
+</div>
 {% endblock %}

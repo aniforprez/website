@@ -53,7 +53,6 @@ tags = ["engineering"]
 # Your own data.
 [extra]
 +++
-# The Making of this Blog
 
 ## This is sample stuff
 
