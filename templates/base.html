@@ -26,15 +26,16 @@
     <link rel="stylesheet" href="{{ get_url(path='css/main.css') | safe }}" />
     {% endblock css %}
 
+    <link rel="icon" type="image/x-icon" href='{{ get_url(path="images/favicon.ico") }}' />
     <link rel="icon" type="image/png" href='{{ get_url(path="images/favicon-32x32.png") }}' sizes="32x32" />
     <link rel="icon" type="image/png" href='{{ get_url(path="images/favicon-16x16.png") }}' sizes="16x16" />
   </head>
 
-  <body>
-    <main class="text-gray-900 transition bg-slate-100 dark:bg-gray-900 dark:text-slate-100">
+  <body class="dark:bg-gray-900 dark:text-slate-100">
+    <main class="text-gray-900 transition bg-neutral-100 dark:bg-gray-900 dark:text-slate-100">
       <div class="flex flex-col justify-between h-screen max-w-6xl min-h-full mx-auto">
         <header class="flex-none w-full h-14">
-          <div class="flex items-center justify-between h-full pt-4 m-auto lg:max-w-5xl xl:max-w-6xl">
+          <div class="flex items-center justify-between h-full max-w-6xl pt-4 m-auto">
             <div class="relative m-4 font-serif text-2xl italic font-bold group sm:text-3xl">
               <a href="{{ config.base_url }}">ani.for.prez</a>
               <span
@@ -55,18 +56,19 @@
                         class="absolute left-0 w-0 h-1 transition-all bg-gray-900 -bottom-2 group-hover:w-full dark:bg-slate-100"></span>
                 </p>
               </a>
-              <button onclick="toggleDarkMode()" class="relative p-3 mr-8 -mt-4 text-2xl sm:text-3xl h-fit w-fit">
+              <button onclick="toggleDarkMode()"
+                      class="relative p-2 mr-8 -mt-4 text-2xl sm:-mt-6 sm:text-3xl h-fit w-fit">
                 <i class="absolute transition bx bxs-sun bx-spin-hover" id="light-toggle"></i>
                 <i class="absolute transition bx bxs-moon bx-tada-hover" id="dark-toggle"></i>
               </button>
             </div>
           </div>
         </header>
-        <div class="w-5/6 px-4 pt-16 pb-8 mx-auto grow sm:px-6">
+        <div class="w-11/12 pt-12 pb-8 mx-auto grow">
           {% block content %}{% endblock content %}
         </div>
-        <footer class="flex-none mx-8">
-          <div class="flex flex-col justify-between pb-2 m-auto h-14 md:max-w-5xl md:flex-row">
+        <footer class="flex-none w-11/12 mx-auto">
+          <div class="flex flex-col justify-between pb-2 m-auto h-14 md:flex-row">
             <div class="flex-none m-auto">
               <div class="flex items-center justify-start text-xl md:text-3xl">
                 <a href="https://github.com/aniforprez" class="no-underline">
