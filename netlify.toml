@@ -8,3 +8,12 @@ NODE_VERSION = "17.1.0"
 
 [context.deploy-preview]
 command = "zola build --base-url $DEPLOY_PRIME_URL"
+
+[[headers]]
+for = "/*"
+[headers.values]
+cache-control = '''
+  max-age=604800,
+  no-cache,
+  no-store,
+  must-revalidate'''

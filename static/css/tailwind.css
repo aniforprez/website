@@ -7,6 +7,7 @@
   src: url("../fonts/QuattrocentoSans-Bold.ttf");
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -14,6 +15,7 @@
   src: url("../fonts/QuattrocentoSans-BoldItalic.ttf");
   font-weight: bold;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -28,15 +30,18 @@
   src: url("../fonts/QuattrocentoSans-Regular.ttf");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Playfair Display';
   src: url("../fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf");
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Playfair Display';
   src: url("../fonts/PlayfairDisplay-VariableFont_wght.ttf");
+  font-display: swap;
 }
