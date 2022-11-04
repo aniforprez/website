@@ -1,7 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="relative prose prose-slate dark:prose-invert sm:prose lg:prose-lg xl:prose-xl">
-  Taxonomy single goes here
-</article>
+<div class="flex flex-col h-full">
+  <h1 class="py-4 text-3xl lg:text-4xl">#{{ term.name }}</h1>
+  <div class="flex-grow">
+    <div class="flex flex-col py-4 border-t-2">
+      <ul>
+        {% for page in term.pages %}
+        <li class="mb-8">
+          <a href="{{ page.permalink | safe }}" class="dark:hover:text-slate-300 hover:text-gray-500">
+            <span class="text-xl font-bold lg:text-2xl">{{ page.title }}</span>
+          </a>
+          <div class="text-base lg:text-lg">{{ page.description }}</div>
+          <div>
+            <span><i class='bx bxs-calendar'></i> {{ page.date | date(format="%d-%m-%Y") }}</span>
+            {% for tag in page.taxonomies.tags %}
+            <a href="/tags/{{ tag }}" class="hover:text-blue-600"><span class="px-2">#{{tag}}</span></a>
+            {% endfor %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
 {% endblock %}

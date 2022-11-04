@@ -1,5 +1,5 @@
 +++
-title = "aniforprez's Blog"
+title = "Blog"
 description = "Anirudh Sylendranath aka aniforprez"
 
 # A draft section is only loaded if the `--drafts` flag is passed to `zola build`, `zola serve` or `zola check`.

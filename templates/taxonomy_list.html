@@ -1,7 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-<article class="relative prose prose-slate dark:prose-invert sm:prose lg:prose-lg xl:prose-xl">
-  Taxonomy list goes here
-</article>
+<div class="flex flex-col h-full">
+  <h1 class="py-4 text-3xl lg:text-4xl">{{ taxonomy.name | capitalize }}</h1>
+  <div class="flex-grow">
+    <div class="flex flex-col py-4 border-t-2">
+      <ul>
+        {% for term in terms %}
+        <li class="text-lg">
+          <a href="{{ term.path }}" class="hover:text-blue-600">{{ term.name }} ( {{ term.pages | length }} )</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
 {% endblock %}
