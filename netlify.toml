@@ -12,8 +12,4 @@ command = "zola build --base-url $DEPLOY_PRIME_URL"
 [[headers]]
 for = "/*"
 [headers.values]
-cache-control = '''
-  max-age=604800,
-  no-cache,
-  no-store,
-  must-revalidate'''
+cache-control = '''max-age=604800'''
