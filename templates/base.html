@@ -11,7 +11,8 @@
     #}
 
     <title>{% block title %}{{ config.title }}{% endblock title %}</title>
-    <meta name="description" content="{% block description %}Anirudh's Website{% endblock description %}">
+    <meta name="description"
+          content="Anirudh Sylendranath | {% block description %}Senior Software Engineer and Developer Experience Advocate{% endblock description %}">
 
     {% if config.generate_feed %}
     <link rel="alternate" type='{% if config.feed_filename=="atom.xml" %}application/atom+xml{% else
