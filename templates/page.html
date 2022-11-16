@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{ page.title }} | aniforprez's Blog
+{% set page_title = page.title ~ " | aniforprez's Blog" %}
 {% endblock %}
 
 {% block description %}
-{{ page.description }}
+{% set page_description = page.description %}
 {% endblock %}
 
 {% block content %}

@@ -1,12 +1,19 @@
 {% extends "base.html" %}
 
 {% block title %}
-aniforprez's Blog
-{% endblock %}
+{% set page_title = "aniforprez's Blog" %}
+{% endblock title %}
 
 {% block description %}
-Anirudh Sylendranath's Blog
-{% endblock %}
+{% set page_description = "Anirudh Sylendranath's Blog" %}
+{% endblock description %}
+
+{% block js%}
+{{ super() }}
+<script src="{{ get_url(path='elasticlunr.min.js') }}"></script>
+<script src="{{ get_url(path='search_index.en.js') }}"></script>
+<script src="{{ get_url(path='js/search.js') }}"></script>
+{% endblock js %}
 
 {% block content %}
 <div class="flex flex-col h-full">

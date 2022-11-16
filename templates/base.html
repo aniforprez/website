@@ -10,9 +10,17 @@
           content="upgrade-insecure-requests; default-src 'self';img-src 'self' data:; font-src 'self' data: https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/;" />
     #}
 
-    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
-    <meta name="description"
-          content="Anirudh Sylendranath | {% block description %}Senior Software Engineer and Developer Experience Advocate{% endblock description %}">
+    {% block title %}
+    {% set page_title = config.title %}
+    {% endblock title %}
+    {% block description %}
+    {% set page_description = "Anirudh Sylendranath | Senior Software Engineer and Developer Experience Advocate" %}
+    {% endblock %}
+    <title>{{ page_title }}</title>
+    <meta property="og:title" content="{{ page_title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{% block ogimg %}{{ get_url(path='images/photo.jpg') }}{% endblock ogimg %}" />
+    <meta name="description" content="{{ page_description }}">
 
     {% block rss %}
     <link rel="alternate" type='application/atom+xml' title="RSS"
