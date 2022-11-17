@@ -59,21 +59,20 @@
     </div>
   </div>
   <div class="flex flex-row items-center justify-center">
-    <!-- TODO Styling for pagination -->
     {% if paginator.number_pagers != 1 %}
-    <nav class="">
+    <nav class="text-2xl">
       {% if paginator.first != paginator.current_index %}
-      <a class="previous" href="{{ paginator.first }}">‹‹</a>
+      <a class="m-4" href="{{ paginator.first }}">‹‹ First</a>
       {% endif %}
       {% if paginator.previous %}
-      <a class="previous" href="{{ paginator.previous }}">‹ Previous</a>
+      <a class="m-4" href="{{ paginator.previous }}">‹ Previous</a>
       {% endif %}
       Page {{ paginator.current_index }} of {{ paginator.number_pagers }}
       {% if paginator.next %}
-      <a class="next" href="{{ paginator.next }}">Next ›</a>
+      <a class="m-4" href="{{ paginator.next }}">Next ›</a>
       {% endif %}
       {% if paginator.last != paginator.current_index %}
-      <a class="previous" href="{{ paginator.first }}">››</a>
+      <a class="m-4" href="{{ paginator.first }}">Last ››</a>
       {% endif %}
     </nav>
     {% endif %}
