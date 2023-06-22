@@ -10,30 +10,30 @@
       <div class="my-4 text-lg font-bold lg:text-xl">Anirudh Sylendranath</div>
     </div>
   </div>
-  <div class="flex-1 prose-sm prose prose-slate lg:prose-base dark:prose-invert">{{ page.content | safe }}</div>
+  <div class="flex-1 prose prose-base prose-slate lg:prose-lg dark:prose-invert">{{ page.content | safe }}</div>
 </div>
 <div class="my-4">
   <h2 class="py-2 text-xl lg:text-2xl">Skills</h2>
-  <ul class="py-2 text-base list-none lg:text-lg">
-    <li class="inline-block pr-3 align-middle border-r border-slate-300 dark:border-slate-700">
-      <i class='inline-block align-text-top bx bxl-python'></i> <span>Python</span>
-    </li>
-    <li class="inline-block px-3 align-middle border-r border-slate-300 dark:border-slate-700">
-      <i class='inline-block align-text-top bx bxs-diamond'></i> <span>Ruby</span>
-    </li>
-    <li class="inline-block px-3 align-middle border-r border-slate-300 dark:border-slate-700">
-      <i class='inline-block align-text-top bx bxl-javascript'></i> <span>JavaScript</span>
-    </li>
-    <li class="inline-block px-3 align-middle border-r border-slate-300 dark:border-slate-700">
-      <i class='inline-block align-text-top bx bxl-go-lang'></i> <span>GoLang</span>
-    </li>
-    <li class="inline-block px-3 align-middle border-r border-slate-300 dark:border-slate-700">
-      <i class='inline-block align-text-top bx bxl-postgresql'></i> <span>Postgres</span>
-    </li>
-    <li class="inline-block pl-3 align-middle">
-      <i class='inline-block align-text-top bx bxl-mongodb'></i> <span>MongoDB</span>
-    </li>
-  </ul>
+  <div class="flex flex-row flex-wrap gap-3 py-2 lg:text-lg">
+    <div class="align-middle">
+      <i class='align-text-top bx bxl-python'></i> <span>Python</span>
+    </div>
+    <div class="align-middle">
+      <i class='align-text-top bx bxs-diamond'></i> <span>Ruby</span>
+    </div>
+    <div class="align-middle">
+      <i class='align-text-top bx bxl-javascript'></i> <span>JavaScript</span>
+    </div>
+    <div class="align-middle">
+      <i class='align-text-top bx bxl-go-lang'></i> <span>GoLang</span>
+    </div>
+    <div class="align-middle">
+      <i class='align-text-top bx bxl-postgresql'></i> <span>Postgres</span>
+    </div>
+    <div class="align-middle">
+      <i class='align-text-top bx bxl-mongodb'></i> <span>MongoDB</span>
+    </div>
+  </div>
 </div>
 <div class="my-4 text-base lg:text-xl">
   <a href='{{ get_url(path="resume.pdf") }}' target="_blank" class="py-2">
