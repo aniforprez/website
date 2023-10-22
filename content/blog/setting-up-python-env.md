@@ -92,7 +92,7 @@ Let's start a simple project in a specific version of python, let's say **3.10.1
 
 If you need to see an exhaustive list of every single python version available to pyenv, run the command `pyenv install -l` which will give you every single version of python avaiable to download and install. It should look a little something like below
 
-```sh
+```console
 $ pyenv install -l
 Available versions:
   2.1.3
@@ -130,11 +130,11 @@ pyenv local 3.10.11
 
 This creates a `.python-version` file in the current directory that contains the version that pyenv should use. pyenv will automatically switch to that version when you enter this directory from here on.
 
-> ### Note:
+> ### Note
 >
 > If you have a version specified in the `.python-version` file and it's not already installed with pyenv, it will not automatically install that version and trying to run python will give you the following warning
 >
-> ```
+> ```console
 > $ python
 > pyenv: version `3.10.1' is not installed (set by /<current working directory>/.python-version)
 > ```
