@@ -1,6 +1,6 @@
 ---
 title: "Starting my \"indie hacking\" journey"
-description: "The start of a new adventure"
+description: "The beginning of a new adventure"
 
 # The date of the post.
 # Two formats are allowed: YYYY-MM-DD (2012-10-02) and RFC3339 (2002-10-02T15:00:00Z).
@@ -44,11 +44,10 @@ taxonomies:
 
 # Your own data.
 extra:
+  hero:
+    source: /images/Interlaken.jpeg
+    alt: Picture of Interlaken taken by Anirudh Sylendranath
 ---
-
-<div class="overflow-hidden aspect-[2/1]" title="Picture of Interlaken taken by Anirudh Sylendranath">
-  <img src="/images/Interlaken.jpeg" class="relative w-full -translate-y-2/3 top-1/2">
-</div>
 
 I think we all know the story and have probably lived through it. I was working for a
 perfectly fine company doing perfectly fine company tasks and doing the daily grind and

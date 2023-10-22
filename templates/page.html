@@ -27,6 +27,10 @@
         {% endfor %}
       </span>
     </div>
+    {% if page.extra.hero %}
+    {% set heroimage=resize_image(path=page.extra.hero.source, height=400, width=1200) %}
+    <div style="background-image: url({{ heroimage.url }});" class="w-full h-64 mx-auto my-6 bg-center bg-cover sm:h-72 md:h-96" title="{{ page.extra.hero.alt }}"></div>
+    {% endif %}
     <article class="relative mt-8 prose text-justify dark:prose-invert prose-base lg:prose-lg max-w-none">
       {{ page.content | safe }}
     </article>

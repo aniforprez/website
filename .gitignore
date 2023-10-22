@@ -1,3 +1,4 @@
 node_modules/
 public/
 static/css/main.css
+static/processed_images
