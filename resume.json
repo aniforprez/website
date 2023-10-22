@@ -1,51 +1,62 @@
 {
-  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json",
   "basics": {
     "name": "Anirudh Sylendranath",
-    "email": "me@aniforprez.dev",
-    "phone": "+91 9886973731",
-    "website": "https://aniforprez.dev",
     "label": "Senior Software Engineer",
+    "email": "ani.22691@gmail.com",
+    "phone": "+91-9886973731",
+    "url": "http://aniforprez.dev",
+    "summary": "Senior software engineer with 10+ years of experience in software engineering with a passion for web application design and development, and improving developer experience using open source tools. Worked on numerous production cloud SaaS applications and products on the frontend and the backend for various clients in multiple horizontals including finance, campaigning, marketing etc.",
     "location": {
-      "address": "Bengaluru, India"
+      "city": "Bengaluru",
+      "countryCode": "IN",
+      "region": "India"
     },
-    "summary": "Senior Software Engineer at Synup Digital, developing and maintaining great services and teams. Proficient in designing and architecting new systems and improvements to existing systems. Well-versed in developer experience tools and have worked tirelessly to make development simpler and improve code quality better for multiple companies. Experienced in Python web frameworks like Django and Flask, DBs like Postgres and Mongo, Bitbucket Pipelines, Git VCS and more",
     "profiles": [
       {
         "network": "GitHub",
-        "username": "aniforprez",
         "url": "https://github.com/aniforprez"
+      },
+      {
+        "network": "LinkedIn",
+        "url": "https://www.linkedin.com/in/anirudh-sylendranath/"
       }
     ]
   },
   "work": [
     {
       "name": "Synup Digital",
-      "location": "Bengaluru, India",
-      "position": "Senior Software Engineer",
-      "website": "",
-      "endDate": "2023",
+      "summary": "Worked on a large SaaS application built on microservices and multiple languages, improving performance, adding numerous features and leading a team to improve developer experience and tooling.",
       "highlights": [
         "Designing, architecting and developing new customer facing features such as a real-time integration with Google Business Messaging to allow clients to communicate with customers",
+        "Worked on a microservices driven backend with services written in multiple languages like Python (Django, Flask), Ruby (Rails), NodeJS using multiple databases such as Postgres, Amazon RDS using queues driven by Kafka, Redis, RabbitMQ",
+        "Worked on improvements to a monolithic React frontend as well as building smaller NextJS based bespoke microapps for client requirements",
         "Leading efforts to improve developer experience and raise code quality standards using language upgrades, linting, formatting, CI/CD checks",
         "Mentoring, leading and guiding junior developers across projects"
       ],
-      "startDate": "2021-06"
+      "position": "Senior Software Engineer",
+      "location": "Bengaluru, India",
+      "website": "",
+      "startDate": "2021-06",
+      "endDate": "2023-08"
     },
     {
+      "name": "eSthenos Technologies",
+      "summary": "Promoted to Technical Lead leading a team working on upgrading projects and improving developer experience.",
       "highlights": [
         "Developed a unified external services platform for company-wide use integrating with third-party SMS, Credit reporting and Money transfer services",
         "Leading efforts to upgrade older apps to modern standards using new dependency tools, 12-factor practices, containerization, deploying on AWS Fargate",
         "Leading efforts to develop internal tools easing developer experience such as a tool to preview PDFs for frontend developers",
         "Mentoring, leading and guiding junior developers across projects"
       ],
-      "name": "eSthenos Technologies",
       "position": "Technical Lead",
       "location": "Bengaluru, India",
       "startDate": "2020-09",
       "endDate": "2021-05"
     },
     {
+      "name": "eSthenos Technologies",
+      "summary": "Joined as a Python Developer maintaining and iterating on multiple client facing financial web applications providing financial services to remote corners of the country.",
       "highlights": [
         "Owned client projects and lead teams contributing to new features, updates and bug fixes",
         "Planned processes to convert projects from Python 2 to 3 and updated multiple projects",
@@ -55,64 +66,57 @@
       "position": "Senior Python Developer",
       "location": "Bengaluru, India",
       "startDate": "2018-12",
-      "endDate": "2020-08",
-      "name": "eSthenos Technologies"
+      "endDate": "2020-08"
     },
     {
-      "highlights": [
-        "Worked on APIs for a custom backend framework serving an ERP solution",
-        "Worked in an advisory capacity to move existing Angular based frontend to React"
-      ],
-      "name": "Fulfil.io",
-      "position": "Software Developer",
-      "location": "Bengaluru, India",
-      "startDate": "2018-08",
-      "endDate": "2018-10"
-    },
-    {
+      "name": "Canopy (Mesitis)",
+      "summary": "Employed as a contract developer for fast iterations on prototypes mandated directly by the CEO.",
       "highlights": [
         "Developed an API and frontend system to generate PPT files for financial presentations",
         "Developed Python Analytics APIs that performed analytics from existing financial data",
         "Rapid prototyping of various new frontend data displays for different datasets for clients"
       ],
-      "name": "Canopy (Mesitis)",
       "position": "Contract Full Stack Developer",
       "location": "Bengaluru, India (Remote)",
       "startDate": "2017-03",
       "endDate": "2018-02"
     },
     {
+      "name": "CallHub.io",
+      "summary": "Joined as the solo frontend developer for a SaaS product focused on sending out phone call and SMS campaigns. Later grew to lead the frontend team.",
       "highlights": [
         "Developed APIs in Django and the Frontend UI including UI/UX design in AngularJS as an SPA for a real-time Call Center solution using Twilio and Plivo WebRTC APIs",
         "Developed a custom build system for Angular using Gulp supporting translations for unlimited languages",
         "Developing numerous features and widgets using Django and Javascript to improve the UX of the product",
         "Worked with analytics team to develop a frontend for data points generated from Apache Spark"
       ],
-      "name": "CallHub.io",
       "position": "Full Stack Developer",
       "location": "Bengaluru, India",
       "startDate": "2015-08",
       "endDate": "2017-02"
     },
     {
+
+      "name": "House of Blue Beans",
+      "summary": "Employed as the sole web and python developer for multiple global clients.",
       "highlights": [
         "Developed Blender Python scripts to import models from an online scene builder to be used to make realistic renders in Blender for clients like Urban Ladder",
         "Developed a custom CMS admin panel in AngularJS to manage a database of 3D models online for a client",
         "Rewrote numerous Flash kids’ educational games in Javascript using the Phaser framework",
         "Developed and managed company website"
       ],
-      "name": "House of Blue Beans",
       "position": "Web Developer",
       "location": "Bengaluru, India",
       "startDate": "2014-11",
       "endDate": "2015-08"
     },
     {
+      "name": "Cognizant Technology Solutions",
+      "summary": "Worked for a health insurance client on a team managing a large mainframe system.",
       "highlights": [
         "Bug squashing of COBOL code on Remote Mainframe Systems",
         "Instrumental in efforts to convert existing JCL project to to Java/Hadoop"
       ],
-      "name": "Cognizant Technology Solutions",
       "position": "Programmer Analyst",
       "location": "Coimbatore, India",
       "startDate": "2013-02",
@@ -121,33 +125,31 @@
   ],
   "skills": [
     {
-      "level": "",
-      "keywords": ["Python (Django/Flask)", "Ruby (Rails)", "JS", "GoLang"],
-      "name": "Programming Languages"
+      "name": "Programming Languages",
+      "keywords": ["Python", "NodeJS", "Golang", "Ruby"]
     },
     {
-      "keywords": ["PostgreSQL", "MongoDB"],
-      "name": "Databases"
+      "name": "Frameworks",
+      "keywords": ["Django", "Flask", "Express", "NextJS", "React", "Rails"]
+    },
+    {
+      "name": "Databases",
+      "keywords": ["PostgreSQL", "MongoDB"]
+    },
+    {
+      "name": "Technologies",
+      "keywords": ["AWS", "Docker", "Kubernetes"]
     }
   ],
   "education": [
     {
       "institution": "Amrita School of Engineering",
+      "location": "Coimbatore",
       "area": "Computer Science and Engineering",
       "studyType": "B.Tech",
       "startDate": "2008",
-      "endDate": "2013"
-    }
-  ],
-  "languages": [
-    {
-      "language": "English"
-    },
-    {
-      "language": "Malayalam"
-    },
-    {
-      "language": "Tamil"
+      "endDate": "2013",
+      "gpa": ""
     }
   ],
   "meta": {

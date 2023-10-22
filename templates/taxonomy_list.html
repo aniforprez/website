@@ -10,13 +10,16 @@
 
 {% block content %}
 <div class="flex flex-col h-full">
-  <h1 class="py-4 font-serif text-3xl font-bold lg:text-4xl">{{ taxonomy.name | capitalize }}</h1>
+  <h1 class="py-4 font-serif text-3xl font-bold tracking-wide lg:text-4xl">{{ taxonomy.name | capitalize }}</h1>
   <div class="flex-grow py-8 border-t-2">
     <div class="flex flex-col">
       <ul>
         {% for term in terms %}
-        <li class="text-lg">
-          <a href="{{ term.path }}" class="hover:text-blue-600">{{ term.name }} ( {{ term.pages | length }} )</a>
+        <li class="mb-2 text-lg">
+          <a href="{{ term.path }}" class="hover:text-blue-600">
+            {{ term.name }}
+            <span class="text-slate-400 dark:text-slate-600">( {{ term.pages | length }} )</span>
+          </a>
         </li>
         {% endfor %}
       </ul>
