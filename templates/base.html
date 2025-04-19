@@ -19,7 +19,8 @@
     <title>{{ page_title }}</title>
     <meta property="og:title" content="{{ page_title }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{% block ogimg %}{{ get_url(path='images/photo_new.jpg') }}{% endblock ogimg %}" />
+    <meta property="og:image"
+          content="{% block ogimg %}{{ get_url(path='images/photo_new.jpg') }}{% endblock ogimg %}" />
     <meta name="description" content="{{ page_description }}">
 
     {% block rss %}
@@ -83,15 +84,22 @@
           <div class="flex flex-col justify-between pb-2 m-auto h-14 md:flex-row">
             <div class="flex-none m-auto">
               <div class="flex items-center justify-start text-2xl md:text-3xl">
-                <a href="https://github.com/aniforprez" class="no-underline" aria-label="Anirudh's GitHub Profile">
+                <a href="https://github.com/aniforprez" class="no-underline" aria-label="Anirudh's GitHub Profile"
+                   rel="noopener noreferrer" target="_blank">
                   <i class="text-black bx bxl-github dark:text-white"></i>
                 </a>
-                <a href="https://twitter.com/aniforprez" class="ml-2 -mb-1 no-underline"
-                   aria-label="Anirudh's Twitter Profile">
-                  <i class="text-blue-500 bx bxl-twitter"></i>
+                <a href="https://bsky.app/profile/aniforprez.dev" class="mb-1 ml-2 no-underline"
+                   aria-label="Anirudh's Twitter Profile" rel="noopener noreferrer" target="_blank">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                       class="text-blue-500 icon icon-tabler icons-tabler-outline icon-tabler-brand-bluesky">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                          d="M6.335 5.144c-1.654 -1.199 -4.335 -2.127 -4.335 .826c0 .59 .35 4.953 .556 5.661c.713 2.463 3.13 2.75 5.444 2.369c-4.045 .665 -4.889 3.208 -2.667 5.41c1.03 1.018 1.913 1.59 2.667 1.59c2 0 3.134 -2.769 3.5 -3.5c.333 -.667 .5 -1.167 .5 -1.5c0 .333 .167 .833 .5 1.5c.366 .731 1.5 3.5 3.5 3.5c.754 0 1.637 -.571 2.667 -1.59c2.222 -2.203 1.378 -4.746 -2.667 -5.41c2.314 .38 4.73 .094 5.444 -2.369c.206 -.708 .556 -5.072 .556 -5.661c0 -2.953 -2.68 -2.025 -4.335 -.826c-2.293 1.662 -4.76 5.048 -5.665 6.856c-.905 -1.808 -3.372 -5.194 -5.665 -6.856z" />
+                  </svg>
                 </a>
                 <a href="https://www.linkedin.com/in/anirudh-sylendranath-55989239/" class="ml-2 no-underline"
-                   aria-label="Anirudh's LinkedIn Profile">
+                   aria-label="Anirudh's LinkedIn Profile" rel="noopener noreferrer" target="_blank">
                   <i class="bx bxl-linkedin text-cyan-700"></i>
                 </a>
                 <a href="mailto:ani.22691@gmail.com" class="ml-2 -mb-1 no-underline" aria-label="Anirudh's Email">

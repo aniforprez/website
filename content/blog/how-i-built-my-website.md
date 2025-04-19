@@ -62,19 +62,19 @@ I'll start with why I picked [Zola](https://www.getzola.org/) but I'll go into m
 
 ### Pros for using Zola { .group }
 
-* Zola is ridiculously simple for a SSG (Static Site Generator). The `zola` command provides all of FIVE options and
+- Zola is ridiculously simple for a SSG (Static Site Generator). The `zola` command provides all of FIVE options and
   developing with it is _very_ fast. Running `zola serve` and editing templates or markdown articles regenerates and
   live reloads the site within 40ms on my machine and gives me instant feedback on my styling and article changes. This
   is supremely helpful and is no surprise since it is written in [Rust](https://www.rust-lang.org/) which is incredibly fast and compiles to assembly.
-* Zola uses the [Tera](https://tera.netlify.app/) template engine whose syntax is extremely similar to [Django's](https://docs.djangoproject.com/en/4.1/topics/templates/#the-django-template-language) template syntax. I have been working for years with Django and the template syntax is fairly easy to grok. Tera has a lot of similar [in-built filters](https://tera.netlify.app/docs/#built-ins) which is quite helpful.
-* Zola is incredibly flexible. Zola has no opinions on how you should organise your posts or templates and lets you define your pages as you need. A ton of aspects are customizable like which template to render for which section or post and so on.
+- Zola uses the [Tera](https://tera.netlify.app/) template engine whose syntax is extremely similar to [Django's](https://docs.djangoproject.com/en/4.1/topics/templates/#the-django-template-language) template syntax. I have been working for years with Django and the template syntax is fairly easy to grok. Tera has a lot of similar [in-built filters](https://tera.netlify.app/docs/#built-ins) which is quite helpful.
+- Zola is incredibly flexible. Zola has no opinions on how you should organise your posts or templates and lets you define your pages as you need. A ton of aspects are customizable like which template to render for which section or post and so on.
 
 ### Cons of using Zola { .group }
 
 Zola isn't without its drawbacks. Some of them are:
 
-* While Zola is unopinionated and fairly customizable, there are still times where I hit roadblocks in terms of what I could do. For eg. I have no way of customizing how my markdown is rendered into HTML without manually adding tags to my markdown. This means I cannot add attributes to the tags that are rendered which would have been very helpful if I wanted to use [native lazy loading for images](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-loading).
-* The documentation is fairly difficult to navigate and some the sections could be reorganised better to represent a journey through building your own site.
+- While Zola is unopinionated and fairly customizable, there are still times where I hit roadblocks in terms of what I could do. For eg. I have no way of customizing how my markdown is rendered into HTML without manually adding tags to my markdown. This means I cannot add attributes to the tags that are rendered which would have been very helpful if I wanted to use [native lazy loading for images](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-loading).
+- The documentation is fairly difficult to navigate and some the sections could be reorganised better to represent a journey through building your own site.
 
 Since you're here assuming I'm using Zola, let's get it started.
 
@@ -132,7 +132,7 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};
 ```
 
 Tailwind operates by generating a CSS file on the fly by reading all the files in your directory, compiling a list of all the Tailwind CSS classes you use and dumping it into a CSS file. To do this, it needs a list of all the documents where it can potentially find CSS classes. For our purposes, we will configure it to watch all the markdown and HTML files in the content and template directories like so:
@@ -246,9 +246,9 @@ highlight_theme = "dracula"
 
 ### Netlify { .group }
 
-* Github integration
-* Configuration
-* Headers for caching
+- Github integration
+- Configuration
+- Headers for caching
 
 ## Miscellaneous { .group }
 
@@ -258,9 +258,9 @@ highlight_theme = "dracula"
 
 ## What's next? { .group }
 
-* Maintain blog
-* Write about random things
-* Overstuffed sense of self
+- Maintain blog
+- Write about random things
+- Overstuffed sense of self
 
 ### Blog hosting and development in 2022 { .group }
 
@@ -280,6 +280,6 @@ This is just way too much going on and makes it feel very impersonal and pre-bui
 really have to be this way and you can build your own themes but I just couldn't reconcile using something this heavily
 built already. It felt like using a tank to dig a hole for your plants.
 
-* Hugo
-* Next
-* Jekyll
+- Hugo
+- Next
+- Jekyll

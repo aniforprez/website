@@ -1,5 +1,5 @@
 ---
-title: "Starting my \"indie hacking\" journey"
+title: 'Starting my "indie hacking" journey'
 description: "The beginning of a new adventure"
 
 # The date of the post.

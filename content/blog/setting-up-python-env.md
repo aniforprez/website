@@ -108,11 +108,11 @@ Let's install Python 3.10.11 now since we need it for our sample project. To ins
 pyenv install 3.10.11
 ```
 
-If all goes well, you will get the message "*Installed Python-3.10.11 to ...*" which will also give you the exact directory where python was installed. pyenv generally installs to `$HOME/.pyenv/versions/<version>` where `$HOME` is your home directory.
+If all goes well, you will get the message "_Installed Python-3.10.11 to ..._" which will also give you the exact directory where python was installed. pyenv generally installs to `$HOME/.pyenv/versions/<version>` where `$HOME` is your home directory.
 
 ## Setting your python version { .group }
 
-You have your python version of choice installed but if you run `python --version`, you'll see that it's still showing your locally installed python version. What??? Well, that's because while pyenv *installs* any version you desire, it makes no assumptions about what version of python you want to actually use. This allows you the freedom of not only changing your global python version system-wide, you can also change your python version locally for each directory where you have a python project.
+You have your python version of choice installed but if you run `python --version`, you'll see that it's still showing your locally installed python version. What??? Well, that's because while pyenv _installs_ any version you desire, it makes no assumptions about what version of python you want to actually use. This allows you the freedom of not only changing your global python version system-wide, you can also change your python version locally for each directory where you have a python project.
 
 To start, set the global python version with
 
@@ -158,5 +158,3 @@ def saymoo():
 ```
 
 This calls the API at [httpbin.org](https://httpbin.org) which simply returns exactly what you send to it. Since we've not installed any packages yet, the line `import requests` will fail.
-
-

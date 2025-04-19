@@ -3,7 +3,7 @@ publish = "public"
 command = "npm run build && zola build"
 
 [build.environment]
-ZOLA_VERSION = "0.16.1"
+ZOLA_VERSION = "0.19.1"
 NODE_VERSION = "17.1.0"
 
 [context.deploy-preview]
