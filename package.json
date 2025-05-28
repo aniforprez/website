@@ -1,24 +1,34 @@
 {
-  "name": "aniforprez-website",
-  "version": "1.0.0",
-  "description": "aniforprez's website",
+  "name": "website-new",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "dev": "NODE_ENV=development npx tailwindcss -i ./static/css/tailwind.css -o ./static/css/main.css --watch",
-    "build": "NODE_ENV=production npx tailwindcss -i ./static/css/tailwind.css -o ./static/css/main.css --minify"
+    "dev": "astro dev",
+    "lint": "eslint .",
+    "format": "prettier . --write",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "keywords": [
-    "website",
-    "zola",
-    "tailwind"
-  ],
-  "author": "Anirudh Sylendranath (aniforprez)",
-  "license": "ISC",
+  "dependencies": {
+    "@astrojs/mdx": "^4.2.6",
+    "@astrojs/netlify": "^6.3.3",
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.4.0",
+    "@fontsource-variable/jetbrains-mono": "^5.2.5",
+    "@fontsource-variable/victor-mono": "^5.2.5",
+    "@tailwindcss/vite": "^4.1.7",
+    "astro": "^5.7.13",
+    "tailwindcss": "^4.1.7",
+    "tippy.js": "^6.3.7"
+  },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9",
-    "jsonresume-theme-flat": "^0.3.7",
-    "jsonresume-theme-spartan": "^0.3.0",
-    "jsonresume-theme-stackoverflow": "^2.0.2",
-    "resume-cli": "^3.0.8",
-    "tailwindcss": "^3.3.3"
+    "@tailwindcss/typography": "^0.5.16",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint": "^9.27.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "prettier": "^3.5.3",
+    "prettier-plugin-astro": "0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.11"
   }
 }
