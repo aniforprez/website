@@ -1,15 +1,45 @@
-# **aniforprez**.dev
+# My Website ([aniforprez.dev]())
 
-## Developing the website
+This website was developed with [Astro](https://astro.build)
 
-### Requirements
+## 🚀 Project Structure
 
-This site uses [zola](https://www.getzola.org/). Follow the [instructions](https://www.getzola.org/documentation/getting-started/installation/)
-for installing it to your platform of choice and run `zola serve` for the site to be served by default at
-`127.0.0.1:1111`
+Inside of the project, you'll see the following folders and files:
 
-This site also uses tailwind which requires npm and node. Install node and npm through your process of choice. I prefer
-asdf to manage node and, consequently, npm.
+```text
+├── public/
+├── src/
+│   ├── components/
+│   ├── content/
+│   ├── layouts/
+│   └── pages/
+├── astro.config.mjs
+├── README.md
+├── package.json
+└── tsconfig.json
+```
 
-To serve the CSS files for development with Tailwind's JIT, run `npm run dev`. To build the CSS files for production,
-run `npm run build`
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+
+Components can be saved to `src/components/`.
+
+The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Check out the [Astro documentation](https://docs.astro.build).

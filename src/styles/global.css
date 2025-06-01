@@ -58,7 +58,7 @@
 }
 
 .tippy-box[data-theme="default"] {
-  @apply rounded-none border-stone-500 bg-stone-300 text-lg text-stone-900 shadow-sm;
+  @apply rounded-none border-stone-500 bg-stone-100 text-lg text-stone-900 shadow-sm;
 }
 
 /* body {

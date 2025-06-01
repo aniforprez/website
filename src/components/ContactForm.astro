@@ -1,0 +1,154 @@
+<form
+  method="post"
+  class="border-theme mt-4 flex w-full max-w-xl flex-col gap-2 border-1 p-4"
+  id="contact-form"
+>
+  <label for="name" class="text-muted">Name:</label>
+  <input
+    type="text"
+    name="name"
+    required
+    class="border-theme w-full border-2 p-2 outline-none focus:border-stone-400"
+    placeholder="Your Name"
+  />
+  <label for="email" class="text-muted mt-2">Email:</label>
+  <input
+    type="email"
+    name="email"
+    required
+    class="border-theme w-full border-2 p-2 outline-none focus:border-stone-400"
+    placeholder="Your email"
+  />
+
+  <!-- honeypot field to catch bots. Purposefully mispelled "email" as "emai" to better trick bots -->
+  <label for="emai" class="sr-only">Real users skip this field</label>
+  <input id="emai" type="text" name="emai" class="sr-only" tabindex="-1" />
+
+  <label for="message" class="text-muted mt-2">Message:</label>
+  <textarea
+    name="message"
+    required
+    rows="4"
+    minlength="10"
+    class="border-theme w-full border-2 p-2 outline-none focus:border-stone-400"
+    placeholder="Your message"></textarea>
+  <button
+    type="submit"
+    class="border-theme mt-2 flex w-full cursor-pointer items-center justify-center gap-2 border-2 p-2 outline-none hover:bg-stone-100 hover:shadow-md focus:border-stone-400 disabled:cursor-auto disabled:bg-stone-300 disabled:shadow-none hover:dark:bg-stone-700 disabled:dark:bg-stone-800"
+    id="submit-button"
+  >
+    Send <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      class="size-4"
+      ><path
+        d="M3.5 1.34558C3.58425 1.34558 3.66714 1.36687 3.74096 1.40747L22.2034 11.5618C22.4454 11.6949 22.5337 11.9989 22.4006 12.2409C22.3549 12.324 22.2865 12.3924 22.2034 12.4381L3.74096 22.5924C3.499 22.7255 3.19497 22.6372 3.06189 22.3953C3.02129 22.3214 3 22.2386 3 22.1543V1.84558C3 1.56944 3.22386 1.34558 3.5 1.34558ZM5 4.38249V10.9999H10V12.9999H5V19.6174L18.8499 11.9999L5 4.38249Z"
+      ></path></svg
+    >
+  </button>
+  <div
+    class="border-theme mt-2 hidden w-full items-center gap-4 border-2 p-2 opacity-0 transition-opacity duration-300"
+    id="form-success"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="currentColor"
+    >
+      <path
+        d="M11.602 13.7599L13.014 15.1719L21.4795 6.7063L22.8938 8.12051L13.014 18.0003L6.65 11.6363L8.06421 10.2221L10.189 12.3469L11.6025 13.7594L11.602 13.7599ZM11.6037 10.9322L16.5563 5.97949L17.9666 7.38977L13.014 12.3424L11.6037 10.9322ZM8.77698 16.5873L7.36396 18.0003L1 11.6363L2.41421 10.2221L3.82723 11.6352L3.82604 11.6363L8.77698 16.5873Z"
+      ></path>
+    </svg>
+    Message sent!
+  </div>
+  <div
+    class="border-theme mt-2 hidden w-full items-center gap-4 border-2 p-2 opacity-0 transition-opacity duration-300"
+    id="form-failure"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="currentColor"
+    >
+      <path
+        d="M11.602 13.7599L13.014 15.1719L21.4795 6.7063L22.8938 8.12051L13.014 18.0003L6.65 11.6363L8.06421 10.2221L10.189 12.3469L11.6025 13.7594L11.602 13.7599ZM11.6037 10.9322L16.5563 5.97949L17.9666 7.38977L13.014 12.3424L11.6037 10.9322ZM8.77698 16.5873L7.36396 18.0003L1 11.6363L2.41421 10.2221L3.82723 11.6352L3.82604 11.6363L8.77698 16.5873Z"
+      ></path>
+    </svg>
+    Oh no! Message failed to send! Please try again
+  </div>
+</form>
+
+<script>
+  // handle the form submission
+  var xhr = new XMLHttpRequest();
+
+  // only one contact form supported per page
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+
+  const submitButton = document.getElementById("submit-button");
+  const formGoodFeedback = document.getElementById("form-success");
+  const formBadFeedback = document.getElementById("form-failure");
+
+  const handleFormSubmission = async (event: SubmitEvent) => {
+    // prevent page from reloading
+    event.preventDefault();
+
+    // get form data
+    const formData = new FormData(form);
+
+    const response = await fetch("/contact", {
+      method: "POST",
+      body: formData,
+    });
+
+    const res = await response.json();
+
+    if (response.status === 200 && res["success"]) {
+      // The request was successful
+      console.log("Form submitted successfully.");
+      // reset form on successful email send
+      // form?.reset();
+
+      if (formGoodFeedback) {
+        formGoodFeedback.classList.remove("hidden");
+        formGoodFeedback.classList.add("opacity-100", "flex");
+        submitButton?.setAttribute("disabled", "true");
+
+        // reset form feedback after a few seconds
+        setTimeout(() => {
+          formGoodFeedback.classList.remove("opacity-100");
+
+          setTimeout(() => {
+            formGoodFeedback.classList.remove("flex");
+            formGoodFeedback.classList.add("hidden");
+          }, 300);
+        }, 3000);
+      }
+    } else {
+      const message = "Form submission failed with error: " + res["error"];
+      console.log(message, res["success"]);
+
+      if (formBadFeedback) {
+        formBadFeedback.classList.remove("hidden");
+        formBadFeedback.classList.add("opacity-100", "flex");
+
+        // reset form feedback after a few seconds
+        setTimeout(() => {
+          formBadFeedback.classList.remove("opacity-100");
+
+          setTimeout(() => {
+            formBadFeedback.classList.remove("flex");
+            formBadFeedback.classList.add("hidden");
+          }, 300);
+        }, 3000);
+      }
+    }
+  };
+
+  form?.addEventListener("submit", handleFormSubmission, true);
+</script>
