@@ -1,0 +1,56 @@
+---
+import type { MarkdownHeading } from "astro";
+import generateToc from "./generateToc";
+import type { TocItem } from "./generateToc";
+import TableOfContentsHeading from "./TableOfContentsHeading.astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+
+const filteredHeadings = generateToc(headings.filter((h) => h.depth <= 3));
+---
+
+<nav id="toc" class="overflow-y-auto">
+  <h2 class="border-theme border-b py-2 text-lg font-semibold">
+    Table of Contents
+  </h2>
+  <ul class="list-inside py-2">
+    {
+      filteredHeadings.map((heading) => (
+        <TableOfContentsHeading heading={heading} />
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  const setCurrentHeading: IntersectionObserverCallback = (entries) => {
+    // loop to each entries (headings) in the page
+    for (let entry of entries) {
+      // equivalent to the slug returned from pageHeadings
+      const { id } = entry.target;
+
+      // check if the entry is intersecting
+      if (entry.intersectionRatio > 0) {
+        // remove active class from all links
+        // add active class to the currently active entry
+        document
+          .querySelector(`#toc a[href='#${id}']`)
+          ?.classList.add("not-dark:text-stone-800", "dark:text-stone-200");
+      } else {
+        document
+          .querySelector(`#toc a[href='#${id}']`)
+          ?.classList.remove("not-dark:text-stone-800", "dark:text-stone-200");
+      }
+    }
+  };
+
+  const observer = new IntersectionObserver(setCurrentHeading);
+  // select all headings to observe
+  const elToObserve = document.querySelectorAll("article :is(h2, h3)");
+  // finally, observe the elements
+  elToObserve.forEach((el) => observer.observe(el));
+</script>

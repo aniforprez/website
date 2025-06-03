@@ -5,87 +5,89 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import { SITE_SUFFIX } from "../consts";
+import type { MarkdownHeading } from "astro";
+import TableOfContents from "../components/TableOfContents.astro";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<"blog">["data"] & { headings: MarkdownHeading[] };
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  categories,
+  headings,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
-    <BaseHead title={title + SITE_SUFFIX} description={description} />
-    <style>
-      /* main {
-        width: calc(100% - 2em);
-        max-width: 100%;
-        margin: 0;
-      } */
-      /* .prose {
-        width: 720px;
-        max-width: calc(100% - 2em);
-        margin: auto;
-        padding: 1em;
-        color: rgb(var(--gray-dark));
-      } */
-      .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
-      }
-      .title h1 {
-        margin: 0 0 0.5em 0;
-      }
-      .date {
-        margin-bottom: 0.5em;
-        color: rgb(var(--gray));
-      }
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
+    <BaseHead
+      title={title + SITE_SUFFIX}
+      description={description}
+      image={heroImage}
+    />
   </head>
 
   <body
-    class="bg-stone-200 font-sans text-stone-900 dark:bg-stone-800 dark:text-stone-100"
+    class="bg-theme font-sans text-stone-900 [--pattern-color:var(--color-stone-300)] dark:text-stone-100 dark:[--pattern-color:var(--color-stone-700)]"
   >
     <Header />
-    <main>
-      <article
-        class="container m-auto border-x border-stone-300 dark:border-stone-700"
-      >
-        <div class="w-full">
-          {
-            heroImage && (
-              <img
-                width={1020}
-                height={510}
-                src={heroImage}
-                alt=""
-                class="m-auto rounded-xl"
-              />
-            )
-          }
+    <main class="*:border-b *:border-stone-300 *:px-3 dark:*:border-stone-700">
+      <div>
+        <div
+          class="border-theme container m-auto flex w-full flex-col items-center gap-4 border-x p-12"
+        >
+          <h1 class="text-center text-3xl font-bold">
+            {title}
+          </h1>
+          <p class="text-muted">
+            {pubDate && <FormattedDate date={pubDate} />}
+            {
+              updatedDate && (
+                <span>
+                  (Updated on <FormattedDate date={updatedDate} />)
+                </span>
+              )
+            }
+          </p>
         </div>
-        <div class="prose prose-stone m-auto">
-          <div class="title">
-            <div class="date">
-              <FormattedDate date={pubDate} />
-              {
-                updatedDate && (
-                  <div class="last-updated-on">
-                    Last updated on <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
-            </div>
-            <h1>{title}</h1>
-            <hr />
+      </div>
+      <div class="relative">
+        <div class="bg-noise absolute inset-0 -z-10 opacity-50"></div>
+        <div
+          class="border-theme container m-auto flex flex-col border-x lg:flex-row"
+        >
+          <div class="border-theme order-2 grow-0 border-r lg:order-1 lg:w-3/4">
+            {
+              heroImage && (
+                <div class="border-theme relative w-full border-b">
+                  <div class="bg-pattern absolute inset-0 -z-10 h-full w-full" />
+                  <img
+                    width={1020}
+                    height={510}
+                    src={heroImage}
+                    alt=""
+                    class="border-theme m-auto aspect-2/1 xl:border-x"
+                  />
+                </div>
+              )
+            }
+            <article
+              class="prose prose-stone dark:prose-invert m-auto max-w-5xl p-12"
+            >
+              <slot />
+            </article>
           </div>
-          <slot />
+          <div class="order-1 grow-0 p-8 lg:order-2 lg:w-1/4">
+            <div class="sticky top-8">
+              <TableOfContents headings={headings} />
+            </div>
+          </div>
         </div>
-      </article>
+      </div>
     </main>
     <Footer />
   </body>

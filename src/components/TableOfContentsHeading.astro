@@ -1,0 +1,27 @@
+---
+import type { TocItem } from "./generateToc";
+
+interface Props {
+  heading: TocItem;
+}
+
+const { heading } = Astro.props;
+---
+
+<li>
+  <a
+    href={"#" + heading.slug}
+    class="line-clamp-1 py-1 text-stone-500 transition-colors not-dark:text-stone-400 hover:text-blue-600 hover:dark:text-blue-400"
+  >
+    {heading.text}
+  </a>
+  {
+    heading.children.length > 0 && (
+      <ul class="pl-4">
+        {heading.children.map((child) => (
+          <Astro.self heading={child} />
+        ))}
+      </ul>
+    )
+  }
+</li>
