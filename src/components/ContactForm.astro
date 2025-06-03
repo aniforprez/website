@@ -7,29 +7,42 @@
   <input
     type="text"
     name="name"
+    id="name"
     required
     class="border-theme w-full border-2 p-2 outline-none focus:border-stone-400"
     placeholder="Your Name"
+    autocomplete="name"
   />
   <label for="email" class="text-muted mt-2">Email:</label>
   <input
     type="email"
     name="email"
+    id="email"
     required
     class="border-theme w-full border-2 p-2 outline-none focus:border-stone-400"
     placeholder="Your email"
+    autocomplete="email"
   />
 
   <!-- honeypot field to catch bots. Purposefully mispelled "email" as "emai" to better trick bots -->
   <label for="emai" class="sr-only">Real users skip this field</label>
-  <input id="emai" type="text" name="emai" class="sr-only" tabindex="-1" />
+  <input
+    id="emai"
+    id="emai"
+    type="text"
+    name="emai"
+    class="sr-only"
+    tabindex="-1"
+  />
 
   <label for="message" class="text-muted mt-2">Message:</label>
   <textarea
     name="message"
+    id="message"
     required
     rows="4"
     minlength="10"
+    maxlength="1000"
     class="border-theme w-full border-2 p-2 outline-none focus:border-stone-400"
     placeholder="Your message"></textarea>
   <button

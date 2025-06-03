@@ -6,12 +6,12 @@ interface Props {
 const { date } = Astro.props;
 ---
 
-<time datetime={date.toISOString()}>
-  {
-    date.toLocaleDateString("en-us", {
+<time datetime={date.toISOString()}
+  >{
+    date.toLocaleDateString("en-gb", {
       year: "numeric",
-      month: "short",
+      month: "long",
       day: "numeric",
     })
-  }
-</time>
+  }</time
+>

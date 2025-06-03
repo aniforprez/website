@@ -3,7 +3,7 @@
 
 export const SITE_TITLE = "Anirudh Sylendranath - Full Stack Developer";
 export const SITE_DESCRIPTION =
-  "Website for Anirudh Sylendranath, full stack developer";
+  "Hi, I'm Anirudh Sylendranath. A full stack developer with 12 years of experience building web apps from robust backends to feature-rich clients.";
 
 export const SITE_SUFFIX = " | Anirudh Sylendranath";
 

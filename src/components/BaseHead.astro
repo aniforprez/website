@@ -2,7 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
-import { SITE_TITLE } from "../consts";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 // JetBrains Mono
 import "@fontsource-variable/jetbrains-mono";
@@ -11,13 +11,17 @@ import "@fontsource-variable/victor-mono/wght-italic.css";
 
 interface Props {
   title: string;
-  description: string;
+  description?: string;
   image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  image = "/blog-placeholder-1.jpg",
+} = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -54,6 +58,20 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- RSS -->
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="Anirudh Sylendranath's Blog"
+  href={new URL("rss.xml", Astro.site)}
+/>
+
+<style>
+  @view-transition {
+    navigation: auto;
+  }
+</style>
 
 <script is:inline>
   const theme = (() => {
