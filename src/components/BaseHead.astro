@@ -6,8 +6,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 // JetBrains Mono
 import "@fontsource-variable/jetbrains-mono";
+import jetbrainsMonoWoff2 from "@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2";
 // Victor Mono
 import "@fontsource-variable/victor-mono/wght-italic.css";
+import victorMonoWoff2 from "@fontsource-variable/victor-mono/files/victor-mono-latin-wght-italic.woff2";
 
 interface Props {
   title: string;
@@ -59,6 +61,22 @@ const {
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
+<!-- Preload Fonts -->
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href={jetbrainsMonoWoff2}
+  crossorigin="anonymous"
+/>
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href={victorMonoWoff2}
+  crossorigin="anonymous"
+/>
+
 <!-- RSS -->
 <link
   rel="alternate"
@@ -68,8 +86,10 @@ const {
 />
 
 <style>
-  @view-transition {
-    navigation: auto;
+  @media screen and (prefers-reduced-motion: no-preference) {
+    @view-transition {
+      navigation: auto;
+    }
   }
 </style>
 
