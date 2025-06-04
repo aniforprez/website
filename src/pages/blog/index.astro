@@ -14,7 +14,6 @@ const posts = (await getCollection("blog")).sort(
 const recommends = (await getCollection("articles")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
-console.log(recommends);
 ---
 
 <!doctype html>
@@ -64,7 +63,7 @@ console.log(recommends);
           >
             {
               posts.map((post) => (
-                <li class="border-theme group border-r border-b hover:bg-stone-100 hover:shadow-xl dark:shadow-stone-950/75 hover:dark:bg-stone-800">
+                <li class="border-theme group border-r border-b hover:z-1 hover:bg-stone-100 hover:shadow-xl dark:shadow-stone-950/75 hover:dark:bg-stone-800">
                   <a
                     href={`/blog/${post.id}/`}
                     class="flex h-full w-full flex-col"
@@ -119,7 +118,7 @@ console.log(recommends);
             <ul class="grid grid-cols-2 md:grid-cols-1">
               {
                 recommends.map((rec) => (
-                  <li class="border-theme group bg-theme border-r border-b hover:bg-stone-100 hover:shadow-xl md:border-r-0 dark:shadow-stone-950/75 hover:dark:bg-stone-800">
+                  <li class="border-theme group bg-theme border-r border-b hover:z-1 hover:bg-stone-100 hover:shadow-xl md:border-r-0 dark:shadow-stone-950/75 hover:dark:bg-stone-800">
                     <a
                       href={rec.data.link}
                       class="flex h-full w-full flex-col gap-1 p-3"

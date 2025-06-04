@@ -9,6 +9,7 @@
     name="name"
     id="name"
     required
+    min="3"
     class="border-theme w-full border-2 p-2 outline-none focus:border-stone-400"
     placeholder="Your Name"
     autocomplete="name"
@@ -47,18 +48,36 @@
     placeholder="Your message"></textarea>
   <button
     type="submit"
-    class="border-theme mt-2 flex w-full cursor-pointer items-center justify-center gap-2 border-2 p-2 outline-none hover:bg-stone-100 hover:shadow-md focus:border-stone-400 disabled:cursor-auto disabled:bg-stone-300 disabled:shadow-none hover:dark:bg-stone-700 disabled:dark:bg-stone-800"
+    class="border-theme group mt-2 h-12 w-full cursor-pointer border-2 p-2 outline-none hover:bg-stone-100 hover:shadow-md focus:border-stone-400 disabled:cursor-auto disabled:bg-stone-300 disabled:shadow-none hover:dark:bg-stone-700 disabled:dark:bg-stone-800"
     id="submit-button"
+    data-loading="false"
   >
-    Send <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      class="size-4"
-      ><path
-        d="M3.5 1.34558C3.58425 1.34558 3.66714 1.36687 3.74096 1.40747L22.2034 11.5618C22.4454 11.6949 22.5337 11.9989 22.4006 12.2409C22.3549 12.324 22.2865 12.3924 22.2034 12.4381L3.74096 22.5924C3.499 22.7255 3.19497 22.6372 3.06189 22.3953C3.02129 22.3214 3 22.2386 3 22.1543V1.84558C3 1.56944 3.22386 1.34558 3.5 1.34558ZM5 4.38249V10.9999H10V12.9999H5V19.6174L18.8499 11.9999L5 4.38249Z"
-      ></path></svg
+    <span
+      class="flex items-center justify-center gap-2 group-data-[loading=true]:hidden"
     >
+      Send <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="size-4"
+        ><path
+          d="M3.5 1.34558C3.58425 1.34558 3.66714 1.36687 3.74096 1.40747L22.2034 11.5618C22.4454 11.6949 22.5337 11.9989 22.4006 12.2409C22.3549 12.324 22.2865 12.3924 22.2034 12.4381L3.74096 22.5924C3.499 22.7255 3.19497 22.6372 3.06189 22.3953C3.02129 22.3214 3 22.2386 3 22.1543V1.84558C3 1.56944 3.22386 1.34558 3.5 1.34558ZM5 4.38249V10.9999H10V12.9999H5V19.6174L18.8499 11.9999L5 4.38249Z"
+        ></path></svg
+      >
+    </span>
+    <span
+      class="flex animate-spin items-center justify-center gap-2 group-data-[loading=false]:hidden"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="size-5"
+        ><path
+          d="M12 3C16.9706 3 21 7.02944 21 12H19C19 8.13401 15.866 5 12 5V3Z"
+        ></path></svg
+      >
+    </span>
   </button>
   <div
     class="border-theme mt-2 hidden w-full items-center gap-4 border-2 p-2 opacity-0 transition-opacity duration-300"
@@ -87,11 +106,10 @@
       width="18"
       height="18"
       fill="currentColor"
+      ><path
+        d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11 15V17H13V15H11ZM11 7V13H13V7H11Z"
+      ></path></svg
     >
-      <path
-        d="M11.602 13.7599L13.014 15.1719L21.4795 6.7063L22.8938 8.12051L13.014 18.0003L6.65 11.6363L8.06421 10.2221L10.189 12.3469L11.6025 13.7594L11.602 13.7599ZM11.6037 10.9322L16.5563 5.97949L17.9666 7.38977L13.014 12.3424L11.6037 10.9322ZM8.77698 16.5873L7.36396 18.0003L1 11.6363L2.41421 10.2221L3.82723 11.6352L3.82604 11.6363L8.77698 16.5873Z"
-      ></path>
-    </svg>
     Oh no! Message failed to send! Please try again
   </div>
 </form>
@@ -114,18 +132,18 @@
     // get form data
     const formData = new FormData(form);
 
+    submitButton?.setAttribute("data-loading", "true");
+
     const response = await fetch("/contact", {
       method: "POST",
       body: formData,
     });
 
     const res = await response.json();
+    submitButton?.setAttribute("data-loading", "false");
 
     if (response.status === 200 && res["success"]) {
-      // The request was successful
-      console.log("Form submitted successfully.");
-      // reset form on successful email send
-      // form?.reset();
+      form?.reset();
 
       if (formGoodFeedback) {
         formGoodFeedback.classList.remove("hidden");
@@ -144,7 +162,6 @@
       }
     } else {
       const message = "Form submission failed with error: " + res["error"];
-      console.log(message, res["success"]);
 
       if (formBadFeedback) {
         formBadFeedback.classList.remove("hidden");

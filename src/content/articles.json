@@ -55,6 +55,15 @@
       "description": "A scathing takedown of the coverage of Meta and Mark Zuckerberg",
       "categories": ["internet", "meta"],
       "link": "https://www.wheresyoured.at/the-slop-society/"
+    },
+    {
+      "id": "7",
+      "author": "Amanda Guinzburg",
+      "title": "Diabolus Ex Machina",
+      "pubDate": "2025-06-04",
+      "description": "A series of screenshots of ChatGPT and its responses to being asked to read links",
+      "categories": ["ai"],
+      "link": "https://amandaguinzburg.substack.com/p/diabolus-ex-machina"
     }
   ]
 }
