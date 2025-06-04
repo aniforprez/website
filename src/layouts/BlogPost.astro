@@ -43,11 +43,16 @@ const {
           )
         }
       </p>
-      <ul class="*:border-theme flex gap-2 text-sm *:border-2 *:px-2 *:py-1">
+      <ul class="flex gap-2 text-sm">
         {
           categories?.map((cat) => (
             <li>
-              <a href={`/tags/${cat}`}>{cat}</a>
+              <a
+                href={`/tags/${cat}`}
+                class="border-theme border-2 px-2 py-1 hover:bg-stone-100 hover:shadow-md hover:dark:bg-stone-700"
+              >
+                # {cat}
+              </a>
             </li>
           ))
         }
