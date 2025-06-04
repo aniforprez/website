@@ -43,10 +43,10 @@ const {
           )
         }
       </p>
-      <ul class="flex gap-2 text-sm">
+      <ul class="flex flex-wrap gap-2 text-sm">
         {
           categories?.map((cat) => (
-            <li>
+            <li class="p-1">
               <a
                 href={`/tags/${cat}`}
                 class="border-theme border-2 px-2 py-1 hover:bg-stone-100 hover:shadow-md hover:dark:bg-stone-700"
@@ -73,19 +73,21 @@ const {
                 width={1020}
                 height={510}
                 src={heroImage}
-                alt=""
+                alt={title}
                 class="border-theme m-auto aspect-2/1 xl:border-x"
               />
             </div>
           )
         }
         <article
-          class="prose prose-stone dark:prose-invert m-auto max-w-5xl p-12"
+          class="prose prose-stone prose-sm md:prose-base dark:prose-invert m-auto max-w-5xl p-8 lg:p-12"
         >
           <slot />
         </article>
       </div>
-      <div class="order-1 grow-0 p-8 lg:order-2 lg:w-1/4">
+      <div
+        class="border-theme order-1 grow-0 border-b p-8 lg:order-2 lg:w-1/4 lg:border-b-0"
+      >
         <div class="sticky top-16">
           <TableOfContents headings={headings} />
         </div>

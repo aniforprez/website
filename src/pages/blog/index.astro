@@ -49,8 +49,8 @@ const recommends = (await getCollection("articles")).sort(
               <a href={`/blog/${post.id}/`} class="flex h-full w-full flex-col">
                 <div class="aspect-2/1">
                   <img
-                    width={960}
-                    height={540}
+                    width={600}
+                    height={300}
                     src={post.data.heroImage}
                     alt={post.data.title}
                   />
