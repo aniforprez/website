@@ -1,15 +1,15 @@
 ---
 import type { MarkdownHeading } from "astro";
-import generateToc from "./generateToc";
-import type { TocItem } from "./generateToc";
+
 import TableOfContentsHeading from "./TableOfContentsHeading.astro";
+
+import generateToc from "./generateToc";
 
 interface Props {
   headings: MarkdownHeading[];
 }
 
 const { headings } = Astro.props;
-
 const filteredHeadings = generateToc(headings.filter((h) => h.depth <= 3));
 ---
 
