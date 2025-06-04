@@ -1,12 +1,12 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FormattedDate from "../components/FormattedDate.astro";
-import { SITE_SUFFIX } from "../consts";
 import type { MarkdownHeading } from "astro";
+
+import BaseLayout from "./BaseLayout.astro";
+import FormattedDate from "../components/FormattedDate.astro";
 import TableOfContents from "../components/TableOfContents.astro";
+
+import { SITE_SUFFIX } from "../consts";
 
 type Props = CollectionEntry<"blog">["data"] & { headings: MarkdownHeading[] };
 
@@ -21,74 +21,70 @@ const {
 } = Astro.props;
 ---
 
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <BaseHead
-      title={title + SITE_SUFFIX}
-      description={description}
-      image={heroImage}
-    />
-  </head>
-
-  <body
-    class="bg-theme font-sans text-stone-900 [--pattern-color:var(--color-stone-300)] dark:text-stone-100 dark:[--pattern-color:var(--color-stone-700)]"
-  >
-    <Header />
-    <main class="*:border-b *:border-stone-300 *:px-3 dark:*:border-stone-700">
-      <div>
-        <div
-          class="border-theme container m-auto flex w-full flex-col items-center gap-4 border-x p-12"
-        >
-          <h1 class="text-center text-3xl font-bold">
-            {title}
-          </h1>
-          <p class="text-muted">
-            {pubDate && <FormattedDate date={pubDate} />}
-            {
-              updatedDate && (
-                <span>
-                  (Updated on <FormattedDate date={updatedDate} />)
-                </span>
-              )
-            }
-          </p>
-        </div>
-      </div>
-      <div class="relative">
-        <div class="bg-noise absolute inset-0 -z-10 opacity-50"></div>
-        <div
-          class="border-theme container m-auto flex flex-col border-x lg:flex-row"
-        >
-          <div class="border-theme order-2 grow-0 border-r lg:order-1 lg:w-3/4">
-            {
-              heroImage && (
-                <div class="border-theme relative w-full border-b">
-                  <div class="bg-pattern absolute inset-0 -z-10 h-full w-full" />
-                  <img
-                    width={1020}
-                    height={510}
-                    src={heroImage}
-                    alt=""
-                    class="border-theme m-auto aspect-2/1 xl:border-x"
-                  />
-                </div>
-              )
-            }
-            <article
-              class="prose prose-stone dark:prose-invert m-auto max-w-5xl p-12"
-            >
-              <slot />
-            </article>
-          </div>
-          <div class="order-1 grow-0 p-8 lg:order-2 lg:w-1/4">
-            <div class="sticky top-16">
-              <TableOfContents headings={headings} />
+<BaseLayout
+  title={title + SITE_SUFFIX}
+  description={description}
+  image={heroImage}
+>
+  <div>
+    <div
+      class="border-theme container m-auto flex w-full flex-col items-center gap-4 border-x p-12"
+    >
+      <h1 class="text-center text-3xl font-bold">
+        {title}
+      </h1>
+      <p class="text-muted">
+        {pubDate && <FormattedDate date={pubDate} />}
+        {
+          updatedDate && (
+            <span>
+              (Updated on <FormattedDate date={updatedDate} />)
+            </span>
+          )
+        }
+      </p>
+      <ul class="*:border-theme flex gap-2 text-sm *:border-2 *:px-2 *:py-1">
+        {
+          categories?.map((cat) => (
+            <li>
+              <a href={`/tags/${cat}`}>{cat}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="relative">
+    <div class="bg-noise absolute inset-0 -z-10 opacity-50"></div>
+    <div
+      class="border-theme container m-auto flex flex-col border-x lg:flex-row"
+    >
+      <div class="border-theme order-2 grow-0 border-r lg:order-1 lg:w-3/4">
+        {
+          heroImage && (
+            <div class="border-theme relative w-full border-b">
+              <div class="bg-pattern absolute inset-0 -z-10 h-full w-full" />
+              <img
+                width={1020}
+                height={510}
+                src={heroImage}
+                alt=""
+                class="border-theme m-auto aspect-2/1 xl:border-x"
+              />
             </div>
-          </div>
+          )
+        }
+        <article
+          class="prose prose-stone dark:prose-invert m-auto max-w-5xl p-12"
+        >
+          <slot />
+        </article>
+      </div>
+      <div class="order-1 grow-0 p-8 lg:order-2 lg:w-1/4">
+        <div class="sticky top-16">
+          <TableOfContents headings={headings} />
         </div>
       </div>
-    </main>
-    <Footer />
-  </body>
-</html>
+    </div>
+  </div>
+</BaseLayout>

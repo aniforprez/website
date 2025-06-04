@@ -1,0 +1,33 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { Tooltips } from "../components/Tooltips";
+
+export type Props = { title: string; description?: string; image?: string };
+const { title, description, image } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+    <Tooltips
+      interactive={false}
+      offset={[0, 5]}
+      maxWidth="200"
+      arrow={false}
+      animation="fade"
+      placement="top"
+    />
+  </head>
+  <body
+    class="bg-theme font-sans text-stone-900 [--pattern-color:var(--color-stone-300)] dark:text-stone-100 dark:[--pattern-color:var(--color-stone-700)]"
+  >
+    <Header />
+    <main class="*:border-b *:border-stone-300 *:px-3 dark:*:border-stone-700">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

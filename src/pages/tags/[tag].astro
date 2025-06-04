@@ -1,0 +1,85 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+
+import { SITE_SUFFIX, BLOG_DESCRIPTION } from "../../consts";
+
+export const getStaticPaths = (async () => {
+  const blog_posts = await getCollection("blog");
+  const review_posts = await getCollection("reviews");
+
+  const uniqueTags = [
+    ...new Set(blog_posts.map((post) => post.data.categories).flat()),
+    ...new Set(review_posts.map((post) => post.data.categories).flat()),
+  ];
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = [
+      ...blog_posts.filter((post) => post.data.categories?.includes(tag)),
+      ...review_posts.filter((post) => post.data.categories?.includes(tag)),
+    ];
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`Tag: ${tag}` + SITE_SUFFIX}
+  description={`Tag ${tag} on ` + BLOG_DESCRIPTION}
+>
+  <div>
+    <div class="border-theme container m-auto border-x p-12 sm:justify-start">
+      <h1 class="font-cursive border-theme text-3xl font-semibold">
+        {`# ${tag}`}
+      </h1>
+    </div>
+  </div>
+  <div>
+    <section
+      class="border-theme relative container m-auto flex h-fit w-full flex-col items-start border-x p-0 md:flex-row"
+    >
+      <ul
+        class="border-theme grid w-full grid-cols-1 md:border-r lg:grid-cols-2"
+      >
+        {
+          posts.map((post) => (
+            <li class="border-theme group border-r border-b hover:z-1 hover:bg-stone-100 hover:shadow-xl dark:shadow-stone-950/75 hover:dark:bg-stone-800">
+              <a href={`/blog/${post.id}/`} class="flex h-full w-full flex-col">
+                <div class="aspect-2/1">
+                  <img
+                    width={960}
+                    height={540}
+                    src={post.data.heroImage}
+                    alt={post.data.title}
+                  />
+                </div>
+                <div class="flex flex-col gap-2 p-4 pb-6">
+                  <p class="text-muted">
+                    {post.data.pubDate ? (
+                      <FormattedDate date={post.data.pubDate} />
+                    ) : (
+                      "No Date"
+                    )}
+                  </p>
+                  <h4 class="line-clamp-1 text-xl font-bold group-hover:text-blue-600 group-hover:dark:text-blue-400">
+                    {post.data.title}
+                  </h4>
+                  <p class="line-clamp-3">{post.data.description}</p>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</BaseLayout>

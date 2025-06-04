@@ -1,36 +1,25 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { SITE_SUFFIX } from "../consts";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body
-    class="bg-theme font-sans text-stone-900 [--pattern-color:var(--color-stone-300)] dark:text-stone-100 dark:[--pattern-color:var(--color-stone-700)]"
-  >
-    <Header />
-    <main class="*:border-b *:border-stone-300 *:px-3 dark:*:border-stone-700">
-      <div>
+<BaseLayout title={"404 Not Found" + SITE_SUFFIX} description={"404 Not Found"}>
+  <div>
+    <div
+      class="border-theme container mx-auto flex min-h-dvh items-center justify-center border-x p-24"
+    >
+      <div class="border-theme relative border-2 p-8">
+        <div class="bg-pattern absolute inset-0 -z-10 h-full"></div>
         <div
-          class="border-theme container mx-auto flex min-h-dvh items-center justify-center border-x p-24"
+          class="bg-theme border-theme flex flex-col gap-4 border p-4 text-center"
         >
-          <div class="border-theme relative border-2 p-8">
-            <div class="bg-pattern absolute inset-0 -z-10 h-full"></div>
-            <div
-              class="bg-theme border-theme flex flex-col gap-4 border p-4 text-center"
-            >
-              <h1 class="text-4xl font-semibold">404 Not Found</h1>
-              <p class="text-muted">You're on a page that does not exist</p>
-            </div>
-          </div>
+          <h1 class="text-4xl font-semibold">404 Not Found</h1>
+          <p class="text-muted">You're on a page that does not exist</p>
         </div>
       </div>
-    </main>
-    <Footer />
-  </body>
-</html>
+    </div>
+  </div>
+</BaseLayout>
