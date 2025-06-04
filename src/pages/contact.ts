@@ -22,9 +22,9 @@ export const POST: APIRoute = async ({ request }) => {
       message: z.string().min(10).max(1000),
     });
 
-    const honeypot = data["email-confirm"];
+    const honeypot = data["emai-confirm"];
     if (honeypot) {
-      console.log("honeypotted", request);
+      console.info("Honeypotted", request);
       return new Response(JSON.stringify({ success: true, error: "" }));
     }
 
@@ -42,7 +42,6 @@ export const POST: APIRoute = async ({ request }) => {
       count: 0,
       resetTime: now + windowMs,
     };
-    console.log(rateLimit);
     if (now > userLimit.resetTime) {
       userLimit.count = 1;
       userLimit.resetTime = now + windowMs;
@@ -67,6 +66,8 @@ export const POST: APIRoute = async ({ request }) => {
           message: error.message,
         });
       }
+    } else {
+      console.info("Rate limited: ", ip);
     }
 
     rateLimit.set(ip, userLimit);
