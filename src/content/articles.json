@@ -1,0 +1,60 @@
+{
+  "$schema": "./articles.schema.json",
+  "articles": [
+    {
+      "id": "1",
+      "title": "Deus Ex: Human Revolution - Graphics Study",
+      "author": "Adrian Courrèges",
+      "categories": ["graphics", "technical", "gaming"],
+      "description": "A great breakdown of how a single frame is rendered in Deus Ex: Human Revolution",
+      "link": "https://www.adriancourreges.com/blog/2015/03/10/deus-ex-human-revolution-graphics-study/",
+      "pubDate": "2025-05-31"
+    },
+    {
+      "id": "2",
+      "author": "Jennifer Scheurle",
+      "title": "Dear Player: I love you, let’s talk",
+      "description": "A letter from a game designer to players on how to give feedback respectfully",
+      "link": "https://www.polygon.com/2019/12/26/20976550/developers-players-video-games-empathy",
+      "categories": ["gaming", "community"],
+      "pubDate": "2025-05-30"
+    },
+    {
+      "id": "3",
+      "author": "Will Tavlin",
+      "title": "Casual Viewing",
+      "description": "An excellent dive into Netflix's history and why their content is formulaic",
+      "link": "https://www.nplusonemag.com/issue-49/essays/casual-viewing/",
+      "categories": ["netflix", "business", "history"],
+      "pubDate": "2025-05-28"
+    },
+    {
+      "id": "4",
+      "author": "James D. Walsh",
+      "title": "Everyone is cheating their way through college",
+      "pubDate": "2025-05-07",
+      "description": "An extremely depressing investigation into college students' rampant usage of OpenAI and AI products",
+      "categories": ["ai", "cheating"],
+      "link": "https://nymag.com/intelligencer/article/openai-chatgpt-ai-cheating-education-college-students-school.html"
+    },
+    {
+      "id": "5",
+      "author": "Accented Cinema",
+      "title": "Yakuza Cinema and Like a Dragon | Video Essay",
+      "pubDate": "2025-05-07",
+      "description": "The history of Yakuza films and how it applies to the Yakuza series of games",
+      "categories": ["ai", "cheating"],
+      "link": "https://www.youtube.com/watch?v=_d3trbVD50U",
+      "type": "video"
+    },
+    {
+      "id": "6",
+      "author": "Edward Zitron",
+      "title": "The Slop Society",
+      "pubDate": "2025-04-29",
+      "description": "A scathing takedown of the coverage of Meta and Mark Zuckerberg",
+      "categories": ["internet", "meta"],
+      "link": "https://www.wheresyoured.at/the-slop-society/"
+    }
+  ]
+}

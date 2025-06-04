@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RecommendedArticles",
+  "properties": {
+    "articles": {
+      "type": "array",
+      "description": "List of recommended articles",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "pubDate", "link", "categories"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string", "description": "Title of the article" },
+          "author": {
+            "type": "string",
+            "description": "Author of the article"
+          },
+          "description": {
+            "type": "string",
+            "description": "Brief description of what the article is about"
+          },
+          "pubDate": {
+            "type": "string",
+            "description": "Date of recommendation"
+          },
+          "link": {
+            "type": "string",
+            "description": "Link to the article"
+          },
+          "categories": {
+            "type": "array",
+            "description": "List of categories for article",
+            "items": { "type": "string" }
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the recommendation",
+            "enum": ["article", "video"]
+          }
+        }
+      }
+    }
+  }
+}
