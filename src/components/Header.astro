@@ -4,14 +4,29 @@ import ThemeToggle from "./ThemeToggle.astro";
 ---
 
 <header
-  class="bg-theme sticky top-0 z-10 border-b border-stone-300 px-3 dark:border-stone-700"
+  class="bg-theme sticky top-0 z-10 h-[49px] overflow-hidden border-b border-stone-300 px-3 transition-[height] dark:border-stone-700"
+  id="header-thing"
 >
   <nav
     class="container m-auto flex border-x border-stone-300 dark:border-stone-700"
   >
-    <HeaderLink href="/">Home</HeaderLink>
-    <HeaderLink href="/about">About</HeaderLink>
-    <HeaderLink href="/blog">Blog</HeaderLink>
+    <button
+      class="text-muted border-theme border-r p-3 transition-colors hover:bg-stone-100 data-[active=true]:text-stone-900 sm:hidden dark:hover:bg-stone-700 data-[active=true]:dark:text-stone-100"
+      data-active="false"
+      id="hamburger"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        fill="currentColor"
+        ><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg
+      >
+    </button>
+    <HeaderLink class="hidden sm:block" href="/">Home</HeaderLink>
+    <HeaderLink class="hidden sm:block" href="/about">About</HeaderLink>
+    <HeaderLink class="hidden sm:block" href="/blog">Blog</HeaderLink>
 
     <!-- Theme toggle -->
     <div class="ml-auto">
@@ -51,4 +66,33 @@ import ThemeToggle from "./ThemeToggle.astro";
       </ThemeToggle>
     </div>
   </nav>
+  <div id="hamburger-menu">
+    <div
+      class="border-theme container mx-auto flex flex-col border-x *:w-full *:border-t *:border-r-0"
+    >
+      <HeaderLink class="w-full border-r-0" href="/">Home</HeaderLink>
+      <HeaderLink class="w-full border-r-0" href="/about">About</HeaderLink>
+      <HeaderLink class="w-full border-r-0" href="/blog">Blog</HeaderLink>
+    </div>
+  </div>
 </header>
+
+<script is:inline>
+  const button = document.querySelector("#hamburger");
+  // const menu = document.querySelector("#hamburger-menu");
+  const header = document.querySelector("#header-thing");
+
+  button.addEventListener("click", (event) => {
+    if (button.getAttribute("data-active") === "false") {
+      // menu.classList.remove("hidden");
+      button.setAttribute("data-active", "true");
+      header.classList.remove("h-[49px]");
+      header.classList.add("h-48");
+    } else {
+      // menu.classList.add("hidden");
+      button.setAttribute("data-active", "false");
+      header.classList.remove("h-48");
+      header.classList.add("h-[49px]");
+    }
+  });
+</script>

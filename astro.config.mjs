@@ -10,6 +10,10 @@ import netlify from "@astrojs/netlify";
 // https://astro.build/config
 export default defineConfig({
   site: "https://aniforprez.dev",
+  redirects: {
+    "/recommends": "/recommends/1",
+  },
+
   integrations: [mdx(), sitemap()],
 
   vite: {

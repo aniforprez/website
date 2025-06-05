@@ -1,0 +1,24 @@
+---
+import type { Page } from "astro";
+interface Props {
+  lastPage: number;
+  currentPage: number;
+  url: {
+    first: string;
+    prev: string;
+    current: string;
+    next: string;
+    last: string;
+  };
+}
+
+const { lastPage, url } = Astro.props;
+---
+
+{
+  lastPage > 1 && (
+    <nav class="flex">
+      <a href={url.last}>{lastPage}</a>
+    </nav>
+  )
+}

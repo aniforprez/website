@@ -40,23 +40,21 @@ const recommends = (await getCollection("articles")).sort(
     <section
       class="border-theme relative container m-auto flex h-fit w-full flex-col items-start border-x p-0 md:flex-row"
     >
-      <ul
-        class="border-theme grid w-full grid-cols-1 md:border-r lg:grid-cols-2"
-      >
+      <ul class="grid w-full grid-cols-1 lg:grid-cols-2">
         {
           posts.map((post) => (
-            <li class="border-theme group border-r border-b hover:z-1 hover:bg-stone-100 hover:shadow-xl dark:shadow-stone-950/75 hover:dark:bg-stone-800">
+            <li class="border-theme group border-b hover:z-1 hover:bg-stone-100 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75 hover:dark:bg-stone-800">
               <a href={`/blog/${post.id}/`} class="flex h-full w-full flex-col">
                 <div class="aspect-2/1">
                   <img
-                    width={600}
-                    height={300}
+                    width={800}
+                    height={400}
                     src={post.data.heroImage}
                     alt={post.data.title}
                   />
                 </div>
                 <div class="flex flex-col gap-2 p-4 pb-6">
-                  <p class="text-muted">
+                  <p class="text-muted text-sm">
                     {post.data.pubDate ? (
                       <FormattedDate date={post.data.pubDate} />
                     ) : (
@@ -73,7 +71,9 @@ const recommends = (await getCollection("articles")).sort(
           ))
         }
       </ul>
-      <div class="relative flex h-full w-full flex-col md:w-sm xl:w-md">
+      <div
+        class="border-theme relative flex h-full w-full flex-col md:w-sm md:border-l xl:w-md"
+      >
         <div class="bg-pattern absolute inset-0 -z-10 h-full"></div>
 
         <div
@@ -92,10 +92,11 @@ const recommends = (await getCollection("articles")).sort(
             >
           </div>
         </div>
+
         <ul class="grid grid-cols-2 md:grid-cols-1">
           {
-            recommends.map((rec) => (
-              <li class="border-theme group bg-theme border-r border-b hover:z-1 hover:bg-stone-100 hover:shadow-xl md:border-r-0 dark:shadow-stone-950/75 hover:dark:bg-stone-800">
+            recommends.slice(0, 10).map((rec) => (
+              <li class="border-theme group bg-theme border-r border-b last:border-b-0 hover:z-1 hover:bg-stone-100 hover:shadow-xl md:border-r-0 dark:shadow-stone-950/75 hover:dark:bg-stone-800">
                 <a
                   href={rec.data.link}
                   class="flex h-full w-full flex-col gap-1 p-3"
@@ -140,6 +141,19 @@ const recommends = (await getCollection("articles")).sort(
             ))
           }
         </ul>
+
+        {
+          recommends.length > 10 && (
+            <div>
+              <a
+                href="/recommends"
+                class="border-theme bg-theme flex justify-center gap-3 border-b p-3 text-sm font-semibold hover:bg-stone-100 hover:shadow-md dark:shadow-stone-950/75 hover:dark:bg-stone-800"
+              >
+                More...
+              </a>
+            </div>
+          )
+        }
       </div>
     </section>
   </div>

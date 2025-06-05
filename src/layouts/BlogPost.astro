@@ -49,7 +49,7 @@ const {
             <li class="p-1">
               <a
                 href={`/tags/${cat}`}
-                class="border-theme border-2 px-2 py-1 hover:bg-stone-100 hover:shadow-md hover:dark:bg-stone-700"
+                class="border-theme border-2 px-2 py-1 hover:bg-stone-100 hover:dark:bg-stone-700"
               >
                 # {cat}
               </a>
@@ -88,7 +88,7 @@ const {
       <div
         class="border-theme order-1 grow-0 border-b p-8 lg:order-2 lg:w-1/4 lg:border-b-0"
       >
-        <div class="sticky top-16">
+        <div class="sticky top-16 max-h-svh overflow-y-auto">
           <TableOfContents headings={headings} />
         </div>
       </div>

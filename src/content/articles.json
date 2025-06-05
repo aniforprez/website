@@ -64,6 +64,15 @@
       "description": "A series of screenshots of ChatGPT and its responses to being asked to read links",
       "categories": ["ai"],
       "link": "https://amandaguinzburg.substack.com/p/diabolus-ex-machina"
+    },
+    {
+      "id": "8",
+      "author": "Lex Luddy",
+      "title": "I Cannot Stop Thinking About Syril Karn’s Final Act in Andor",
+      "pubDate": "2025-06-05",
+      "description": "An examination of Syril Karn, a character from Andor. Spoilers for S1 and S2 of the show Andor",
+      "categories": ["tv", "andor", "essay"],
+      "link": "https://www.rewinder.co.uk/i-cannot-stop-thinking-about-syril-karns-final-act-in-andor/"
     }
   ]
 }
