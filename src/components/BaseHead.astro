@@ -10,6 +10,7 @@ import jetbrainsMonoWoff2 from "@fontsource-variable/jetbrains-mono/files/jetbra
 // Victor Mono
 import "@fontsource-variable/victor-mono/wght-italic.css";
 import victorMonoWoff2 from "@fontsource-variable/victor-mono/files/victor-mono-latin-wght-italic.woff2";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -85,13 +86,7 @@ const {
   href={new URL("rss.xml", Astro.site)}
 />
 
-<style>
-  @media screen and (prefers-reduced-motion: no-preference) {
-    @view-transition {
-      navigation: auto;
-    }
-  }
-</style>
+<ClientRouter />
 
 <script is:inline>
   const theme = (() => {

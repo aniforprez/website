@@ -8,9 +8,13 @@ import TableOfContents from "../components/TableOfContents.astro";
 
 import { SITE_SUFFIX } from "../consts";
 
-type Props = CollectionEntry<"blog">["data"] & { headings: MarkdownHeading[] };
+type Props = CollectionEntry<"blog">["data"] & {
+  id: string;
+  headings: MarkdownHeading[];
+};
 
 const {
+  id,
   title,
   description,
   pubDate,
@@ -30,10 +34,13 @@ const {
     <div
       class="border-theme container m-auto flex w-full flex-col items-center gap-4 border-x p-12"
     >
-      <h1 class="text-center text-3xl font-bold">
+      <h1
+        class="text-center text-3xl font-bold"
+        transition:name={`blog-title-${id}`}
+      >
         {title}
       </h1>
-      <p class="text-muted">
+      <p class="text-muted" transition:name={`blog-date-${id}`}>
         {pubDate && <FormattedDate date={pubDate} />}
         {
           updatedDate && (
@@ -75,6 +82,7 @@ const {
                 src={heroImage}
                 alt={title}
                 class="border-theme m-auto aspect-2/1 xl:border-x"
+                transition:name={`blog-hero-image-${id}`}
               />
             </div>
           )

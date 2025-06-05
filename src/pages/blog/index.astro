@@ -51,17 +51,24 @@ const recommends = (await getCollection("articles")).sort(
                     height={400}
                     src={post.data.heroImage}
                     alt={post.data.title}
+                    transition:name={`blog-hero-image-${post.id}`}
                   />
                 </div>
                 <div class="flex flex-col gap-2 p-4 pb-6">
-                  <p class="text-muted text-sm">
+                  <p
+                    class="text-muted text-sm"
+                    transition:name={`blog-date-${post.id}`}
+                  >
                     {post.data.pubDate ? (
                       <FormattedDate date={post.data.pubDate} />
                     ) : (
                       "No Date"
                     )}
                   </p>
-                  <h4 class="line-clamp-1 text-xl font-bold group-hover:text-blue-600 group-hover:dark:text-blue-400">
+                  <h4
+                    class="line-clamp-1 text-xl font-bold group-hover:text-blue-600 group-hover:dark:text-blue-400"
+                    transition:name={`blog-title-${post.id}`}
+                  >
                     {post.data.title}
                   </h4>
                   <p class="line-clamp-3">{post.data.description}</p>
@@ -96,7 +103,10 @@ const recommends = (await getCollection("articles")).sort(
         <ul class="grid grid-cols-2 md:grid-cols-1">
           {
             recommends.slice(0, 10).map((rec) => (
-              <li class="border-theme group bg-theme border-r border-b last:border-b-0 hover:z-1 hover:bg-stone-100 hover:shadow-xl md:border-r-0 dark:shadow-stone-950/75 hover:dark:bg-stone-800">
+              <li
+                class="border-theme group bg-theme border-r border-b last:border-b-0 hover:z-1 hover:bg-stone-100 hover:shadow-xl max-md:even:border-r-0 md:border-r-0 dark:shadow-stone-950/75 hover:dark:bg-stone-800"
+                transition:name={`recommend-${rec.id}`}
+              >
                 <a
                   href={rec.data.link}
                   class="flex h-full w-full flex-col gap-1 p-3"
@@ -147,7 +157,7 @@ const recommends = (await getCollection("articles")).sort(
             <div>
               <a
                 href="/recommends"
-                class="border-theme bg-theme flex justify-center gap-3 border-b p-3 text-sm font-semibold hover:bg-stone-100 hover:shadow-md dark:shadow-stone-950/75 hover:dark:bg-stone-800"
+                class="border-theme bg-theme flex justify-center gap-3 border-y p-3 text-sm font-semibold hover:bg-stone-100 hover:shadow-md dark:shadow-stone-950/75 hover:dark:bg-stone-800"
               >
                 More...
               </a>

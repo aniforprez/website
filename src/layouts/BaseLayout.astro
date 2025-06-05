@@ -22,10 +22,12 @@ const { title, description, image } = Astro.props;
     />
   </head>
   <body
-    class="bg-theme font-sans text-stone-900 [--pattern-color:var(--color-stone-300)] dark:text-stone-100 dark:[--pattern-color:var(--color-stone-700)]"
+    class="bg-theme font-sans text-stone-900 transition-colors [--pattern-color:var(--color-stone-300)] dark:text-stone-100 dark:[--pattern-color:var(--color-stone-700)]"
   >
     <Header />
-    <main class="*:border-b *:border-stone-300 *:px-3 dark:*:border-stone-700">
+    <main
+      class="transition-colors *:border-b *:border-stone-300 *:px-3 dark:*:border-stone-700"
+    >
       <slot />
     </main>
     <Footer />
