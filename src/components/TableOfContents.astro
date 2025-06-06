@@ -13,18 +13,20 @@ const { headings } = Astro.props;
 const filteredHeadings = generateToc(headings.filter((h) => h.depth <= 3));
 ---
 
-<nav id="toc" class="overflow-y-auto">
-  <h2 class="border-theme border-b py-2 text-lg font-semibold">
-    Table of Contents
-  </h2>
-  <ul class="list-inside py-2">
-    {
-      filteredHeadings.map((heading) => (
-        <TableOfContentsHeading heading={heading} />
-      ))
-    }
-  </ul>
-</nav>
+<table-of-contents>
+  <nav id="toc" class="overflow-y-auto">
+    <h2 class="border-theme border-b py-2 text-lg font-semibold">
+      Table of Contents
+    </h2>
+    <ul class="list-inside py-2">
+      {
+        filteredHeadings.map((heading) => (
+          <TableOfContentsHeading heading={heading} />
+        ))
+      }
+    </ul>
+  </nav>
+</table-of-contents>
 
 <script>
   const setCurrentHeading: IntersectionObserverCallback = (entries) => {
@@ -48,9 +50,16 @@ const filteredHeadings = generateToc(headings.filter((h) => h.depth <= 3));
     }
   };
 
-  const observer = new IntersectionObserver(setCurrentHeading);
-  // select all headings to observe
-  const elToObserve = document.querySelectorAll("article :is(h2, h3)");
-  // finally, observe the elements
-  elToObserve.forEach((el) => observer.observe(el));
+  customElements.define(
+    "table-of-contents",
+    class extends HTMLElement {
+      connectedCallback() {
+        const observer = new IntersectionObserver(setCurrentHeading);
+        // select all headings to observe
+        const elToObserve = document.querySelectorAll("article :is(h2, h3)");
+        // finally, observe the elements
+        elToObserve.forEach((el) => observer.observe(el));
+      }
+    },
+  );
 </script>

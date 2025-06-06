@@ -88,15 +88,15 @@ import ThemeToggle from "./ThemeToggle.astro";
       connectedCallback() {
         const button = document.querySelector("#hamburger");
         const header = document.querySelector("#header-thing");
-        button.addEventListener("click", (event) => {
+        button?.addEventListener("click", (event) => {
           if (button.getAttribute("data-active") === "false") {
             button.setAttribute("data-active", "true");
-            header.classList.remove("h-[49px]");
-            header.classList.add("h-48");
+            header?.classList.remove("h-[49px]");
+            header?.classList.add("h-48");
           } else {
             button.setAttribute("data-active", "false");
-            header.classList.remove("h-48");
-            header.classList.add("h-[49px]");
+            header?.classList.remove("h-48");
+            header?.classList.add("h-[49px]");
           }
         });
       }
