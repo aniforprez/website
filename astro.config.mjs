@@ -13,6 +13,9 @@ export default defineConfig({
   redirects: {
     "/recommends": "/recommends/1",
   },
+  markdown: {
+    shikiConfig: { theme: "slack-dark" },
+  },
 
   integrations: [mdx(), sitemap()],
 
