@@ -25,6 +25,18 @@
   },
   "work": [
     {
+      "name": "Freelance",
+      "summary": "Worked on building a startup for managing personal finances and in the interim took on a number of projects for various contracts as well as interviewing new engineers for clients.",
+      "highlights": [
+        "Worked on finesse.money, a personal finance manager that is currently still in progress. It was built with Go, JS, React Router and Tailwind",
+        "Worked as an Interview Engineer for Karat, interviewing candidates for programming roles and providing structured feedback to clients",
+        "Worked on various small programming projects for various clients in Python, Flutter (using Flutter Flow)"
+      ],
+      "position": "Freelance Programmer and Interview Engineer",
+      "location": "Bengaluru, India",
+      "startDate": "2023-07"
+    },
+    {
       "name": "Synup Digital",
       "summary": "Worked on a large SaaS application built on microservices and multiple languages, improving performance, adding numerous features and leading a team to improve developer experience and tooling.",
       "highlights": [
@@ -36,7 +48,6 @@
       ],
       "position": "Senior Software Engineer",
       "location": "Bengaluru, India",
-      "website": "",
       "startDate": "2021-06",
       "endDate": "2023-08"
     },
@@ -96,7 +107,6 @@
       "endDate": "2017-02"
     },
     {
-
       "name": "House of Blue Beans",
       "summary": "Employed as the sole web and python developer for multiple global clients.",
       "highlights": [

@@ -19,6 +19,7 @@
     "@fontsource-variable/victor-mono": "^5.2.5",
     "@tailwindcss/vite": "^4.1.7",
     "astro": "^5.7.13",
+    "date-fns": "^4.1.0",
     "markdown-it": "^14.1.0",
     "resend": "^4.5.1",
     "sanitize-html": "^2.17.0",

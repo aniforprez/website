@@ -1,7 +1,10 @@
 ---
+import { parse, format } from "date-fns";
+
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 import { SITE_SUFFIX, SITE_DESCRIPTION } from "../consts";
+import resume from "../content/resume.json";
 ---
 
 <BaseLayout title={"About Me" + SITE_SUFFIX} description={SITE_DESCRIPTION}>
@@ -18,24 +21,40 @@ import { SITE_SUFFIX, SITE_DESCRIPTION } from "../consts";
     >
       <div class="bg-noise absolute inset-0 -z-10 opacity-50"></div>
 
-      <div class="flex w-full flex-col lg:flex-row">
+      <div
+        class="flex w-full flex-col lg:flex-row [&_a]:underline [&_a]:underline-offset-4"
+      >
         <div class="flex-2/3 p-12">
           <div class="w-full max-w-2xl *:mb-4">
             <p>
               I'm a <i>senior software engineer</i> and <i>
                 developer experience advocate
               </i> with a focus on improving the developer experience of my peers
-              using open source tools and adopting best practices. I am passionate
-              about constantly learning to improve my repertoire of skills and working
-              with teams.
+              using open source tools and adopting best practices. I have years of
+              experience in numerous startup companies with a wide range of horizontals
+              and experience in integrating with external financial API services,
+              real time WebRTC and chat systems, web app localization and much more.
+              I have a passion for designing and architecting systems, improving
+              the DX of working on apps and mentoring and guiding fresh developers.
             </p>
             <p>
-              I have years of experience in numerous startup companies with a
-              wide range of horizontals and experience in integrating with
-              external financial API services, real time WebRTC and chat
-              systems, web app localization and much more. I also have a passion
-              for designing and architecting systems, improving the DX of
-              working on apps and mentoring and guiding fresh developers.
+              I enjoy experimenting and exploring new technologies and languages
+              and writing about them. I also enjoy sharing knowledge in the form
+              of simple tutorials or articles of my explorations with said
+              technologies.
+            </p>
+            <p>
+              I also love media in many forms such as movies, video games, TV
+              shows, visual novels etc and a large reason for starting this blog
+              is so I can write long form posts about my thoughts on all the
+              various experiences I have indulged in.
+            </p>
+            <p>
+              There are also so many incredible articles I read on a daily basis
+              that I would love to recommend and store permanently in some form
+              of list. You can find them <a
+                href="http://localhost:4321/blog/recommends/1">here</a
+              >.
             </p>
           </div>
         </div>
@@ -162,6 +181,40 @@ import { SITE_SUFFIX, SITE_DESCRIPTION } from "../consts";
         <h2 class="border-theme border-b px-12 py-8 text-2xl font-semibold">
           Work History
         </h2>
+      </div>
+      <div class="bg-theme border-theme border-x">
+        {
+          resume["work"].map((work) => (
+            <div class="border-theme flex flex-col border-b last:border-b-0 lg:flex-row">
+              <div class="border-theme flex shrink-0 flex-col gap-1 p-6 lg:w-sm lg:border-r">
+                <h3 class="text-xl">{work.name}</h3>
+                <p class="text-sm">{work.position}</p>
+                <p class="text-muted text-sm">
+                  {format(
+                    parse(work.startDate, "yyyy-MM", new Date()),
+                    "LLL, yyyy",
+                  )}{" "}
+                  -{" "}
+                  {work.endDate
+                    ? format(
+                        parse(work.endDate, "yyyy-MM", new Date()),
+                        "LLL, yyyy",
+                      )
+                    : "Current"}
+                </p>
+              </div>
+              <div class="p-6 pt-0 lg:pt-6">
+                <ol class="flex flex-col gap-1 pl-4">
+                  {work.highlights.map((hl) => (
+                    <li class="list-item list-outside list-disc wrap-normal">
+                      {hl}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
