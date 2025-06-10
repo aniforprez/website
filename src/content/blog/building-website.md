@@ -1,6 +1,6 @@
 ---
-title: "Setting up this blog"
-description: "This is a documentation of the articles and tutorials used when building this blog"
+title: "Building this website"
+description: "A documentation of the process as well as the articles, tutorials and resources used when building this website"
 pubDate: "Jul 08 2022"
 categories: ["programming", "astro", "js"]
 ---

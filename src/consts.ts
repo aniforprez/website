@@ -3,9 +3,11 @@
 
 export const SITE_TITLE = "Anirudh Sylendranath - Full Stack Developer";
 export const SITE_DESCRIPTION =
-  "Hi, I'm Anirudh Sylendranath. A full stack developer with 12 years of experience building web apps from robust backends to feature-rich clients.";
+  "Hi! I'm Anirudh Sylendranath aka @aniforprez. A full stack web developer with years of experience building robust backends and feature-rich clients.";
 
 export const SITE_SUFFIX = " | Anirudh Sylendranath";
 
 export const BLOG_TITLE = "Blog" + SITE_SUFFIX;
 export const BLOG_DESCRIPTION = "Anirudh Sylendranath's Blog";
+export const BLOG_DESCRIPTION_LONG =
+  "My blog where I will post thoughts about programming, tutorials and media reviews.";

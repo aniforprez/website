@@ -6,7 +6,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 import Pagination from "../../components/Pagination.astro";
 
-import { BLOG_TITLE, BLOG_DESCRIPTION } from "../../consts";
+import { BLOG_TITLE, BLOG_DESCRIPTION_LONG } from "../../consts";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = (await getCollection("blog")).sort(
@@ -24,7 +24,7 @@ const recommends = (await getCollection("articles")).sort(
 const { page } = Astro.props;
 ---
 
-<BaseLayout title={BLOG_TITLE} description={BLOG_DESCRIPTION}>
+<BaseLayout title={BLOG_TITLE} description={BLOG_DESCRIPTION_LONG}>
   <div>
     <div
       class="border-theme container m-auto flex w-full items-center justify-center border-x p-12 sm:justify-start"
