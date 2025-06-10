@@ -1,24 +1,132 @@
 ---
-import type { Page } from "astro";
-interface Props {
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"nav"> & {
   lastPage: number;
   currentPage: number;
   url: {
-    first: string;
-    prev: string;
+    first?: string;
+    prev?: string;
     current: string;
-    next: string;
-    last: string;
+    next?: string;
+    last?: string;
   };
-}
+};
 
-const { lastPage, url } = Astro.props;
+const { lastPage, currentPage, url, class: className } = Astro.props;
 ---
 
 {
-  lastPage > 1 && (
-    <nav class="flex">
-      <a href={url.last}>{lastPage}</a>
+  (
+    <nav
+      class="bg-theme border-theme *:border-theme flex w-fit border-x *:flex *:min-w-10 *:items-center *:justify-center *:border-r *:px-2 *:py-1 in-last:border-r-0 *:hover:aria-[disabled=false]:dark:bg-stone-700"
+      class:list={[className]}
+    >
+      <a
+        href={url.first}
+        aria-disabled={!!url.first}
+        class:list={[
+          {
+            "text-dim": !url.first,
+            "hover:bg-stone-300 hover:dark:bg-stone-700": !!url.first,
+          },
+        ]}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-5"
+        >
+          <path d="M13.9142 12L18.7071 7.20712L17.2929 5.79291L11.0858 12L17.2929 18.2071L18.7071 16.7929L13.9142 12ZM7 18V6.00001H9V18H7Z" />
+        </svg>
+      </a>
+      <a
+        href={url.prev}
+        aria-disabled={!!url.prev}
+        class:list={[
+          {
+            "text-dim": !url.prev,
+            "hover:bg-stone-300 hover:dark:bg-stone-700": !!url.prev,
+          },
+        ]}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-5"
+        >
+          <path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z" />
+        </svg>
+      </a>
+      {currentPage - 2 > 0 && <span class="text-dim">…</span>}
+      {url.prev && (
+        <a
+          href={url.prev}
+          class:list={[
+            {
+              "text-dim": !url.prev,
+              "hover:bg-stone-300 hover:dark:bg-stone-700": !!url.prev,
+            },
+          ]}
+        >
+          {currentPage - 1}
+        </a>
+      )}
+      <span class="text-dim">{currentPage}</span>
+      {url.next && (
+        <a
+          href={url.next}
+          class:list={[
+            {
+              "text-dim": !url.next,
+              "hover:bg-stone-300 hover:dark:bg-stone-700": !!url.next,
+            },
+          ]}
+        >
+          {currentPage + 1}
+        </a>
+      )}
+      {currentPage + 2 < lastPage && <span class="text-dim">…</span>}
+      <a
+        href={url.next}
+        aria-disabled={!!url.next}
+        class:list={[
+          {
+            "text-dim": !url.next,
+            "hover:bg-stone-300 hover:dark:bg-stone-700": !!url.next,
+          },
+        ]}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-5"
+        >
+          <path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z" />
+        </svg>
+      </a>
+      <a
+        href={url.last}
+        aria-disabled={!!url.last}
+        class:list={[
+          {
+            "text-dim": !url.last,
+            "hover:bg-stone-300 hover:dark:bg-stone-700": !!url.last,
+          },
+        ]}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-5"
+        >
+          <path d="M10.0858 12L5.29289 16.7929L6.70711 18.2071L12.9142 12L6.70711 5.79291L5.29289 7.20712L10.0858 12ZM17 6.00002L17 18H15L15 6.00002L17 6.00002Z" />
+        </svg>
+      </a>
     </nav>
   )
 }
