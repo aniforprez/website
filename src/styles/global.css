@@ -15,6 +15,9 @@
 @utility text-muted {
   @apply text-stone-600 dark:text-stone-400;
 }
+@utility text-dim {
+  @apply text-stone-400 dark:text-stone-600;
+}
 
 @utility bg-noise {
   background: url("./noise.png");

@@ -40,7 +40,7 @@ const {
       >
         {title}
       </h1>
-      <p class="text-muted" transition:name={`blog-date-${id}`}>
+      <p class="text-muted">
         {pubDate && <FormattedDate date={pubDate} />}
         {
           updatedDate && (
@@ -55,10 +55,10 @@ const {
           categories?.map((cat) => (
             <li class="p-1">
               <a
-                href={`/tags/${cat}`}
+                href={`/blog/tags/${cat}`}
                 class="border-theme border-2 px-2 py-1 hover:bg-stone-100 hover:dark:bg-stone-700"
               >
-                <span transition:name={`blog-tag-${cat}`}>#{cat}</span>
+                <span>#{cat}</span>
               </a>
             </li>
           ))
