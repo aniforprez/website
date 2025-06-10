@@ -2,12 +2,13 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import FormattedDate from "../../../../components/FormattedDate.astro";
+import Pagination from "../../../../components/Pagination.astro";
 
-import { SITE_SUFFIX, BLOG_DESCRIPTION } from "../../consts";
+import { SITE_SUFFIX, BLOG_DESCRIPTION } from "../../../../consts";
 
-export const getStaticPaths = (async () => {
+export const getStaticPaths = (async ({ paginate }) => {
   const blog_posts = (await getCollection("blog")).sort(
     (a, b) =>
       (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
@@ -20,22 +21,19 @@ export const getStaticPaths = (async () => {
   const uniqueTags = [
     ...new Set(blog_posts.map((post) => post.data.categories).flat()),
     ...new Set(review_posts.map((post) => post.data.categories).flat()),
-  ];
+  ].filter((tag) => tag !== undefined);
 
-  return uniqueTags.map((tag) => {
+  return uniqueTags.flatMap((tag) => {
     const filteredPosts = [
       ...blog_posts.filter((post) => post.data.categories?.includes(tag)),
       ...review_posts.filter((post) => post.data.categories?.includes(tag)),
     ];
-    return {
-      params: { tag },
-      props: { posts: filteredPosts },
-    };
+    return paginate(filteredPosts, { params: { tag }, pageSize: 10 });
   });
 }) satisfies GetStaticPaths;
 
 const { tag } = Astro.params;
-const { posts } = Astro.props;
+const { page } = Astro.props;
 ---
 
 <BaseLayout
@@ -45,7 +43,7 @@ const { posts } = Astro.props;
   <div>
     <div class="border-theme container m-auto border-x p-12 sm:justify-start">
       <h1 class="font-cursive border-theme text-3xl font-semibold">
-        <span transition:name={`blog-tag-${tag}`}>{`#${tag}`}</span>
+        <span>{`#${tag}`}</span>
       </h1>
     </div>
   </div>
@@ -57,12 +55,15 @@ const { posts } = Astro.props;
         class="border-theme grid w-full grid-cols-1 md:border-r lg:grid-cols-2"
       >
         {
-          posts.map((post) => (
+          page.data.map((post) => (
             <li
               class="border-theme group border-r border-b hover:z-1 hover:bg-stone-100 hover:shadow-xl dark:shadow-stone-950/75 hover:dark:bg-stone-800"
               transition:name={`blog-post-${post.id}`}
             >
-              <a href={`/blog/${post.id}/`} class="flex h-full w-full flex-col">
+              <a
+                href={`/blog/post/${post.id}/`}
+                class="flex h-full w-full flex-col"
+              >
                 <div class="aspect-2/1">
                   <img
                     width={960}
@@ -93,6 +94,15 @@ const { posts } = Astro.props;
           ))
         }
       </ul>
+      {
+        page.lastPage > 1 && (
+          <div class="relative w-full">
+            <div class="bg-pattern absolute inset-0 -z-10 h-full" />
+
+            <Pagination class="mx-auto" {...page} />
+          </div>
+        )
+      }
     </section>
   </div>
 </BaseLayout>
