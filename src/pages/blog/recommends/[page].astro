@@ -2,11 +2,11 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
-import Pagination from "../../components/Pagination.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import FormattedDate from "../../../components/FormattedDate.astro";
+import Pagination from "../../../components/Pagination.astro";
 
-import { SITE_SUFFIX, BLOG_DESCRIPTION } from "../../consts";
+import { SITE_SUFFIX, BLOG_DESCRIPTION } from "../../../consts";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const recommends = (await getCollection("articles")).sort(
@@ -85,6 +85,15 @@ const { page } = Astro.props;
           ))
         }
       </ul>
+      {
+        page.lastPage > 1 && (
+          <div class="relative w-full">
+            <div class="bg-pattern absolute inset-0 -z-10 h-full" />
+
+            <Pagination class="mx-auto" {...page} />
+          </div>
+        )
+      }
     </section>
   </div>
 </BaseLayout>

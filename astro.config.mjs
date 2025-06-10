@@ -11,7 +11,7 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   site: "https://aniforprez.dev",
   redirects: {
-    "/recommends": "/recommends/1",
+    "/blog/recommends": "/blog/recommends/1",
     "/blog/tags/[tag]": "/blog/tags/[tag]/1",
   },
   markdown: {
