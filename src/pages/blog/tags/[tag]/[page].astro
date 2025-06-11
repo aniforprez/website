@@ -10,14 +10,18 @@ import { Image } from "astro:assets";
 import { BLOG_DESCRIPTION, SITE_SUFFIX } from "../../../../consts";
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const blog_posts = (await getCollection("blog")).sort(
-    (a, b) =>
-      (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
-  );
-  const review_posts = (await getCollection("reviews")).sort(
-    (a, b) =>
-      (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
-  );
+  const blog_posts = (await getCollection("blog"))
+    .filter((post) => !post.data.draft)
+    .sort(
+      (a, b) =>
+        (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
+    );
+  const review_posts = (await getCollection("reviews"))
+    .filter((post) => !post.data.draft)
+    .sort(
+      (a, b) =>
+        (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
+    );
 
   const uniqueTags = [
     ...new Set(blog_posts.map((post) => post.data.categories).flat()),

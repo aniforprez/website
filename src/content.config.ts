@@ -30,6 +30,7 @@ const blog = defineCollection({
       .extend({
         updatedDate: z.coerce.date().optional(),
         heroImage: image(),
+        draft: z.boolean().optional().default(false),
       })
       .refine((val) =>
         val.categories
@@ -49,6 +50,7 @@ const reviews = defineCollection({
       heroImage: z.string().optional(),
       boxArt: z.string().optional(),
       rating: z.number(),
+      draft: z.boolean().optional().default(false),
     })
     .refine((val) =>
       val.categories

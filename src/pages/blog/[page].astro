@@ -10,10 +10,12 @@ import { Image } from "astro:assets";
 import { BLOG_DESCRIPTION_LONG, BLOG_TITLE } from "../../consts";
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const posts = (await getCollection("blog")).sort(
-    (a, b) =>
-      (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
-  );
+  const posts = (await getCollection("blog"))
+    .filter((post) => !post.data.draft)
+    .sort(
+      (a, b) =>
+        (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
+    );
 
   return paginate(posts, { pageSize: 10 });
 }) satisfies GetStaticPaths;
