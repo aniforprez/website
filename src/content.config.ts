@@ -25,16 +25,17 @@ const blog = defineCollection({
   // Load Markdown and MDX files in the `src/content/blog/` directory.
   loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
   // Type-check frontmatter using a schema
-  schema: rssSchema
-    .extend({
-      updatedDate: z.coerce.date().optional(),
-      heroImage: z.string().optional(),
-    })
-    .refine((val) =>
-      val.categories
-        ? val.categories.push("blog")
-        : (val.categories = ["blog"]),
-    ),
+  schema: ({ image }) =>
+    rssSchema
+      .extend({
+        updatedDate: z.coerce.date().optional(),
+        heroImage: image(),
+      })
+      .refine((val) =>
+        val.categories
+          ? val.categories.push("blog")
+          : (val.categories = ["blog"]),
+      ),
 });
 
 // Reviews

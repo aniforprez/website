@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
 import type { MarkdownHeading } from "astro";
 
 import BaseLayout from "./BaseLayout.astro";
@@ -28,7 +29,7 @@ const {
 <BaseLayout
   title={title + SITE_SUFFIX}
   description={description}
-  image={heroImage}
+  image={heroImage.src}
 >
   <div>
     <div
@@ -76,12 +77,13 @@ const {
           heroImage && (
             <div class="border-theme relative w-full border-b">
               <div class="bg-pattern absolute inset-0 -z-10 h-full w-full" />
-              <img
+              <Image
                 width={1020}
                 height={510}
                 src={heroImage}
                 alt={title}
                 class="border-theme m-auto aspect-2/1 xl:border-x"
+                quality="max"
                 transition:name={`blog-hero-image-${id}`}
               />
             </div>
