@@ -1,15 +1,16 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import "../styles/global.css";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 // JetBrains Mono
 import "@fontsource-variable/jetbrains-mono";
 import jetbrainsMonoWoff2 from "@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2";
 // Victor Mono
-import "@fontsource-variable/victor-mono/wght-italic.css";
 import victorMonoWoff2 from "@fontsource-variable/victor-mono/files/victor-mono-latin-wght-italic.woff2";
+import "@fontsource-variable/victor-mono/wght-italic.css";
+import LoadingIndicator from "astro-loading-indicator/component";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
@@ -87,6 +88,7 @@ const {
 />
 
 <ClientRouter />
+<LoadingIndicator color="var(--color-stone-400)" height="5px" />
 
 <script is:inline>
   const theme = (() => {

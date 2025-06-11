@@ -50,7 +50,7 @@ const { page } = Astro.props;
   </div>
   <div>
     <section
-      class="border-theme relative container m-auto flex h-fit w-full flex-col items-start border-x p-0 md:flex-row"
+      class="border-theme relative container m-auto flex min-h-lvh w-full flex-col items-start border-x p-0 md:flex-row"
     >
       <ul
         class="border-theme grid w-full grid-cols-1 md:border-r lg:grid-cols-2"
@@ -71,6 +71,7 @@ const { page } = Astro.props;
                     height={540}
                     src={post.data.heroImage}
                     alt={post.data.title}
+                    class="border-theme border-b"
                     transition:name={`blog-hero-image-${post.id}`}
                   />
                 </div>
