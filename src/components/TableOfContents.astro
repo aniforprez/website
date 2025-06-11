@@ -30,21 +30,25 @@ const filteredHeadings = generateToc(headings.filter((h) => h.depth <= 3));
 
 <script>
   const setCurrentHeading: IntersectionObserverCallback = (entries) => {
-    // loop to each entries (headings) in the page
+    // loop to each section in the page
     for (let entry of entries) {
-      // equivalent to the slug returned from pageHeadings
-      const { id } = entry.target;
+      // Get the heading of the section
+      const heading =
+        entry.target.querySelector<HTMLHeadingElement>("h2,h3,h4,h5");
+      if (!heading) return;
+
+      const id = heading.getAttribute("id");
 
       // check if the entry is intersecting
-      if (entry.intersectionRatio > 0) {
+      if (entry.isIntersecting) {
         // remove active class from all links
         // add active class to the currently active entry
         document
-          .querySelector(`#toc a[href='#${id}']`)
+          .querySelector(`#toc li a[href='#${id}']`)
           ?.classList.add("not-dark:text-stone-800", "dark:text-stone-200");
       } else {
         document
-          .querySelector(`#toc a[href='#${id}']`)
+          .querySelector(`#toc li a[href='#${id}']`)
           ?.classList.remove("not-dark:text-stone-800", "dark:text-stone-200");
       }
     }
@@ -56,7 +60,7 @@ const filteredHeadings = generateToc(headings.filter((h) => h.depth <= 3));
       connectedCallback() {
         const observer = new IntersectionObserver(setCurrentHeading);
         // select all headings to observe
-        const elToObserve = document.querySelectorAll("article :is(h2, h3)");
+        const elToObserve = document.querySelectorAll("article section");
         // finally, observe the elements
         elToObserve.forEach((el) => observer.observe(el));
       }

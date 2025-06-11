@@ -374,7 +374,7 @@ const { Content } = await render(post);
 
 One drawback of Astro's headings method is that it returns a flat list of headings in order with their depth starting from 1 for the title and then 2 for subheadings, 3 for the subsubheadings and so on. It is easier if we construct a tree of headings with children of top level headings as a list within the heading. It would have taken me some time for me to understand the rules of the headings and whether they are properly sorted based on where they appear so instead I followed [this tutorial by Kevin Drum](https://kld.dev/building-table-of-contents/#building-a-nested-table-of-contents-array) to construct the nested list.
 
-To round it all off, I wanted the headings to highlight if they were on screen as you scrolled. I started looking into the [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) but it felt like I was already spending too much time so I decided to simply follow [this tutorial by Fazza Razaq Amiarso](https://dev.to/fazzaamiarso/add-toc-with-scroll-spy-in-astro-3d25) to highlight headings with some minor tweaks so it would highlight all headers currently in view.
+To round it all off, I wanted the headings to highlight if they were on screen as you scrolled. I started looking into the [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) but it felt like I was already spending too much time so I decided to simply follow [this tutorial by Fazza Razaq Amiarso](https://dev.to/fazzaamiarso/add-toc-with-scroll-spy-in-astro-3d25) to highlight headings with some minor tweaks so it would highlight all headers currently in view. There was an issue with sections not highlighting if there are no headers on the screen at any given time so to mitigate that, I followed [this article by Billy Le](https://billyle.dev/posts/highlight-table-of-content-items-using-intersection-observer) which recommended using the remark plugin `remark-sectionize`. This plugin ensures that each section and subsection under a header is nested rather than the default of rendering as a flat list of tags. This mitigated the issue completely.
 
 ### View Transitions
 
@@ -383,7 +383,7 @@ Adding basic View Transitions that blur pages into view as you move between them
 To transition elements or titles between pages, you use the `transition:name` property on each element on both pages. To transition the image between the blog list and the blog page I added ``transition:name={`blog-hero-image-${post-id}`}`` to the hero image tag on both pages.
 
 `/src/pages/blog/[page].astro`
-```JSX
+```html
 <img
   width={800}
   height={400}
@@ -394,7 +394,7 @@ To transition elements or titles between pages, you use the `transition:name` pr
 ```
 
 `/src/pages/blog/[page].astro`
-```JSX
+```html
 <img
   width={1020}
   height={510}

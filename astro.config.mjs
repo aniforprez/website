@@ -16,6 +16,7 @@ export default defineConfig({
     "/blog/tags/[tag]": "/blog/tags/[tag]/1",
   },
   markdown: {
+    remarkPlugins: ["remark-sectionize"],
     shikiConfig: { theme: "slack-dark" },
   },
 
