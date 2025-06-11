@@ -23,9 +23,9 @@ Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page
 
 Components can be saved to `src/components/`.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
 
-Any static assets, like images, can be placed in the `public/` directory.
+Any static assets, like images, can be placed in the `public/` directory and images meant to be processed (optimised, compressed etc) can be placed in the `src/images` directory.
 
 ## 🧞 Commands
 
@@ -39,7 +39,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out the [Astro documentation](https://docs.astro.build).

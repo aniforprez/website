@@ -2,11 +2,11 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 
-import BaseLayout from "../../layouts/BaseLayout.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 import Pagination from "../../components/Pagination.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-import { BLOG_TITLE, BLOG_DESCRIPTION_LONG } from "../../consts";
+import { BLOG_DESCRIPTION_LONG, BLOG_TITLE } from "../../consts";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = (await getCollection("blog")).sort(

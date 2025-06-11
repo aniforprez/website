@@ -2,9 +2,9 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 
-import BaseLayout from "../../../layouts/BaseLayout.astro";
 import FormattedDate from "../../../components/FormattedDate.astro";
 import Pagination from "../../../components/Pagination.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 
 import { SITE_SUFFIX } from "../../../consts";
 
@@ -26,7 +26,7 @@ const { page } = Astro.props;
   <div>
     <div class="border-theme container m-auto border-x p-12 sm:justify-start">
       <h1 class="font-cursive border-theme text-3xl font-semibold">
-        {`Recommends`}
+        Recommends
       </h1>
     </div>
   </div>

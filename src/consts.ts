@@ -10,4 +10,4 @@ export const SITE_SUFFIX = " | Anirudh Sylendranath";
 export const BLOG_TITLE = "Blog" + SITE_SUFFIX;
 export const BLOG_DESCRIPTION = "Anirudh Sylendranath's Blog";
 export const BLOG_DESCRIPTION_LONG =
-  "My blog where I will post thoughts about programming, tutorials and media reviews.";
+  "My blog where I post thoughts about programming, programming tutorials and media reviews.";
