@@ -21,6 +21,7 @@
 
 @utility bg-noise {
   background: url("./noise.png");
+  @apply opacity-70;
 }
 
 @utility border-theme {
@@ -52,6 +53,10 @@
 
 i {
   @apply italic;
+}
+
+.expressive-code {
+  padding-bottom: 10px;
 }
 
 /* Screenreader */

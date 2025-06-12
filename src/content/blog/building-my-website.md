@@ -5,13 +5,14 @@ pubDate: "2025-06-11"
 heroImage: "../images/building-my-website.jpg"
 categories: ["programming", "astro", "js"]
 ---
+
 _Repository for the website is on [GitHub](https://github.com/aniforprez/website)._
 
 Recently, I've had the time to think a lot, read a lot, and watch and play a lot. I've wanted a solid place to log my thoughts instead of leaving it at the whims of sites like [Trakt](https://trakt.tv/) and [Backloggd](https://backloggd.com/). Moreover, Trakt enforced a [paltry limit of 100 items on watchlists](https://forums.trakt.tv/t/freemium-experience-more-features-for-all-with-usage-limits/41641) which is encouraging me to never use the site which already had a very poor review mechanism where you'd leave a "comment" on things you'd watched. I had far more structured thoughts on movies and shows I'd watched and this motivated me to have a closer look at my website so I could post longer form thoughts there. I have also constantly experimented with new languages and would like to post some tutorials and thoughts somewhere.
 
-I'd built the previous version of this website with [Zola](https://www.getzola.org/) which is a fine static site generator built on Rust. The problem was that Zola was a fairly limited and cumbersome place to develop a website. I use [Tailwind](https://tailwindcss.com/) a lot and using Tailwind meant that I had to keep a constantly running process that would parse all my templates and generate the required CSS into a file that I would have to reference in my templates. It also meant that because Zola uses [Tera](https://keats.github.io/tera/), a templating language based on the [Jinja templating language](https://jinja.palletsprojects.com/en/stable/), I would be editing templates a lot. I HATE editing templates because templates are usually not type safe because there's nothing that really says what data is going to be fed into the template. This means groping in the dark and figuring out something doesn't work by running into errors and this makes me feel gross.
+I'd built the previous version of this website with [Zola](https://www.getzola.org/) which is a fine static site generator built on Rust. The problem I had was that Zola was a fairly limited and cumbersome tool to develop a website. I use [Tailwind](https://tailwindcss.com/) a lot and using Tailwind meant that I had to keep a constantly running process that would parse all my templates and generate the required CSS into a file that I would have to reference in my templates. It also meant that because Zola uses [Tera](https://keats.github.io/tera/), a templating language based on the [Jinja templating language](https://jinja.palletsprojects.com/en/stable/), I would be editing templates a lot. I HATE editing templates because the templates are not type safe owing to there being no way to describe what data is going to be fed into the template. This means I am groping in the dark and figuring out something doesn't work by running into errors which makes me feel gross.
 
-I've been lately getting very much into Typescript and Astro is one of the more popular and relatively simple SSG frameworks out there, offering flexibility in terms of how you write components, be they [React, Vue, Svelte etc](https://docs.astro.build/en/guides/integrations-guide/), and offering type safety in terms of defining [type safe collections](https://docs.astro.build/en/guides/content-collections/) validated by Zod which lets me have Intellisense when developing templates.
+I've been lately getting very much into Typescript and Astro is one of the more popular and relatively simple SSG frameworks out there, offering flexibility in terms of how you write components, be they [React, Vue, Svelte etc](https://docs.astro.build/en/guides/integrations-guide/). Astro offering type safety by defining [type safe collections](https://docs.astro.build/en/guides/content-collections/) validated by Zod lets me have Intellisense when developing templates. Astro's documentation is also excellent and covers 99% of all use cases that I need with a blog like this.
 
 This is not going to be a tutorial as much as it is a simple documentation of my thoughts and desires as I made this blog. I had ideas for how I could make my site look fairly swanky and polished and decided to make it happen.
 
@@ -31,12 +32,13 @@ As I'd mentioned before, I'd developed a liking for Astro and decided to move ah
 
 Building the index page of the website was fairly straightforward. Since it's just a simple HTML template styled with Tailwind, I moved fairly fast, using [Devicon](https://devicon.dev/) as a source for the icons of all the technologies I have experience with. I picked the font [JetBrains Mono](https://www.jetbrains.com/lp/mono/) as the default font since it's a really pretty monospaced font that I use for personal coding too and decided to use [Victor Mono](https://fonts.google.com/specimen/Victor+Mono) for headings since it's go a fairly pleasing cursive variant.
 
+<!-- Stuff about the contact form -->
+
 ### About Me
 
 This took some time to come together, mostly due to inertia and some level of anxiety when working on it, but ultimately I settled on having a good amount of text describing myself, a nice photo, some links, and my technial work history. The first three were the same as anything else meanwhile for the work history I decided to use [JSON Resume](https://jsonresume.org/) which is a spec that provides a schema in which to detail out your technical experience which can also be used to generate PDFs. All I had to do was import the `resume.json` file and iterate through it in the template to generate the HTML.
 
-`/src/pages/about.astro`
-```astro
+```astro title="/src/pages/about.astro"
 ---
 import resume from "../content/resume.json";
 ---
@@ -57,8 +59,7 @@ Astro is flexible and powerful enough that you can basically import any file tha
 
 This would obviously be the most technically challenging part of the blog purely in terms of figuring out how the routing for Astro would work to support pagination, adding tags, and other things you'd expect out of a blog. A list of blog posts was fairly easy to implement by importing the collection of blog posts that was already provided through the default Astro blog template. This would fetch all the MDX files inside the `src/content/blog/` directly and pass the content through an RSS schema which would ensure the content would have the required RSS feed fields. I extended the schema with a couple of custom fields I wanted to use to add some spice like an date when the post would be updated and a hero image that would be used for OpenGraph tags for better embedding on social media websites.
 
-`/src/content.config.ts `
-```js
+```js title="/src/content.config.ts"
 // Blog pages
 const blog = defineCollection({
   // Load Markdown and MDX files in the `src/content/blog/` directory.
@@ -74,8 +75,7 @@ const blog = defineCollection({
 
 Now to display all the blog posts, all I'd have to do was fetch all the entries in the collection and list them out.
 
-`/src/pages/blog/index.astro`
-```astro
+```astro title="/src/pages/blog/index.astro"
 ---
 import { getCollection } from "astro:content";
 
@@ -106,8 +106,7 @@ const posts = (await getCollection("blog")).sort(
 
 For the individual blog posts themselves, I'd simply render the MDX out with Astro's renderer and use Tailwind's [typography plugin](https://github.com/tailwindlabs/tailwindcss-typography) to style the rendered text. The plugin styles almost all markdown tags, giving you nice headers, images, lists and so on.
 
-` /src/pages/blog/post/[slug].astro `
-```astro
+```astro title="/src/pages/blog/post/[slug].astro"
 ---
 import { render } from "astro:content";
 import { getCollection } from "astro:content";
@@ -131,8 +130,7 @@ The reason you need to get all the posts in a collection and return a map of all
 
 I decided to add tags to the the blog with links to the tags in each post with a tag page listing all the posts marked with that tag. This would require another page to be created for tags and, as before, Astro requires advance knowledge of all the tags to render out all the tag pages. I didn't want to hardcode tags so I'd have to fetch all the posts and merge all the tags in all the posts together. RSS uses the `category` field to store a list of categories for each post and since this is already available in the RSS schema, we can fetch the lists and merge them and return a list of all the tags on the blog.
 
-`/src/pages/blog/tags/[tag].astro`
-```astro
+```astro title="/src/pages/blog/tags/[tag].astro"
 ---
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
@@ -169,6 +167,7 @@ With this, you get a fully functional blog page but I wanted a few more things t
 * [Pagination for blog posts and tags pages](#pagination)
 * [Table of contents for each post](#pagination)
 * [View transitions](#view-transitions)
+* [Better code highlighting](#code-highlighting)
 <!-- * Generate OpenGraph images for reviews dynamically
 * Search page -->
 
@@ -206,8 +205,7 @@ I'd store a JSON in `src/content/articles.json` in the following format
 
 Now we set up an Astro collection to fetch the list of articles and render it in the blog list page.
 
-` src/content.config.js`
-```js
+```js title="src/content.config.js"
 
 const articles = defineCollection({
   loader: file("./src/content/articles.json", {
@@ -228,10 +226,9 @@ const articles = defineCollection({
 });
 ```
 
-This kind of stuff is really why I like Astro so much. With this simple change we get validation of the content and if I make any error in the JSON it's going to shut the whole build down with an error. And this also gives type safety in the markdown itself because we can simply fetch this collection and iterate on it to display them.
+This kind of stuff is why I like Astro so much. With this simple change we get validation of the content and if I make any error in the JSON or any of the frontmatter in the markdown files, it's going to shut the whole build down with an error. This also gives type safety in the templates when rendering the posts because we can simply fetch this collection and iterate on the returned data to display them in a list.
 
-` /src/pages/blog/index`
-```astro
+```astro title="/src/pages/blog/index.astro"
 
 ---
 
@@ -259,24 +256,27 @@ For pagination, Astro provides a [built-in system](https://docs.astro.build/en/g
 
 To indicate that the blog page can accept a page path parameter, we need to change the filename of the blog index page to `[page].astro`.
 
-`/src/pages/blog/index.md -> /src/pages/blog/[page].astro`
-```astro
+```diff lang=astro title="/src/pages/blog/index.md -> /src/pages/blog/[page].astro"
 ---
-export const getStaticPaths = (async ({ paginate }) => {
-  const posts = (await getCollection("blog")).sort(
-    (a, b) =>
-      (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
-  );
+-const posts = (await getCollection("blog")).sort(
+-  (a, b) => (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
+-);
++export const getStaticPaths = (async ({ paginate }) => {
++  const posts = (await getCollection("blog")).sort(
++    (a, b) =>
++      (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
++  );
++
++  return paginate(posts, { pageSize: 10 });
++}) satisfies GetStaticPaths;
 
-  return paginate(posts, { pageSize: 10 });
-}) satisfies GetStaticPaths;
-
-const { page } = Astro.props;
++const { page } = Astro.props;
 ---
 
 <ul>
   {
-    posts.data.map((post) => (
++    posts.map((post) => (
+-    page.data.map((post) => (
       <li>
         <a href={`/blog/${post.id}/`}>
           <div>
@@ -291,21 +291,21 @@ const { page } = Astro.props;
     ))
   }
 </ul>
-<nav>
-  <a href={page.url.first}>First</a>
-  <a href={page.url.prev}>Previous</a>
-  <span>Current URL</span>
-  <a href={page.url.next}>Next</a>
-  <a href={page.url.last}>Last</a>
-</nav>
++// Links to pages
++<nav>
++  <a href={page.url.first}>First</a>
++  <a href={page.url.prev}>Previous</a>
++  <span>Current URL</span>
++  <a href={page.url.next}>Next</a>
++  <a href={page.url.last}>Last</a>
++</nav>
 ```
 
 As you can see, instead of simply passing on all the posts from the collection, we use the `paginate` parameter given to the function you pass to `getStaticPaths` and then pass the list of posts that we fetched to the pagination function with some options. This gives us a page object that contains the page of posts in `page.data` and all the URLs for the other pages in `page.url`. All the props are described [here](https://docs.astro.build/en/guides/routing/#the-page-prop). We can do this same thing with the recommendations list page.
 
 If I want to paginate tags, then it's a little complex because we want to accept both the tag and the page as a parameter in the URL. Actually, it would be complex if we didn't simply have to send the tag parameter to the pagination function and move the `[tag].astro` page to `[tag]/[page].astro`.
 
-`/src/pages/tags/[tag].astro -> /src/pages/tags/[tag]/[page].astro`
-```astro
+```diff lang=astro title="/src/pages/tags/[tag].astro -> /src/pages/tags/[tag]/[page].astro"
 ---
 //...
 export const getStaticPaths = (async ({ paginate }) => {
@@ -320,12 +320,14 @@ export const getStaticPaths = (async ({ paginate }) => {
     const filteredPosts = [
       ...blog_posts.filter((post) => post.data.categories?.includes(tag)),
     ];
-    return paginate(filteredPosts, { params: { tag }, pageSize: 10 });
+-    return { params: { tag }, props: { posts: filteredPosts } };
++    return paginate(filteredPosts, { params: { tag }, pageSize: 10 });
   });
 })
 
 const { tag } = Astro.params;
-const { page } = Astro.props;
+-const { posts } = Astro.props;
++const { page } = Astro.props;
 ---
 ```
 
@@ -333,8 +335,7 @@ const { page } = Astro.props;
 
 Once again, Astro is the MVP here. Astro's content renderer for each post can [return all the headings in the page](https://docs.astro.build/en/guides/markdown-content/#importing-markdown). In the slug page, we can pass the headings and then list them out and it should work out of the box.
 
-`/src/pages/blog/post/[slug].astro`
-```astro
+```astro title="/src/pages/blog/post/[slug].astro"
 ---
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -374,7 +375,7 @@ const { Content } = await render(post);
 
 One drawback of Astro's headings method is that it returns a flat list of headings in order with their depth starting from 1 for the title and then 2 for subheadings, 3 for the subsubheadings and so on. It is easier if we construct a tree of headings with children of top level headings as a list within the heading. It would have taken me some time for me to understand the rules of the headings and whether they are properly sorted based on where they appear so instead I followed [this tutorial by Kevin Drum](https://kld.dev/building-table-of-contents/#building-a-nested-table-of-contents-array) to construct the nested list.
 
-To round it all off, I wanted the headings to highlight if they were on screen as you scrolled. I started looking into the [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) but it felt like I was already spending too much time so I decided to simply follow [this tutorial by Fazza Razaq Amiarso](https://dev.to/fazzaamiarso/add-toc-with-scroll-spy-in-astro-3d25) to highlight headings with some minor tweaks so it would highlight all headers currently in view. There was an issue with sections not highlighting if there are no headers on the screen at any given time so to mitigate that, I followed [this article by Billy Le](https://billyle.dev/posts/highlight-table-of-content-items-using-intersection-observer) which recommended using the remark plugin `remark-sectionize`. This plugin ensures that each section and subsection under a header is nested rather than the default of rendering as a flat list of tags. This mitigated the issue completely.
+To round it all off, I wanted the headings to highlight if they were on screen as you scrolled. I started looking into the [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) but it felt like I was already spending too much time so I decided to simply follow [this tutorial by Fazza Razaq Amiarso](https://dev.to/fazzaamiarso/add-toc-with-scroll-spy-in-astro-3d25) to highlight headings with some minor tweaks so it would highlight all headers currently in view. There was an issue with sections not highlighting if there were no headers on the screen at any given time (which is easily possible when there's a lot of text between headers) so to mitigate that, I followed [this article by Billy Le](https://billyle.dev/posts/highlight-table-of-content-items-using-intersection-observer) which recommended using the remark plugin `remark-sectionize`. This plugin ensures that each section and subsection under a header is nested rather than the default of rendering as a flat list of tags. This mitigated the issue completely.
 
 ### View Transitions
 
@@ -382,8 +383,7 @@ Adding basic View Transitions that blur pages into view as you move between them
 
 To transition elements or titles between pages, you use the `transition:name` property on each element on both pages. To transition the image between the blog list and the blog page I added ``transition:name={`blog-hero-image-${post-id}`}`` to the hero image tag on both pages.
 
-`/src/pages/blog/[page].astro`
-```html
+```html title="/src/pages/blog/[page].astro"
 <img
   width={800}
   height={400}
@@ -393,8 +393,7 @@ To transition elements or titles between pages, you use the `transition:name` pr
 />
 ```
 
-`/src/pages/blog/[page].astro`
-```html
+```html title="/src/pages/blog/[page].astro"
 <img
   width={1020}
   height={510}
@@ -406,6 +405,18 @@ To transition elements or titles between pages, you use the `transition:name` pr
 ```
 
 You can transition more elements including the headers, post dates etc but it looked too flashy and distracting so I opted to stick with the image itself. Adding the transition to the post items entirely let me animate between different tags which is actually a much better use of the view transitions so common posts will stay when you are on the list of all blog posts and the list of an individual tag.
+
+### Better code highlighting
+
+The default code highlighting with Shiki that Astro provides is very powerful but it doesn't support things like editor frames which could be used to indicate the filename, support for diff highlighting, line highlighting, and other niceties. For all that, we have a very nice plugin called [Expressive Code](https://github.com/expressive-code/expressive-code) with extremely simple setup and usage. After some tweaking of the default themes and some styling fixes using the configuration settings, I had a very pretty little code component.
+
+```js title="Some JS"
+const message = "Here's some JS";
+```
+
+```shell title="Some shell"
+echo "And here's a command prompt"
+```
 
 ## Publication
 
