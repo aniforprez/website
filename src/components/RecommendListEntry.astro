@@ -1,0 +1,63 @@
+---
+import FormattedDate from "./FormattedDate.astro";
+interface Props {
+  rec: {
+    id: string;
+    link: string;
+    title: string;
+    description?: string;
+    pubDate: Date;
+    type: "article" | "video";
+  };
+}
+
+const { rec } = Astro.props;
+---
+
+<a
+  href={rec.link}
+  class="group bg-theme flex h-full w-full flex-col gap-1 p-3 hover:bg-stone-100 hover:dark:bg-stone-800"
+  title={rec.description}
+  target="_blank"
+  rel="noopener"
+  transition:name={`recommend-${rec.id}`}
+>
+  <div class="text-muted flex items-center gap-2 text-xs">
+    {rec.type === "article" ? "Read" : "Watched"} on <FormattedDate
+      date={rec.pubDate}
+    />
+    <div class="ml-auto">
+      {
+        rec.type === "article" ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="currentColor"
+          >
+            <path d="M20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM7 6V10H11V6H7ZM7 12V14H17V12H7ZM7 16V18H17V16H7ZM13 7V9H17V7H13Z" />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="currentColor"
+          >
+            <path d="M3 3.9934C3 3.44476 3.44495 3 3.9934 3H20.0066C20.5552 3 21 3.44495 21 3.9934V20.0066C21 20.5552 20.5551 21 20.0066 21H3.9934C3.44476 21 3 20.5551 3 20.0066V3.9934ZM10.6219 8.41459C10.5562 8.37078 10.479 8.34741 10.4 8.34741C10.1791 8.34741 10 8.52649 10 8.74741V15.2526C10 15.3316 10.0234 15.4088 10.0672 15.4745C10.1897 15.6583 10.4381 15.708 10.6219 15.5854L15.5008 12.3328C15.5447 12.3035 15.5824 12.2658 15.6117 12.2219C15.7343 12.0381 15.6846 11.7897 15.5008 11.6672L10.6219 8.41459Z" />
+          </svg>
+        )
+      }
+    </div>
+  </div>
+  <div
+    class="line-clamp-2 text-sm font-bold group-hover:text-blue-600 md:text-base group-hover:dark:text-blue-400"
+  >
+    {rec.title}
+  </div>
+  <div class="text-muted line-clamp-1 text-xs md:text-sm">
+    {rec.link}
+  </div>
+</a>

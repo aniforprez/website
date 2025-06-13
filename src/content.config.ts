@@ -28,9 +28,12 @@ const blog = defineCollection({
   schema: ({ image }) =>
     rssSchema
       .extend({
+        title: z.string(),
+        pubDate: z.coerce.date(),
         updatedDate: z.coerce.date().optional(),
         heroImage: image(),
         draft: z.boolean().optional().default(false),
+        type: z.literal("blog").optional(),
       })
       .refine((val) =>
         val.categories
@@ -44,19 +47,23 @@ const reviews = defineCollection({
   // Load Markdown and MDX files in the `src/content/blog/` directory.
   loader: glob({ base: "./src/content/reviews", pattern: "**/*.{md,mdx}" }),
   // Type-check frontmatter using a schema
-  schema: rssSchema
-    .extend({
-      updatedDate: z.coerce.date().optional(),
-      heroImage: z.string().optional(),
-      boxArt: z.string().optional(),
-      rating: z.number(),
-      draft: z.boolean().optional().default(false),
-    })
-    .refine((val) =>
-      val.categories
-        ? val.categories.push("review")
-        : (val.categories = ["review"]),
-    ),
+  schema: ({ image }) =>
+    rssSchema
+      .extend({
+        title: z.string(),
+        pubDate: z.coerce.date(),
+        updatedDate: z.coerce.date().optional(),
+        heroImage: image(),
+        boxArt: z.string().optional(),
+        rating: z.number(),
+        draft: z.boolean().optional().default(false),
+        type: z.literal("review").optional(),
+      })
+      .refine((val) =>
+        val.categories
+          ? val.categories.push("review")
+          : (val.categories = ["review"]),
+      ),
 });
 
 export const collections = { articles, blog, reviews };
