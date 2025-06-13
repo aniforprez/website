@@ -30,7 +30,7 @@ const { page } = Astro.props;
 <BaseLayout title={BLOG_TITLE} description={BLOG_DESCRIPTION_LONG}>
   <div>
     <div
-      class="border-theme container m-auto flex w-full items-center justify-center border-x p-12 sm:justify-start"
+      class="border-theme container m-auto flex w-full items-center justify-center border-x p-6 sm:justify-start md:p-12"
     >
       <h1 class="font-cursive border-theme text-3xl font-semibold">Blog</h1>
       <a
@@ -50,7 +50,7 @@ const { page } = Astro.props;
   </div>
   <div class="w-full">
     <section
-      class="border-theme relative container m-auto grid h-fit grow-0 grid-cols-1 flex-col items-start border-x p-0 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_400px]"
+      class="border-theme relative container m-auto grid h-fit grow-0 grid-cols-1 flex-col items-start border-x p-0 md:grid-cols-[1fr_300px] lg:grid-cols-[1fr_400px]"
     >
       <!-- <div class="bg-pattern absolute inset-0 -z-10 h-full"></div> -->
       <div>
@@ -107,7 +107,7 @@ const { page } = Astro.props;
         <div class="bg-pattern absolute inset-0 -z-10 h-full"></div>
 
         <div
-          class="border-theme bg-theme flex items-center gap-3 border-b p-3 text-xl font-semibold"
+          class="border-theme bg-theme flex items-center gap-3 border-b p-3 text-lg font-semibold md:text-xl"
         >
           Recommends
           <div title="Recommended articles or videos from my regular browsing">
@@ -180,7 +180,7 @@ const { page } = Astro.props;
             <div>
               <a
                 href="/blog/recommends"
-                class="border-theme bg-theme flex justify-center gap-3 border-y p-3 text-sm font-semibold hover:bg-stone-100 hover:shadow-md dark:shadow-stone-950/75 hover:dark:bg-stone-800"
+                class="border-theme bg-theme flex justify-center gap-3 border-t border-b p-3 text-sm font-semibold hover:bg-stone-100 hover:shadow-md max-lg:border-b-0 dark:shadow-stone-950/75 hover:dark:bg-stone-800"
               >
                 More...
               </a>

@@ -72,7 +72,7 @@ const {
     <div
       class="border-theme container m-auto flex flex-col border-x lg:flex-row"
     >
-      <div class="border-theme order-2 grow-0 border-r lg:order-1 lg:w-3/4">
+      <div class="border-theme order-2 grow-0 lg:order-1 lg:w-3/4 lg:border-r">
         {
           heroImage && (
             <div class="border-theme relative w-full border-b">
@@ -89,17 +89,20 @@ const {
             </div>
           )
         }
+        <div class="border-theme border-b p-6 md:p-8 lg:hidden">
+          <TableOfContents headings={headings} scrollspy={false} />
+        </div>
         <article
-          class="prose prose-stone prose-sm md:prose-base dark:prose-invert prose-hr:not-dark:border-stone-300 prose-blockquote:not-dark:border-stone-300 m-auto max-w-5xl p-8 lg:p-12"
+          class="prose prose-stone prose-sm md:prose-base dark:prose-invert prose-hr:not-dark:border-stone-300 prose-blockquote:not-dark:border-stone-300 prose-p:font-light prose-p:tracking-tight m-auto max-w-5xl p-4 text-pretty md:p-8 lg:p-12"
         >
           <slot />
         </article>
       </div>
       <div
-        class="border-theme order-1 grow-0 border-b p-8 lg:order-2 lg:w-1/4 lg:border-b-0"
+        class="border-theme order-1 hidden grow-0 border-b p-8 lg:order-2 lg:block lg:w-1/4 lg:border-b-0"
       >
-        <div class="sticky top-16 max-h-svh overflow-y-auto">
-          <TableOfContents headings={headings} />
+        <div class="sticky top-16 overflow-y-auto lg:max-h-[calc(100svh-80px)]">
+          <TableOfContents headings={headings} scrollspy />
         </div>
       </div>
     </div>
