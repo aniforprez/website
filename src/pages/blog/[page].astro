@@ -121,10 +121,10 @@ const { page } = Astro.props;
           </div>
         </div>
 
-        <ul class="grid grid-cols-2 md:grid-cols-1">
+        <ul class="grid grid-cols-1">
           {
             recommends.slice(0, 10).map((rec) => (
-              <li class="border-theme border-r border-b last:border-b-0 hover:z-1 hover:shadow-xl max-md:even:border-r-0 md:border-r-0 dark:shadow-stone-950/75">
+              <li class="border-theme border-b last:border-b-0 hover:z-1 hover:shadow-xl dark:shadow-stone-950/75">
                 <RecommendListEntry rec={{ ...rec.data, id: rec.id }} />
               </li>
             ))

@@ -29,97 +29,107 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
         </ul>
       </div>
 
-      <div
-        class="border-theme relative mt-auto flex h-12 w-full border-t px-6 sm:h-16"
-      >
+      <div class="border-theme relative mt-auto w-full border-t px-6">
         <div class="bg-pattern absolute inset-0 -z-10 h-full"></div>
 
-        <a
-          href="/about/"
-          class="bg-theme border-theme flex h-full items-center gap-3 border-r border-l px-4 text-base hover:bg-stone-100 hover:shadow-md sm:px-8 md:text-xl dark:hover:bg-stone-700"
-          >About Me <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="18"
-            height="18"
-            fill="currentColor"
-            ><path
-              d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z"
-            ></path></svg
-          ></a
+        <div
+          class="bg-theme *:border-theme flex flex-col *:flex *:items-center *:justify-center *:border-r *:hover:bg-stone-100 *:hover:shadow-md max-sm:*:justify-start max-sm:*:border-b max-sm:*:border-l sm:w-fit sm:flex-row *:dark:hover:bg-stone-700"
         >
-        <a
-          href="https://github.com/aniforprez"
-          target="_blank"
-          rel="noopener"
-          class="bg-theme border-theme flex size-12 items-center justify-center border-r border-b hover:bg-stone-100 hover:shadow-md sm:size-16 dark:hover:bg-stone-700"
-          aria-label="GitHub"
-          title="GitHub"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-8 sm:size-10"
-            ><path
-              d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"
-            ></path></svg
+          <a
+            href="/about/"
+            class="h-12 gap-3 border-l px-4 text-base max-sm:pl-16 sm:h-16 sm:px-8 sm:text-xl"
+            >About Me <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-4 sm:size-6"
+            >
+              <path
+                d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href="https://github.com/aniforprez"
+            target="_blank"
+            rel="noopener"
+            class="justify-center gap-4 max-sm:p-2 max-sm:px-4 sm:size-16"
+            aria-label="GitHub"
+            title="GitHub"
           >
-        </a>
-        <a
-          href="https://www.linkedin.com/in/anirudh-sylendranath-55989239/"
-          target="_blank"
-          rel="noopener"
-          class="bg-theme border-theme flex size-12 items-center justify-center border-r border-b hover:bg-stone-100 hover:shadow-md sm:size-16 dark:hover:bg-stone-700"
-          aria-label="LinkedIn"
-          title="LinkedIn"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-8 sm:size-10"
-            ><path
-              d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"
-            ></path></svg
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-8 sm:size-10"
+            >
+              <path
+                d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"
+              ></path>
+            </svg>
+            <span class="sm:hidden">GitHub</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/anirudh-sylendranath-55989239/"
+            target="_blank"
+            rel="noopener"
+            class="justify-center gap-4 max-sm:p-2 max-sm:px-4 sm:size-16"
+            aria-label="LinkedIn"
+            title="LinkedIn"
           >
-        </a>
-        <a
-          href="https://bsky.app/profile/aniforprez.dev"
-          target="_blank"
-          rel="noopener"
-          class="bg-theme border-theme flex size-12 items-center justify-center border-r border-b hover:bg-stone-100 hover:shadow-md sm:size-16 dark:hover:bg-stone-700"
-          aria-label="Bluesky"
-          title="Bluesky"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-8 sm:size-10"
-            ><path
-              d="M12 11.3884C11.0942 9.62673 8.62833 6.34423 6.335 4.7259C4.13833 3.17506 3.30083 3.4434 2.75167 3.69256C2.11583 3.9784 2 4.95506 2 5.52839C2 6.10339 2.315 10.2367 2.52 10.9276C3.19917 13.2076 5.61417 13.9776 7.83917 13.7309C4.57917 14.2142 1.68333 15.4017 5.48083 19.6292C9.65833 23.9542 11.2058 18.7017 12 16.0392C12.7942 18.7017 13.7083 23.7651 18.4442 19.6292C22 16.0392 19.4208 14.2142 16.1608 13.7309C18.3858 13.9784 20.8008 13.2076 21.48 10.9276C21.685 10.2376 22 6.10256 22 5.52923C22 4.95423 21.8842 3.97839 21.2483 3.6909C20.6992 3.44256 19.8617 3.17423 17.665 4.72423C15.3717 6.34506 12.9058 9.62756 12 11.3884Z"
-            ></path></svg
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-8 sm:size-10"
+            >
+              <path
+                d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"
+              ></path>
+            </svg>
+            <span class="sm:hidden">LinkedIn</span>
+          </a>
+          <a
+            href="https://bsky.app/profile/aniforprez.dev"
+            target="_blank"
+            rel="noopener"
+            class="justify-center gap-4 max-sm:p-2 max-sm:px-4 sm:size-16"
+            aria-label="Bluesky"
+            title="Bluesky"
           >
-        </a>
-        <a
-          href="mailto:contact@aniforprez.dev"
-          target="_blank"
-          rel="noopener"
-          class="bg-theme border-theme flex size-12 items-center justify-center border-r border-b hover:bg-stone-100 hover:shadow-md sm:size-16 dark:hover:bg-stone-700"
-          aria-label="Email"
-          title="Email"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-8 sm:size-10"
-            ><path
-              d="M2 5.5V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V19H20V7.3L12 14.5L2 5.5ZM0 10H5V12H0V10ZM0 15H8V17H0V15Z"
-            ></path></svg
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-8 sm:size-10"
+            >
+              <path
+                d="M12 11.3884C11.0942 9.62673 8.62833 6.34423 6.335 4.7259C4.13833 3.17506 3.30083 3.4434 2.75167 3.69256C2.11583 3.9784 2 4.95506 2 5.52839C2 6.10339 2.315 10.2367 2.52 10.9276C3.19917 13.2076 5.61417 13.9776 7.83917 13.7309C4.57917 14.2142 1.68333 15.4017 5.48083 19.6292C9.65833 23.9542 11.2058 18.7017 12 16.0392C12.7942 18.7017 13.7083 23.7651 18.4442 19.6292C22 16.0392 19.4208 14.2142 16.1608 13.7309C18.3858 13.9784 20.8008 13.2076 21.48 10.9276C21.685 10.2376 22 6.10256 22 5.52923C22 4.95423 21.8842 3.97839 21.2483 3.6909C20.6992 3.44256 19.8617 3.17423 17.665 4.72423C15.3717 6.34506 12.9058 9.62756 12 11.3884Z"
+              ></path>
+            </svg>
+            <span class="sm:hidden">Bluesky</span>
+          </a>
+          <a
+            href="mailto:contact@aniforprez.dev"
+            target="_blank"
+            rel="noopener"
+            class="justify-center gap-4 !border-b-0 max-sm:p-2 max-sm:px-4 sm:size-16"
+            aria-label="Email"
+            title="Email"
           >
-        </a>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-8 sm:size-10"
+            >
+              <path
+                d="M2 5.5V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V19H20V7.3L12 14.5L2 5.5ZM0 10H5V12H0V10ZM0 15H8V17H0V15Z"
+              ></path>
+            </svg>
+            <span class="sm:hidden">Email</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -128,7 +138,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   <div class="">
     <div class="site-box">
       <div
-        class="max-w-3xl px-6 pt-12 text-sm font-extralight text-pretty *:mb-4 sm:text-base md:px-12"
+        class="max-w-3xl px-6 pt-8 text-sm font-extralight text-pretty *:mb-4 sm:text-base md:px-12 md:pt-12"
       >
         <p>
           I build web apps on all levels of the stack. From architecting server
@@ -172,11 +182,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
         </p>
       </div>
       <h2
-        class="mt-8 px-6 text-center text-xl font-semibold md:px-12 md:text-start"
+        class="border-theme mt-8 px-6 py-4 text-center text-xl font-semibold max-md:border-t md:px-12 md:text-start"
       >
         Programming Languages, Frameworks and Tools
       </h2>
-      <div class="border-theme relative mt-8 w-full border-t px-6 md:px-12">
+      <div class="border-theme relative w-full border-t px-6 md:px-12">
         <div class="bg-pattern absolute inset-0 -z-10 h-full"></div>
         <ul
           class="*:border-theme border-theme *:text-muted bg-theme mx-auto grid w-full grow grid-cols-3 border-x text-nowrap *:box-border *:flex *:aspect-square *:flex-col *:items-center *:justify-center *:gap-3 *:border-r *:border-b *:p-4 *:text-sm *:hover:bg-stone-100 *:hover:shadow-md sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 *:dark:hover:bg-stone-700 [&>li>svg]:size-12 md:[&>li>svg]:size-16"
