@@ -1,5 +1,6 @@
 {
   "$schema": "./articles.schema.json",
+  "earworm": "https://open.spotify.com/embed/track/5BNL3Ew4cz5sbiESND8qar?utm_source=generator",
   "articles": [
     {
       "id": "1",

@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "RecommendedArticles",
   "properties": {
+    "earworm": { "type": "string", "description": "URL of current earworm" },
     "articles": {
       "type": "array",
       "description": "List of recommended articles",

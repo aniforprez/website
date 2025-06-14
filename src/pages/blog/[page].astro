@@ -8,6 +8,7 @@ import RecommendListEntry from "../../components/RecommendListEntry.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 import { BLOG_DESCRIPTION_LONG, BLOG_TITLE } from "../../consts";
+import recs from "../../content/articles.json";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = (await getCollection("blog"))
@@ -75,6 +76,33 @@ const { page } = Astro.props;
       </div>
       <div class="border-theme relative flex h-full flex-col md:border-l">
         <div class="bg-pattern absolute inset-0 -z-10 h-full"></div>
+
+        <div
+          class="border-theme bg-theme flex items-center gap-3 border-b p-3 text-lg font-semibold md:text-xl"
+        >
+          Current Earworm
+          <div title="My current music obsession">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-4"
+              ><path
+                d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 9.5C12.8284 9.5 13.5 8.82843 13.5 8C13.5 7.17157 12.8284 6.5 12 6.5C11.1716 6.5 10.5 7.17157 10.5 8C10.5 8.82843 11.1716 9.5 12 9.5ZM14 15H13V10.5H10V12.5H11V15H10V17H14V15Z"
+              ></path></svg
+            >
+          </div>
+        </div>
+        <div class="border-theme bg-theme border-b p-2">
+          <iframe
+            style="border-radius:12px"
+            src={recs.earworm}
+            width="100%"
+            height="152"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>
 
         <div
           class="border-theme bg-theme flex items-center gap-3 border-b p-3 text-lg font-semibold md:text-xl"
