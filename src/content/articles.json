@@ -74,6 +74,16 @@
       "description": "An examination of Syril Karn, a character from Andor. Spoilers for S1 and S2 of the show Andor",
       "categories": ["tv", "andor", "essay"],
       "link": "https://www.rewinder.co.uk/i-cannot-stop-thinking-about-syril-karns-final-act-in-andor/"
+    },
+    {
+      "id": "9",
+      "author": "Ethan Chlebowski",
+      "title": "Why Recipes are holding you back from learning how to cook",
+      "pubDate": "2025-06-14",
+      "description": "Expanding on a different way of thinking about food from making fixed recipes to using what is in your fridge/pantry",
+      "categories": ["cooking"],
+      "link": "https://www.youtube.com/watch?v=srMEoe_5y6g",
+      "type": "video"
     }
   ]
 }
