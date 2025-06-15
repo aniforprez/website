@@ -11,14 +11,18 @@ import { BLOG_DESCRIPTION_LONG, BLOG_TITLE } from "../../consts";
 import recs from "../../content/articles.json";
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const posts = (await getCollection("blog"))
-    .filter((post) => !post.data.draft)
-    .sort(
-      (a, b) =>
-        (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
-    );
+  const posts = (await getCollection("blog")).filter(
+    (post) => !post.data.draft,
+  );
+  const reviews = (await getCollection("reviews")).filter(
+    (post) => !post.data.draft,
+  );
 
-  return paginate(posts, { pageSize: 10 });
+  const combined = [...posts, ...reviews].sort(
+    (a, b) => (b.data.pubDate.valueOf() || 0) - (a.data.pubDate.valueOf() || 0),
+  );
+
+  return paginate(combined, { pageSize: 10 });
 }) satisfies GetStaticPaths;
 
 const recommends = (await getCollection("articles")).sort(

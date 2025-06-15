@@ -1,11 +1,19 @@
 // @ts-check
 import mdx from "@astrojs/mdx";
 import netlify from "@astrojs/netlify";
+import node from "@astrojs/node";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import AstroPWA from "@vite-pwa/astro";
 import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
 import remarkSectionize from "remark-sectionize";
+
+let adapter = netlify();
+
+if (process.argv[3] === "--node" || process.argv[4] === "--node") {
+  adapter = node({ mode: "standalone" });
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,6 +23,7 @@ export default defineConfig({
     "/blog/recommends": "/blog/recommends/1",
     "/blog/tags/[tag]": "/blog/tags/[tag]/1",
   },
+
   markdown: { remarkPlugins: [remarkSectionize] },
 
   integrations: [
@@ -22,8 +31,9 @@ export default defineConfig({
       themes: ["slack-dark"],
       styleOverrides: {
         uiFontFamily: "JetBrains Mono Variable, sans-serif",
+        uiFontSize: "13px",
+        codeFontSize: "13px",
         codeFontFamily: "JetBrains Mono Variable, sans-serif",
-        uiFontSize: "12px",
         borderRadius: "0px",
         frames: {
           shadowColor: "transparent",
@@ -37,11 +47,12 @@ export default defineConfig({
     }),
     mdx(),
     sitemap(),
+    AstroPWA(),
   ],
 
   vite: {
     plugins: [tailwindcss()],
   },
 
-  adapter: netlify(),
+  adapter: adapter,
 });
