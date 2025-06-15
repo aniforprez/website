@@ -4,7 +4,6 @@ import netlify from "@astrojs/netlify";
 import node from "@astrojs/node";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
-import AstroPWA from "@vite-pwa/astro";
 import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
 import remarkSectionize from "remark-sectionize";
@@ -47,7 +46,6 @@ export default defineConfig({
     }),
     mdx(),
     sitemap(),
-    AstroPWA(),
   ],
 
   vite: {
