@@ -1,9 +1,10 @@
 ---
-import { parse, format } from "date-fns";
+import { Image } from "astro:assets";
+import { format, parse } from "date-fns";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-import { SITE_SUFFIX, SITE_DESCRIPTION } from "../consts";
+import { SITE_DESCRIPTION, SITE_SUFFIX } from "../consts";
 import resume from "../content/resume.json";
 ---
 
@@ -70,12 +71,13 @@ import resume from "../content/resume.json";
                 <div
                   class="border-theme flex w-[200px] flex-col items-center border-2 bg-stone-200 md:w-[220px] dark:bg-stone-950"
                 >
-                  <img
+                  <Image
                     src="/images/profile-photo.jpg"
-                    alt="Anirudh Sylendranath's profile photo"
+                    alt="Anirudh Sylendranath"
                     width="240"
                     height="240"
                     class="border-theme border-b-2"
+                    loading="eager"
                   />
                   <div class="text-muted p-3 text-center text-sm">
                     Anirudh Sylendranath

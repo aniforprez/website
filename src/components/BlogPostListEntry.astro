@@ -33,6 +33,7 @@ const { post } = Astro.props;
     src={post.heroImage}
     alt={post.title}
     class="border-theme border-b"
+    loading="eager"
     transition:name={`blog-hero-image-${post.id}`}
   />
   {/* </div> */}
