@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+import FormattedDate from "./FormattedDate.astro";
+
+type Props = { post: CollectionEntry<"blog">["data"]; id: string };
+
+const { id, post } = Astro.props;
+console.log(post);
+---
+
+<a
+  href={`/blog/post/${id}/`}
+  class="group flex h-full w-full flex-col hover:bg-stone-100 hover:dark:bg-stone-800"
+  transition:name={`blog-post-${id}`}
+>
+  {/* <div class="aspect-2/1"> */}
+  <Image
+    width={800}
+    height={400}
+    src={post.heroImage}
+    alt={post.title}
+    class="border-theme border-b"
+    loading="eager"
+    transition:name={`blog-hero-image-${id}`}
+  />
+  {/* </div> */}
+  <div class="flex flex-col gap-2 p-4 pb-6">
+    <p class="text-muted text-xs lg:text-sm">
+      {post.pubDate ? <FormattedDate date={post.pubDate} /> : "No Date"}
+    </p>
+    <h4
+      class="line-clamp-1 text-lg font-bold group-hover:text-blue-600 lg:text-xl group-hover:dark:text-blue-400"
+    >
+      {post.title}
+    </h4>
+    <p
+      class="line-clamp-3 text-sm font-extralight text-pretty lg:text-base xl:line-clamp-2"
+    >
+      {post.description}
+    </p>
+  </div>
+</a>

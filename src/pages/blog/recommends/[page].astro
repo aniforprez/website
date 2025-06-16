@@ -3,7 +3,7 @@ import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 
 import Pagination from "../../../components/Pagination.astro";
-import RecommendListEntry from "../../../components/RecommendListEntry.astro";
+import RecommendListItem from "../../../components/RecommendListItem.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 
 import { SITE_SUFFIX } from "../../../consts";
@@ -40,7 +40,7 @@ const { page } = Astro.props;
         {
           page.data.map((rec) => (
             <li class="border-theme border-b hover:z-1 hover:shadow-xl max-md:last:border-b-0 md:odd:border-r dark:shadow-stone-950/75">
-              <RecommendListEntry rec={rec.data} />
+              <RecommendListItem rec={rec.data} />
             </li>
           ))
         }

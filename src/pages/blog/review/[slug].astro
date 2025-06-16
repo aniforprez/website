@@ -1,0 +1,31 @@
+---
+import { render } from "astro:content";
+import type { MarkdownHeading } from "astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+
+import ReviewPost from "../../../layouts/ReviewPost.astro";
+
+export async function getStaticPaths() {
+  const reviews = await getCollection("reviews");
+
+  const headings = await Promise.all(
+    reviews.map(async (post) => {
+      const data = await render(post);
+      return data.headings;
+    }),
+  );
+
+  return reviews.map((post, index) => ({
+    params: { slug: post.id },
+    props: { post, headings: headings[index] },
+  }));
+}
+type Props = { post: CollectionEntry<"reviews">; headings: MarkdownHeading[] };
+
+const { post, headings } = Astro.props;
+const { Content } = await render(post);
+---
+
+<ReviewPost {...post.data} id={post.id} headings={headings}>
+  <Content />
+</ReviewPost>

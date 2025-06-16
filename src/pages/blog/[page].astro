@@ -2,9 +2,10 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 
-import BlogPostListEntry from "../../components/BlogPostListEntry.astro";
+import BlogListItem from "../../components/BlogListItem.astro";
+import ReviewListItem from "../../components/ReviewListItem.astro";
 import Pagination from "../../components/Pagination.astro";
-import RecommendListEntry from "../../components/RecommendListEntry.astro";
+import RecommendListItem from "../../components/RecommendListItem.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 import { BLOG_DESCRIPTION_LONG, BLOG_TITLE } from "../../consts";
@@ -14,9 +15,11 @@ export const getStaticPaths = (async ({ paginate }) => {
   const posts = (await getCollection("blog")).filter(
     (post) => !post.data.draft,
   );
+  // .map((post) => ({ ...post, data: { ...post.data, type: "blog" } }));
   const reviews = (await getCollection("reviews")).filter(
     (post) => !post.data.draft,
   );
+  // .map((post) => ({ ...post, data: { ...post.data, type: "review" } }));
 
   const combined = [...posts, ...reviews].sort(
     (a, b) => (b.data.pubDate.valueOf() || 0) - (a.data.pubDate.valueOf() || 0),
@@ -79,11 +82,19 @@ const { page } = Astro.props;
       <div>
         <ul class="grid grid-cols-1 lg:grid-cols-2">
           {
-            page.data.map((post) => (
-              <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
-                <BlogPostListEntry post={{ ...post.data, id: post.id }} />
-              </li>
-            ))
+            page.data.map((post) =>
+              post.data.type === "blog" ? (
+                <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
+                  <BlogListItem post={post.data} id={post.id} />
+                </li>
+              ) : (
+                post.data.type === "review" && (
+                  <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
+                    <ReviewListItem post={post.data} id={post.id} />
+                  </li>
+                )
+              ),
+            )
           }
         </ul>
         {
@@ -147,7 +158,7 @@ const { page } = Astro.props;
           {
             recommends.slice(0, 10).map((rec) => (
               <li class="border-theme border-b last:border-b-0 hover:z-1 hover:shadow-xl dark:shadow-stone-950/75">
-                <RecommendListEntry rec={{ ...rec.data, id: rec.id }} />
+                <RecommendListItem rec={{ ...rec.data, id: rec.id }} />
               </li>
             ))
           }

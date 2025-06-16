@@ -1,0 +1,127 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import type { MarkdownHeading } from "astro";
+
+import BaseLayout from "./BaseLayout.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import { TableOfContents } from "../components/TableOfContents";
+
+import { SITE_SUFFIX } from "../consts";
+
+type Props = CollectionEntry<"reviews">["data"] & {
+  id: string;
+  headings: MarkdownHeading[];
+};
+
+const {
+  id,
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  categories,
+  headings,
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title + SITE_SUFFIX}
+  description={description}
+  image={heroImage.src}
+>
+  <div>
+    <div
+      class="border-theme container m-auto flex w-full flex-col items-center gap-4 border-x p-12"
+    >
+      <h1
+        class="text-center text-3xl font-bold"
+        transition:name={`blog-title-${id}`}
+      >
+        {title}
+      </h1>
+      <p class="text-muted">
+        {pubDate && <FormattedDate date={pubDate} />}
+        {
+          updatedDate && (
+            <span>
+              (Updated on <FormattedDate date={updatedDate} />)
+            </span>
+          )
+        }
+      </p>
+      <ul class="flex flex-wrap gap-2 text-sm">
+        {
+          categories?.map((cat) => (
+            <li class="p-1">
+              <a
+                href={`/blog/tags/${cat}/1`}
+                class="border-theme border-2 px-2 py-1 hover:bg-stone-100 hover:dark:bg-stone-700"
+              >
+                <span>#{cat}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="relative">
+    <div class="bg-noise absolute inset-0 -z-10"></div>
+    <div
+      class="border-theme container m-auto flex flex-col border-x lg:flex-row"
+    >
+      <div
+        class="border-theme order-2 grow-0 lg:order-1"
+        class:list={[
+          {
+            "lg:w-3/4 lg:border-r": headings.length > 0,
+            "w-full": headings.length == 0,
+          },
+        ]}
+      >
+        {
+          heroImage && (
+            <div class="border-theme relative w-full border-b">
+              <div class="bg-pattern absolute inset-0 -z-10 h-full w-full" />
+              <Image
+                width={1020}
+                height={510}
+                src={heroImage}
+                alt={title}
+                class="border-theme m-auto aspect-2/1 xl:border-x"
+                quality="max"
+                transition:name={`blog-hero-image-${id}`}
+              />
+            </div>
+          )
+        }
+        {
+          headings.length > 0 && (
+            <div class="border-theme border-b p-6 md:p-8 lg:hidden">
+              <TableOfContents headings={headings} scrollspy={false} />
+            </div>
+          )
+        }
+        <article
+          class="prose prose-stone prose-sm md:prose-base dark:prose-invert prose-hr:not-dark:border-stone-300 prose-blockquote:not-dark:border-stone-300 prose-p:font-light prose-p:tracking-tight m-auto max-w-5xl p-4 text-pretty md:p-8 lg:p-12"
+        >
+          <slot />
+        </article>
+      </div>
+      {
+        headings.length > 0 && (
+          <div
+            class="border-theme order-1 hidden grow-0 border-b p-8 lg:order-2 lg:block lg:border-b-0"
+            class:list={[{ "lg:w-1/4": headings.length > 0 }]}
+          >
+            <div class="sticky top-16 overflow-y-auto lg:max-h-[calc(100svh-80px)]">
+              <TableOfContents headings={headings} scrollspy />
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>
