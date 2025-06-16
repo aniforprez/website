@@ -1,17 +1,15 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-import "../styles/global.css";
-
-// JetBrains Mono
-import "@fontsource-variable/jetbrains-mono";
-import jetbrainsMonoWoff2 from "@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2";
-// Victor Mono
-import victorMonoWoff2 from "@fontsource-variable/victor-mono/files/victor-mono-latin-wght-italic.woff2";
-import "@fontsource-variable/victor-mono/wght-italic.css";
 import LoadingIndicator from "astro-loading-indicator/component";
 import { ClientRouter } from "astro:transitions";
+// JetBrains Mono
+import "@fontsource-variable/jetbrains-mono";
+// Victor Mono
+import "@fontsource-variable/victor-mono/wght-italic.css";
+
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -62,22 +60,6 @@ const {
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
-
-<!-- Preload Fonts -->
-<link
-  rel="preload"
-  as="font"
-  type="font/woff2"
-  href={jetbrainsMonoWoff2}
-  crossorigin="anonymous"
-/>
-<link
-  rel="preload"
-  as="font"
-  type="font/woff2"
-  href={victorMonoWoff2}
-  crossorigin="anonymous"
-/>
 
 <!-- RSS -->
 <link
