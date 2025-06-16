@@ -15,11 +15,9 @@ export const getStaticPaths = (async ({ paginate }) => {
   const posts = (await getCollection("blog")).filter(
     (post) => !post.data.draft,
   );
-  // .map((post) => ({ ...post, data: { ...post.data, type: "blog" } }));
   const reviews = (await getCollection("reviews")).filter(
     (post) => !post.data.draft,
   );
-  // .map((post) => ({ ...post, data: { ...post.data, type: "review" } }));
 
   const combined = [...posts, ...reviews].sort(
     (a, b) => (b.data.pubDate.valueOf() || 0) - (a.data.pubDate.valueOf() || 0),

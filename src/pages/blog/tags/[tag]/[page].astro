@@ -2,10 +2,10 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 
+import BlogListItem from "../../../../components/BlogListItem.astro";
 import Pagination from "../../../../components/Pagination.astro";
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
 
-import BlogPostListEntry from "../../../../components/BlogPostListEntry.astro";
 import { BLOG_DESCRIPTION, SITE_SUFFIX } from "../../../../consts";
 
 export const getStaticPaths = (async ({ paginate }) => {
@@ -61,7 +61,7 @@ const { page } = Astro.props;
         {
           page.data.map((post) => (
             <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
-              <BlogPostListEntry post={{ ...post.data, id: post.id }} />
+              <BlogListItem post={post.data} id={post.id} />
             </li>
           ))
         }
