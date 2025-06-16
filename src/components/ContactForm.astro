@@ -2,6 +2,7 @@
   method="post"
   class="border-theme mt-4 flex w-full max-w-xl flex-col gap-2 border-1 p-4"
   id="contact-form"
+  data-netlify="true"
 >
   <label for="name" class="text-muted">Name:</label>
   <input
@@ -115,9 +116,6 @@
 </form>
 
 <script>
-  // handle the form submission
-  var xhr = new XMLHttpRequest();
-
   // only one contact form supported per page
   const form = document.getElementById("contact-form") as HTMLFormElement;
 
@@ -130,54 +128,55 @@
     event.preventDefault();
 
     // get form data
+    const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
 
     submitButton?.setAttribute("data-loading", "true");
 
-    const response = await fetch("/contact", {
+    const response = await fetch("/", {
       method: "POST",
-      body: formData,
-    });
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData as any).toString(),
+    })
+      .then(() => {
+        submitButton?.setAttribute("data-loading", "false");
+        form?.reset();
 
-    const res = await response.json();
-    submitButton?.setAttribute("data-loading", "false");
+        if (formGoodFeedback) {
+          formGoodFeedback.classList.remove("hidden");
+          formGoodFeedback.classList.add("opacity-100", "flex");
+          submitButton?.setAttribute("disabled", "true");
 
-    if (response.status === 200 && res["success"]) {
-      form?.reset();
-
-      if (formGoodFeedback) {
-        formGoodFeedback.classList.remove("hidden");
-        formGoodFeedback.classList.add("opacity-100", "flex");
-        submitButton?.setAttribute("disabled", "true");
-
-        // reset form feedback after a few seconds
-        setTimeout(() => {
-          formGoodFeedback.classList.remove("opacity-100");
-
+          // reset form feedback after a few seconds
           setTimeout(() => {
-            formGoodFeedback.classList.remove("flex");
-            formGoodFeedback.classList.add("hidden");
-          }, 300);
-        }, 3000);
-      }
-    } else {
-      const message = "Form submission failed with error: " + res["error"];
+            formGoodFeedback.classList.remove("opacity-100");
 
-      if (formBadFeedback) {
-        formBadFeedback.classList.remove("hidden");
-        formBadFeedback.classList.add("opacity-100", "flex");
+            setTimeout(() => {
+              formGoodFeedback.classList.remove("flex");
+              formGoodFeedback.classList.add("hidden");
+            }, 300);
+          }, 3000);
+        }
+      })
+      .catch((error) => {
+        const message = "Form submission failed: ";
+        console.error(message, error.message);
 
-        // reset form feedback after a few seconds
-        setTimeout(() => {
-          formBadFeedback.classList.remove("opacity-100");
+        if (formBadFeedback) {
+          formBadFeedback.classList.remove("hidden");
+          formBadFeedback.classList.add("opacity-100", "flex");
 
+          // reset form feedback after a few seconds
           setTimeout(() => {
-            formBadFeedback.classList.remove("flex");
-            formBadFeedback.classList.add("hidden");
-          }, 300);
-        }, 3000);
-      }
-    }
+            formBadFeedback.classList.remove("opacity-100");
+
+            setTimeout(() => {
+              formBadFeedback.classList.remove("flex");
+              formBadFeedback.classList.add("hidden");
+            }, 300);
+          }, 3000);
+        }
+      });
   };
 
   form?.addEventListener("submit", handleFormSubmission, true);
