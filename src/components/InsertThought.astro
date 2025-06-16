@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+
+import laughingman from "@assets/images/laughingman.gif";
+---
+
+<div class="flex w-full flex-row items-start justify-end py-4">
+  <div
+    class="border-theme max-w-3xl rounded-md border bg-stone-300 p-4 dark:bg-stone-800 [&>p]:m-0"
+  >
+    <slot />
+  </div>
+  <div class="shrink-0 p-2 sm:ml-0 [&>img]:m-0">
+    <Image
+      src={laughingman}
+      alt="Laughing man persona"
+      width={70}
+      height={70}
+      class="m-0 h-16 w-17 max-md:h-12 max-md:w-13"
+    />
+  </div>
+</div>

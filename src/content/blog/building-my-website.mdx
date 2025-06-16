@@ -2,9 +2,11 @@
 title: "Building my website"
 description: "A documentation of my thought process, as well as the articles, tutorials and resources used, when building this website"
 pubDate: "2025-06-11"
-heroImage: "../images/building-my-website.jpg"
+heroImage: "../../assets/images/building-my-website.jpg"
 categories: ["programming", "astro", "js"]
 ---
+
+import InsertThought from "@components/InsertThought.astro"
 
 _Repository for the website is on [GitHub](https://github.com/aniforprez/website)._
 
@@ -18,11 +20,11 @@ This is not going to be a tutorial as much as it is a simple documentation of my
 
 ## Inspiration
 
-I'd recently visited the website of [author Zak Archer](https://zakarcher.com/) (aka [Artem Zakharchenko](https://bsky.app/profile/kettanaito.com)) and was deeply inspired by the simplicity and elegance of the design. I was also captivated by the cleanliness of the [voidzero](https://voidzero.dev/) website as well as the patterns on the Tailwind website so decided to make an amalgamation of the concept where it would look like almost like a wireframe with clean thin lines everywhere.
+I'd recently visited the [website of author Zak Archer](https://zakarcher.com/) (aka [Artem Zakharchenko](https://bsky.app/profile/kettanaito.com)) and was deeply inspired by the simplicity and elegance of the design. I was also captivated by the cleanliness of the [voidzero](https://voidzero.dev/) website as well as the patterns on the Tailwind website so decided to make an amalgamation of the concept where it would look like almost like a wireframe with clean thin lines everywhere.
 
-In terms of content and text, I wasn't sure of what I wanted before I spent a significant amount of time but looking around for developer profiles, I found [the website of Ariel Salminen](https://arielsalminen.com/) which is an extremely well rounded portfolio with a lot of sincere and clear writing.
+In terms of content and text, I wasn't sure what I wanted so I spent a significant amount of time looking at other developer profiles for something to click. I found [the website of Ariel Salminen](https://arielsalminen.com/) which is an extremely well rounded portfolio with a lot of sincere and clear writing and decided to use that as a starting point.
 
-With a fairly solid image of what I wanted in mind, I began the process of actually making it real.
+With a reasonably solid image of what I wanted in mind, I began the process of actually making it real.
 
 ## Construction
 
@@ -32,11 +34,11 @@ As I'd mentioned before, I'd developed a liking for Astro and decided to move ah
 
 Building the index page of the website was fairly straightforward. Since it's just a simple HTML template styled with Tailwind, I moved fairly fast, using [Devicon](https://devicon.dev/) as a source for the icons of all the technologies I have experience with. I picked the font [JetBrains Mono](https://www.jetbrains.com/lp/mono/) as the default font since it's a really pretty monospaced font that I use for personal coding too and decided to use [Victor Mono](https://fonts.google.com/specimen/Victor+Mono) for headings since it's go a fairly pleasing cursive variant.
 
-<!-- Stuff about the contact form -->
+The contact form on the home page is a simple form submitted using ajax and captured by Netlify using [their form service](https://docs.netlify.com/forms/setup/#submit-html-forms-with-ajax) (especially easy since the website is [deployed on Netlify](#publication)). I decided to add tooltips here and there to show descriptions and such implemented with [TippyJS](https://atomiks.github.io/tippyjs/) and found icons on [Remix Icon](https://remixicon.com/) that sort of fit the vibes I wanted.
 
 ### About Me
 
-This took some time to come together, mostly due to inertia and some level of anxiety when working on it, but ultimately I settled on having a good amount of text describing myself, a nice photo, some links, and my technial work history. The first three were the same as anything else meanwhile for the work history I decided to use [JSON Resume](https://jsonresume.org/) which is a spec that provides a schema in which to detail out your technical experience which can also be used to generate PDFs. All I had to do was import the `resume.json` file and iterate through it in the template to generate the HTML.
+This took some time to come together, mostly due to inertia and some level of anxiety when working on it, but ultimately I settled on having a good amount of text describing myself, a nice photo, some links, and my technial work history. The first three were were achieved in an uncomplicated manner but for my work history I decided to use [JSON Resume](https://jsonresume.org/) which is a spec that provides a schema to detail out your technical experience using JSON which can also be used to generate PDFs. All I had to do was import the `resume.json` file and iterate through it in the template to generate the HTML.
 
 ```astro title="/src/pages/about.astro"
 ---
@@ -53,11 +55,13 @@ import resume from "../content/resume.json";
 }
 ```
 
+<InsertThought>
 Astro is flexible and powerful enough that you can basically import any file that can be read by Javascript and it will let you use it in your template. This is the kind of shenanigans you miss with something like Zola. Very nice!
+</InsertThought>
 
 ### Blog
 
-This would obviously be the most technically challenging part of the blog purely in terms of figuring out how the routing for Astro would work to support pagination, adding tags, and other things you'd expect out of a blog. A list of blog posts was fairly easy to implement by importing the collection of blog posts that was already provided through the default Astro blog template. This would fetch all the MDX files inside the `src/content/blog/` directly and pass the content through an RSS schema which would ensure the content would have the required RSS feed fields. I extended the schema with a couple of custom fields I wanted to use to add some spice like an date when the post would be updated and a hero image that would be used for OpenGraph tags for better embedding on social media websites.
+This would obviously be the most technically challenging part of the blog purely in terms of figuring out how the routing for Astro would work to support pagination, adding tags, and other things you'd expect out of a blog. A list of blog posts was fairly easy to implement by importing the collection of blog posts that was already provided by the default Astro blog template. This would fetch all the MD/MDX files inside the `src/content/blog/` and pass the content through an RSS schema validated by Zod which would ensure the content would have the required RSS feed fields. I extended the schema with a couple of custom fields I wanted to use to add some spice like the date when the post would be updated and a hero image that would be used for OpenGraph tags enabling better embedding on social media websites.
 
 ```js title="/src/content.config.ts"
 // Blog pages
@@ -167,9 +171,8 @@ With this, you get a fully functional blog page but I wanted a few more things t
 * [Pagination for blog posts and tags pages](#pagination)
 * [Table of contents for each post](#pagination)
 * [View transitions](#view-transitions)
-* [Better code highlighting](#code-highlighting)
-<!-- * Generate OpenGraph images for reviews dynamically
-* Search page -->
+* [Better code highlighting](#better-code-highlighting)
+* Generate OpenGraph images for reviews dynamically
 
 This would end up being what I'd spend the most time on with good reason. 90% of what I wanted was done. A simple index page, about page, a list of blog posts fetched from Markdown files, pages for the blog posts, and tag pages. The last 10% would be what would take me the rest of the way there and it would take the longest time which is what I expected. So I strapped in.
 
@@ -226,7 +229,11 @@ const articles = defineCollection({
 });
 ```
 
+<InsertThought>
 This kind of stuff is why I like Astro so much. With this simple change we get validation of the content and if I make any error in the JSON or any of the frontmatter in the markdown files, it's going to shut the whole build down with an error. This also gives type safety in the templates when rendering the posts because we can simply fetch this collection and iterate on the returned data to display them in a list.
+</InsertThought>
+
+To use the collection, I just fetch all the posts from it and map through them.
 
 ```astro title="/src/pages/blog/index.astro"
 
@@ -303,7 +310,7 @@ To indicate that the blog page can accept a page path parameter, we need to chan
 
 As you can see, instead of simply passing on all the posts from the collection, we use the `paginate` parameter given to the function you pass to `getStaticPaths` and then pass the list of posts that we fetched to the pagination function with some options. This gives us a page object that contains the page of posts in `page.data` and all the URLs for the other pages in `page.url`. All the props are described [here](https://docs.astro.build/en/guides/routing/#the-page-prop). We can do this same thing with the recommendations list page.
 
-If I want to paginate tags, then it's a little complex because we want to accept both the tag and the page as a parameter in the URL. Actually, it would be complex if we didn't simply have to send the tag parameter to the pagination function and move the `[tag].astro` page to `[tag]/[page].astro`.
+If I want to paginate tags, then it's a little complex because we want to accept both the tag and the page as a parameter in the URL. Actually, it would have been complex if we didn't simply have to send the tag parameter to the pagination function and move the `[tag].astro` page to `[tag]/[page].astro`.
 
 ```diff lang=astro title="/src/pages/tags/[tag].astro -> /src/pages/tags/[tag]/[page].astro"
 ---
@@ -404,7 +411,18 @@ To transition elements or titles between pages, you use the `transition:name` pr
 />
 ```
 
-You can transition more elements including the headers, post dates etc but it looked too flashy and distracting so I opted to stick with the image itself. Adding the transition to the post items entirely let me animate between different tags which is actually a much better use of the view transitions so common posts will stay when you are on the list of all blog posts and the list of an individual tag.
+You can transition more elements including the headers, post dates etc but it looked too flashy and distracting so I opted to stick with the image itself. Adding the transition to the whole post item content box animates when you filter them by tags which is a much better use of the view transitions. Posts common between the tags and the main page will rendered on the page or animate in if they were "off screen" as it were.
+
+One drawback of adding view transitions is that scripts that listen to events will not initialize again when you navigate between pages. This led to my tooltips and the table of contents breaking if you enter a blog post or a page that has tooltips from any other page. To mitigate this, the whole script that you're running needs to be wrapped in an event listener that listens for the `astro:page-load` event or rendered as a web component[^4] so that they are re-initialised after a page has finished loading after a navigation.
+
+```diff lang=js title="someScript.js"
+function scriptToRun() {
+  //..
+}
+
+-scriptToRun()
++document.addEventListener("astro:page-load", () => scriptToRun());
+```
 
 ### Better code highlighting
 
@@ -420,44 +438,10 @@ echo "And here's a command prompt"
 
 ## Publication
 
-I decided to host the site on Netlify since it has a reasonable free tier with 100GB of bandwitch and... let's be honest this site is not getting anywhere close to that. Connecting Netlify to the GitHub repo is incredibly simple and that enables deploys on every push. Good enough. To make the process fully smooth for Netlify's serverless environment you need to run `npx astro add netlify` which adds a Netlify integration. A `netlify.toml` file with basic environment configuration, point my DNS to the Netlify page and I was Gucci.
+I decided to host the site on [Netlify](https://www.netlify.com/) since it has a reasonable free tier with 100GB of bandwitch and... let's be honest this site is not getting anywhere close to that. Connecting Netlify to the GitHub repo is incredibly simple and that enables deploys on every push. Good enough. To make the process fully smooth for Netlify's serverless environment you need to run `npx astro add netlify` which adds a Netlify integration. A `netlify.toml` file with basic environment configuration, point my DNS to the Netlify page and I was Gucci.
 
 ## Conclusion
 
 While it took a while to fully flesh everything out, building this was a great undertaking that I really wanted to do because I wanted a reasonably pretty website that I could call my own. Overall, I am very much pleased with how it turned out and it would not have been possible without all the open source packages and tutorials written by the people I found. I highly recommend doing this exercise yourself and making your own custom place on the internet.
 
----
-
-## References
-
-All these links do not include all the dependent open source packages installed using
-npm and their authors to whom I am forever grateful.
-
-### Inspiration
-
-- Design heavily inspired by [this website by Zak Archer](https://zakarcher.com/)
-- General content and design inspiration from [the website of Ariel Salminen](https://arielsalminen.com/)
-
-### Tutorials
-
-- Dark mode code from [this tutorial by Kevin Zuniga Cueller](https://www.kevinzc.com/blog/dark-mode-in-astro/)
-- Code for the contact form heavily inspired by [this tutorial by "Web Reaper"](https://cosmicthemes.com/blog/astro-effective-contact-form/)
-- Table of contents for the blog posts aided by [this tutorial by Noah Falk](https://noahflk.com/blog/astro-table-of-contents)
-- Function to nest the Astro headers from [this tutorial by Kevin Drum](https://kld.dev/building-table-of-contents/#building-a-nested-table-of-contents-array)
-- Scroll spy for the table of contents made prettier with help from [this tutorial by Fazza Razaq Amiarso](https://dev.to/fazzaamiarso/add-toc-with-scroll-spy-in-astro-3d25)
-- Fix for events when using View Transitions aided by [this article by Cristian Perez Rodriguez](https://www.cpr.name/blog/astro-event-handling)
-
-### Resources
-
-- Static Site Generation powered by [Astro](https://astro.build/)
-- Styling powered by [Tailwind](https://tailwindcss.com/)
-  - Also using the [Tailwind Typography plugin](https://github.com/tailwindlabs/tailwindcss-typography) (though the documentation seems outdated for Tailwind 4)
-- Tooltips using [TippyJS](https://atomiks.github.io/tippyjs/)
-- Icons in general copied from [Remix Icon](https://remixicon.com/)
-- Icons for programming technologies sourced from [Devicon](https://devicon.dev/)
-- Cursive font for headings is [Victor Mono](https://fonts.google.com/specimen/Victor+Mono)
-- General website font is [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
-
-### Deployment
-
-The site is deployed to [Netlify](https://www.netlify.com/), connected to my GitHub account so it is deployed fresh on every push on the repository to GitHub.
+[^4]: [Fix for events when using View Transitions by Cristian Perez Rodriguez](https://www.cpr.name/blog/astro-event-handling)
