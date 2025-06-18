@@ -1,0 +1,28 @@
+---
+interface Props {
+  text?: string;
+}
+
+const { text } = Astro.props;
+---
+
+<spoiler-text
+  data-hidden="true"
+  class="bg-theme *:inline *:transition-colors data-[hidden=false]:cursor-auto data-[hidden=false]:*:bg-[unset] data-[hidden=false]:*:text-[unset] data-[hidden=true]:cursor-pointer data-[hidden=true]:*:bg-stone-300 data-[hidden=true]:*:text-stone-300 dark:data-[hidden=true]:*:bg-stone-800 dark:data-[hidden=true]:*:text-stone-800"
+  class:list={[{ "my-5 block": !text }]}
+>
+  {!!text ? <span>{text}</span> : <slot />}
+</spoiler-text>
+
+<script>
+  customElements.define(
+    "spoiler-text",
+    class extends HTMLElement {
+      connectedCallback() {
+        this.addEventListener("click", () => {
+          this.setAttribute("data-hidden", "false");
+        });
+      }
+    },
+  );
+</script>

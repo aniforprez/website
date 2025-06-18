@@ -33,7 +33,7 @@ const blog = defineCollection({
         updatedDate: z.coerce.date().optional(),
         heroImage: image(),
         draft: z.boolean().optional().default(false),
-        type: z.string().default("blog"),
+        type: z.enum(["blog"]).default("blog"),
       })
       .refine((val) =>
         val.categories
@@ -54,16 +54,16 @@ const reviews = defineCollection({
         pubDate: z.coerce.date(),
         updatedDate: z.coerce.date().optional(),
         heroImage: image(),
-        boxArt: z.string().optional(),
         rating: z.number().max(10),
         draft: z.boolean().optional().default(false),
-        type: z.string().default("review"),
+        type: z.enum(["review"]).default("review"),
         mediaType: z.enum([
           "manga",
           "book",
           "movie",
           "video game",
           "visual novel",
+          "tv show",
         ]),
       })
       .refine((val) =>

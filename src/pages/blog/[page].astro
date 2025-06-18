@@ -86,11 +86,9 @@ const { page } = Astro.props;
                   <BlogListItem post={post.data} id={post.id} />
                 </li>
               ) : (
-                post.data.type === "review" && (
-                  <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
-                    <ReviewListItem post={post.data} id={post.id} />
-                  </li>
-                )
+                <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
+                  <ReviewListItem post={post.data} id={post.id} />
+                </li>
               ),
             )
           }
