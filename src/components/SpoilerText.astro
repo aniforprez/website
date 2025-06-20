@@ -8,7 +8,7 @@ const { text } = Astro.props;
 
 <spoiler-text
   data-hidden="true"
-  class="*:inline *:transition-colors data-[hidden=false]:cursor-auto data-[hidden=false]:*:bg-[unset] data-[hidden=false]:*:text-[unset] data-[hidden=true]:cursor-pointer data-[hidden=true]:*:bg-stone-400 data-[hidden=true]:*:text-transparent dark:data-[hidden=true]:*:bg-stone-700"
+  class="*:inline *:transition-colors data-[hidden=false]:cursor-auto data-[hidden=false]:*:bg-[unset] data-[hidden=false]:*:text-[unset] data-[hidden=true]:cursor-pointer data-[hidden=true]:*:bg-stone-700 data-[hidden=true]:*:text-transparent dark:data-[hidden=true]:*:bg-stone-400"
   class:list={[{ "my-5 block": !text }]}
   {...!text && { "data-tippy-content": "Click to reveal spoilers" }}
 >
