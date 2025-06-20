@@ -8,19 +8,47 @@ const { text } = Astro.props;
 
 <spoiler-text
   data-hidden="true"
-  class="*:inline *:transition-colors data-[hidden=false]:cursor-auto data-[hidden=false]:*:bg-[unset] data-[hidden=false]:*:text-[unset] data-[hidden=true]:cursor-pointer data-[hidden=true]:*:bg-stone-300 data-[hidden=true]:*:text-transparent dark:data-[hidden=true]:*:bg-stone-800"
+  class="*:inline *:transition-colors data-[hidden=false]:cursor-auto data-[hidden=false]:*:bg-[unset] data-[hidden=false]:*:text-[unset] data-[hidden=true]:cursor-pointer data-[hidden=true]:*:bg-stone-400 data-[hidden=true]:*:text-transparent dark:data-[hidden=true]:*:bg-stone-700"
   class:list={[{ "my-5 block": !text }]}
+  {...!text && { "data-tippy-content": "Click to reveal spoilers" }}
 >
-  {!!text ? <span>{text}</span> : <slot />}
+  {
+    !!text ? (
+      <span data-tippy-content="Click to reveal spoilers">{text}</span>
+    ) : (
+      <slot />
+    )
+  }
 </spoiler-text>
 
 <script>
+  import tippy, { type Instance, followCursor } from "tippy.js";
+
   customElements.define(
     "spoiler-text",
     class extends HTMLElement {
       connectedCallback() {
+        let element: HTMLElement | null;
+        let spoilerTip: Instance | null;
+        if (this.getAttribute("data-tippy-content")) {
+          element = this;
+        } else {
+          element = this.querySelector("span");
+        }
+        if (!!element) {
+          spoilerTip = tippy(element, {
+            delay: [15, 150],
+            placement: "top",
+            theme: "default",
+            arrow: false,
+            followCursor: "horizontal",
+            offset: [0, 5],
+            plugins: [followCursor],
+          });
+        }
         this.addEventListener("click", () => {
           this.setAttribute("data-hidden", "false");
+          spoilerTip?.disable();
         });
       }
     },
