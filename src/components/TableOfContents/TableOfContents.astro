@@ -16,8 +16,26 @@ const filteredHeadings = generateToc(headings.filter((h) => h.depth <= 3));
 
 <table-of-contents>
   <nav id={scrollspy ? "toc" : "not-toc"} class="overflow-y-auto">
-    <h2 class="border-theme border-b py-2 text-lg font-semibold">
+    <h2
+      class="border-theme flex items-center gap-2 border-b py-2 text-lg font-semibold"
+    >
       Table of Contents
+      <button
+        class="cursor-pointer"
+        title="Scroll to top"
+        onclick="window.scroll({top: 0})"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-6"
+        >
+          <path
+            d="M12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2ZM13 12H16L12 8L8 12H11V16H13V12Z"
+          ></path>
+        </svg>
+      </button>
     </h2>
     <ul class="list-inside py-2">
       {
