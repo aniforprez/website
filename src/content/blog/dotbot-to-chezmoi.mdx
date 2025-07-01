@@ -1,0 +1,118 @@
+---
+title: "Dotbot to Chezmoi"
+description: "Moving my dotfiles manager from dotbot to chezmoi"
+pubDate: "2025-07-01"
+heroImage: "../../assets/images/dotbot-to-chezmoi.jpg"
+categories: ["dotfiles", "chezmoi"]
+---
+
+import InsertThought from "@components/InsertThought.astro"
+
+Everybody likes their custom configuration for all their tools and most tools are configured using "dotfiles", hidden files prefixed by a `.` character. I'd been using [dotbot](https://github.com/anishathalye/dotbot) to configure and sync my dotfiles across multiple machines and configure new work laptops but it had been missing a lot of features and was cumbersom to work with.
+Not only did I regularly need to manage the git repo like committing changes and pushing to my remote *every single time* I made any changes, I was also regularly interacting with annoying YAML files any time I wanted to add a new file. It also required that you install dotbot into the repo as a [submodule](https://github.com/anishathalye/dotbot#integrate-with-existing-dotfiles) which also extended to any other directories you wanted to sync between installations. Managing submodules is annoying since you need to manually update them when there are upstream changes in the submodule meaning if I wasn't touching the repo at all for a while the submodules would be completely out of date. It also didn't have many features in-built to manage things in a cross-platform manner (running certain scripts only in a MacOS or Linux machine) which wasn't critical since I always use a MacBook but would at least like the option if I was using a Linux server that I could customise to my liking. Dotbot is also just a Python project that can potentially be installed as a CLI tool but needs to be aliased to be fed your config file for every command which is pretty annoying.
+
+Enter [chezmoi](https://www.chezmoi.io/), an extremely powerful configuration and dotfiles manager that uses git under the hood to automatically commit and push to your remote repo and has all the features I felt didn't work for me with dotbot. Since it also installs as a globally available script rather than only in the repo (unlike dotbot), I can add, edit and remove files wherever I please. It also has options to automatically commit and push files to your remote repo every time you edit and save your dotfiles. Configuration is extremely easy and very powerful, using file name prefixes rather than YAML configs. You can also add templates so you can have conditional running of scripts or placing of files and even filling in env variables from password managers. Someone had already asked how they could migrate from a symlinks based setup (much like dotfiles) to chezmoi and the maintainer provided [some very helpful steps](https://github.com/twpayne/chezmoi/discussions/2330#discussioncomment-3530988).
+
+## Migrating my dotfiles
+
+To start with, I ensured all the current files in my dotbot based dotfiles repo was up-to-date and created a [separate branch](https://github.com/aniforprez/dotfiles/tree/dotbot-old) to make sure the old code was still available somewhere. No more dotbot anymore for me.
+
+To begin the process, I installed chezmoi using brew with `brew install chezmoi` and ran `chezmoi init` to initialise the tool. It creates a new directory and git repo at `~/.local/share/chezmoi`. Traditionally, if you were starting fresh without ever having created a dotfiles repo, you could add a remote repo at `https://github.com/<username>/dotfiles` to where it would push the files. chezmoi would automatically use this directory in the future for commands like [init on a new machine](https://www.chezmoi.io/reference/commands/init/) where you could simply supply your GitHub username and it would pull the whole project directly. But since I already had a dotfiles repository, I used the steps above and cloned my existing git repo to `~/.local/share/chezmoi`. Then, I created a `.chezmoiroot` file at the top of the directory.
+
+```text title=".chezmoiroot"
+home
+```
+
+This tells chezmoi that rather than use the root of the directory to store the files that it should store everything within this newly created home directory within the repo. This leaves the root of the directory free to manage other files and the chezmoi can sync everything in the `home` directory correctly. For eg. I store my iterm config within my dotfiles too which makes it easy to sync even my terminal settings between systems.
+
+Now, to add any new files for chezmoi to sync, I'd run the following command.
+
+```sh
+chezmoi add ~/.zshrc --follow
+```
+
+Since dotbot installed all my dotfiles as symlinks to an instance of my dotfiles repo, I needed to provide the `--follow` option to `chezmoi add` since chezmoi needs to follow the symlink to the contexts of the file. without that option, it would simply add the link itself which we don't want. This creates a new file at `~/.local/share/chezmoi/home/dot_zshrc` and from here on, any changes you make to that file can be synced to `~/.zshrc` by running `chezmoi apply`. chezmoi also lets you see what changes will be applied to your local dotfiles by running `chezmoi diff`.
+
+To test things out, I removed the symlink currently at `~/.zshrc` and ran applied the changes.
+
+```sh
+rm ~/.zshrc
+chezmoi apply
+```
+
+I followed these steps for all my files in my current dotbot repo such as my vim config, gitconfig. helix-config etc etc.
+
+<InsertThought>
+  I have to admit, removing the older symlinks and the files from my dotbot repo gave me a *strong* sense of satisfaction haha!
+</InsertThought>
+
+## Migrating my oh-my-zsh plugins
+
+As mentioned earlier, I'd decided to add all my oh-my-zsh plugins as submodules to my dotfiles repo which was a very annoying requirement. chezmoi instead can fetch the latest artifacts from the git repos of these plugins and extract them into the requisite custom ZSH directory. This is done by creating a `.chezmoiexternal.toml` file in the `home` directory that contains the details of where to fetch the files and where to place them.
+
+```toml title="home/.chezmoiexternal.toml"
+[".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
+type = "archive"
+url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
+exact = true
+stripComponents = 1
+# ...
+```
+
+This tells us that the `zsh-syntax-highlighting` archive from that URL on GitHub needs to be fetched and extracted to `~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting` directory. More options can be explored [here](https://www.chezmoi.io/reference/special-files/chezmoiexternal-format/). It's also easy enough to fetch individual files by changing the type and setting the URL correctly which is how I fetch all my preferred themes for the helix text editor that I like to use for quick text editing.
+
+## Migrating my scripts
+
+On a Mac machine, I'd like to install all my choice programs with brew. The best way is to use [chezmoi templates](https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/). All scripts in the chezmoi directory will run in alphabetical order and we can prefix the files so they can install under very specific conditions when you run `chezmoi apply`. I only want my installation script to run if I make any changes such as changing the brew casks or taps in the shell script.
+
+It is *highly* recommended that all scripts that you add here are idempotent i.e. after you run the scripts once, they should always return the same result. If all the packages are installed already, they should just not do anything. This means there should be no side effects to any of your scripts so it is best to strictly avoid things like copying files to relative paths and such.
+
+To make sure the brew scripts only run on a Mac, we can wrap the brew installation within a chezmoi template string with the file extension as `.tmpl` like so.
+
+```text title="home/run_onchange_install-packages.sh.tmpl"
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+echo 'Installing packages using Brew'
+brew bundle --verbose --file=/dev/stdin <<EOF
+tap "homebrew/bundle"
+tap "homebrew/core"
+
+cask "iterm2"
+# ...
+EOF
+
+{{ end -}}
+
+# Check if oh-my-zsh is installed
+OMZDIR="$HOME/.oh-my-zsh"
+if [ ! -d "$OMZDIR" ]; then
+  echo 'Installing oh-my-zsh'
+  /bin/sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+else
+  echo 'Updating oh-my-zsh'
+  /bin/zsh -c "omz update"
+fi
+```
+
+All text within the template tags `{{- if eq .chezmoi.os "darwin" -}}` and `{{ end -}}` will only run if chezmoi detects that the machine OS is darwin based i.e. a Mac. I can add a separate condition to install my packages using `apt` or `apt-get` if I am running this on a linux machine by adding a section that checks if the OS is Linux using the tag `{{ else if eq .chezmoi.os "linux" }}`.
+
+Installing oh-my-zsh can be platform agnostic entirely and doesn't need to be wrapped in the tag. We check whether omz is installed already by checking the existence of the `~/.oh-my-zsh` directory and not installing it if it already exists.
+
+## Final steps
+
+The final thing I wanted to do was commit to the repo abd oush the new commit to the remote every time I edit a file in the chezmoi directory with `chezmoi edit --apply` so the last thing was to add the following to chezmoi's own configuration. In the same vein, we can make sure that chezmoi *always* sets up a chezmoi configuration file every time it is installed on a new system. We can do this by turning the chezmoi configuration itself into a template!
+
+```toml title="home/.chezmoi.toml.tmpl"
+progress = true
+[git]
+    autoCommit = true
+    autoPush = true
+```
+
+With this simple config change, chezmoi will autocommit the repo with a commit message stating the name of the file that was changed and automatically pushing to the remote repository. Some people might think this is dangerous but I highly doubt I'm making any permanently breaking changes when I make changes in the chezmoi directory. At worst I accidentally delete a file. *It'll be fine*.
+
+## Conclusion
+
+And that's the whole migration process from dotbot to chezmoi. The potential that chezmoi unlocks is really cool for configuration management and I'm looking forward to experimenting with it a ton more so I can have unified and consistent environments across all my machines.
+
+My own settings are at [my dotfiles repo](https://github.com/aniforprez/dotfiles).
