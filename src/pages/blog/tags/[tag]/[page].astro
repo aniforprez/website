@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 
 import BlogListItem from "@components/BlogListItem.astro";
 import Pagination from "@components/Pagination.astro";
+import ReviewListItem from "@components/ReviewListItem.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 import { BLOG_DESCRIPTION, SITE_SUFFIX } from "../../../../consts";
@@ -59,11 +60,17 @@ const { page } = Astro.props;
         class="border-theme grid w-full grid-cols-1 lg:grid-cols-2 lg:border-r"
       >
         {
-          page.data.map((post) => (
-            <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
-              <BlogListItem post={post.data} id={post.id} />
-            </li>
-          ))
+          page.data.map((post) =>
+            post.data.type === "blog" ? (
+              <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
+                <BlogListItem post={post.data} id={post.id} />
+              </li>
+            ) : (
+              <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
+                <ReviewListItem post={post.data} id={post.id} />
+              </li>
+            ),
+          )
         }
       </ul>
       {
