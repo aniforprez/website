@@ -26,10 +26,8 @@
     "astro-expressive-code": "^0.41.2",
     "astro-loading-indicator": "^0.7.0",
     "date-fns": "^4.1.0",
-    "markdown-it": "^14.1.0",
     "remark-sectionize": "^2.1.0",
     "resend": "^4.5.1",
-    "sanitize-html": "^2.17.0",
     "tailwindcss": "^4.1.7",
     "tippy.js": "^6.3.7",
     "zod": "^3.25.51"
