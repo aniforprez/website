@@ -113,6 +113,10 @@ With this simple config change, chezmoi will autocommit the repo with a commit m
 
 ## Conclusion
 
-And that's the whole migration process from dotbot to chezmoi. The potential that chezmoi unlocks is really cool for configuration management and I'm looking forward to experimenting with it a ton more so I can have unified and consistent environments across all my machines.
+And that's the whole migration process from dotbot to chezmoi. The potential that chezmoi unlocks is really cool for configuration management and I'm looking forward to experimenting with it a ton more so I can have unified and consistent environments across all my machines. From here, I can build a configuration for Linux machines so it installs all the tools using `apt` or `apt-get` depending on the OS instead of `brew`. I can even add conditions to only install GUI software like Chrome, Firefox, Insomnia and the like based on a prompt that would ask me so that I can skip those on server only machines. Installing chezmoi and getting my dotfiles on other machines is as easy as running a single command.
+
+```sh
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply aniforprez
+```
 
 My own settings are at [my dotfiles repo](https://github.com/aniforprez/dotfiles).
