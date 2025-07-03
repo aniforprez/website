@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Ignore the resume dev file */
+@source not "../pages/_resume-dev.astro";
+
 /* Setting custom theme variables */
 @theme {
   --font-sans: "JetBrains Mono Variable", "sans-serif";

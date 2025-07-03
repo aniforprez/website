@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@source "../pages/_resume-dev.astro";
+
+@theme {
+  --font-serif: "Lora Variable", "serif";
+  --font-sans: "Noto Sans SC Variable", "sans-serif";
+}
