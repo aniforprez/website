@@ -32,6 +32,7 @@ Astro.response.headers.set(
       animation="fade"
       placement="top"
     />
+    <slot name="extra-headers" />
   </head>
   <body
     class="bg-theme font-mono text-stone-900 transition-colors [--pattern-color:var(--color-stone-300)] dark:text-stone-100 dark:[--pattern-color:var(--color-stone-700)]"

@@ -1,12 +1,11 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { Image } from "astro:assets";
 import type { MarkdownHeading } from "astro";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
 
-import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import { TableOfContents } from "../components/TableOfContents";
-
+import BaseLayout from "./BaseLayout.astro";
 import { SITE_SUFFIX } from "../consts";
 
 type Props = CollectionEntry<"reviews">["data"] & {
@@ -31,6 +30,14 @@ const {
   description={description}
   image={heroImage.src}
 >
+  <!-- Comments -->
+  <script
+    is:inline
+    async
+    defer
+    src="https://www.blogextras.com/widget.js"
+    slot="extra-headers"></script>
+
   <div>
     <div
       class="border-theme container m-auto flex w-full flex-col items-center gap-4 border-x p-12"
@@ -106,10 +113,18 @@ const {
           )
         }
         <article
-          class="prose prose-stone prose-sm md:prose-base dark:prose-invert prose-hr:not-dark:border-stone-300 prose-blockquote:not-dark:border-stone-300 prose-p:font-light prose-p:tracking-tight m-auto max-w-5xl p-4 text-pretty md:p-8 lg:p-12"
+          class="prose prose-stone prose-sm md:prose-base dark:prose-invert prose-hr:not-dark:border-stone-300 prose-blockquote:not-dark:border-stone-300 prose-p:font-light prose-p:tracking-tight m-auto max-w-5xl p-4 !pb-4 text-pretty md:p-8 lg:p-12"
         >
           <slot />
         </article>
+        <div class="mx-auto max-w-5xl p-4 !pt-4 md:p-8 lg:p-12">
+          <div
+            id="blogextras-comments"
+            data-website-id="79833537-e5cc-4dc6-b5cc-c8acd9a18ca5"
+            data-api-url="https://www.blogextras.com"
+          >
+          </div>
+        </div>
       </div>
       {
         headings.length > 0 && (
