@@ -84,6 +84,16 @@
       "categories": ["cooking"],
       "link": "https://www.youtube.com/watch?v=srMEoe_5y6g",
       "type": "video"
+    },
+    {
+      "id": "10",
+      "author": "Marathon",
+      "title": "Marathon | Reveal Cinematic Short",
+      "pubDate": "2025-07-04",
+      "description": "A gorgeously shot and animated cinematic trailer for the upcoming extraction shooter Marathon",
+      "categories": ["animation"],
+      "link": "https://www.youtube.com/watch?v=fvbEnWLRo1s",
+      "type": "video"
     }
   ]
 }
