@@ -94,6 +94,16 @@
       "categories": ["animation"],
       "link": "https://www.youtube.com/watch?v=fvbEnWLRo1s",
       "type": "video"
+    },
+    {
+      "id": "11",
+      "author": "Real World Records",
+      "title": "Francis Bebey at Real World Studios",
+      "pubDate": "2025-10-12",
+      "description": "A beautiful, short video about a very unique way of making music",
+      "categories": ["music"],
+      "link": "https://www.youtube.com/watch?v=c6T6suvnhco",
+      "type": "video"
     }
   ]
 }
