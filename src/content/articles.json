@@ -104,6 +104,16 @@
       "categories": ["music"],
       "link": "https://www.youtube.com/watch?v=c6T6suvnhco",
       "type": "video"
+    },
+    {
+      "id": "12",
+      "author": "Nic Barker",
+      "title": "UTF-8, Explained Simply",
+      "pubDate": "2025-10-13",
+      "description": "Diving deep into the history and the functioning of UTF-8",
+      "categories": ["programming"],
+      "link": "https://www.youtube.com/watch?v=vpSkBV5vydg",
+      "type": "video"
     }
   ]
 }
