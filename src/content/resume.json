@@ -3,10 +3,10 @@
   "basics": {
     "name": "Anirudh Sylendranath",
     "label": "Senior Software Engineer",
-    "email": "ani.22691@gmail.com",
+    "email": "me@aniforprez.dev",
     "phone": "+91-9886973731",
     "url": "http://aniforprez.dev",
-    "summary": "Senior software engineer with 12+ years of experience in software engineering with a focus on web application design and development and improving developer experience using open source tools. Worked on numerous production cloud SaaS applications and products on the frontend and the backend in multiple horizontals including finance, campaigning, marketing etc.",
+    "summary": "Senior software engineer with 12+ years of experience in software engineering with a focus on web application design and development and improving developer experience using open source tools. Worked on numerous production cloud SaaS applications and products on the frontend and the backend in multiple horizontals including finance, campaigning, marketing etc. I am passionate about mentoring and guiding software engineers to help them build their skill sets and knowledge base.",
     "location": {
       "city": "Bengaluru",
       "countryCode": "IN",
@@ -25,16 +25,27 @@
   },
   "work": [
     {
+      "name": "lululemon",
+      "summary": "Working on building an IDP for lululemon",
+      "highlights": [
+        "Leading a team to build an IDP (Internal Developer Portal) for internal use"
+      ],
+      "position": "Senior Software Engineer",
+      "location": "Bengaluru, India",
+      "startDate": "2025-09"
+    },
+    {
       "name": "Freelance",
       "summary": "Worked on building a startup for managing personal finances and in the interim took on a number of projects for various contracts as well as interviewing new engineers for clients.",
       "highlights": [
-        "Worked as a solo developer and founder on finesse.money, a personal finance manager that is currently still in development. It was built with Go, JS, React Router and Tailwind",
+        "Worked on various small programming projects for various clients in Python and Flutter (using Flutter Flow)",
         "Worked as an Interview Engineer for Karat, interviewing candidates for programming roles and providing structured feedback to clients",
-        "Worked on various small programming projects for various clients in Python and Flutter (using Flutter Flow)"
+        "Worked as a solo developer and founder on finesse.money, a personal finance manager. It was built with Go, JS, React Router and Tailwind"
       ],
       "position": "Freelance Programmer and Interview Engineer",
       "location": "Bengaluru, India",
-      "startDate": "2023-09"
+      "startDate": "2023-09",
+      "endDate": "2025-08"
     },
     {
       "name": "Synup Digital",
@@ -42,9 +53,7 @@
       "highlights": [
         "Designing, architecting and developing new customer facing features such as a real-time integration with Google Business Messaging to allow clients to communicate with customers",
         "Worked on a microservices driven backend with services written in multiple languages like Python (Django, Flask), Ruby (Rails), NodeJS using multiple databases such as Postgres, Amazon RDS using queues driven by Kafka, Redis, RabbitMQ",
-        "Worked on improvements to a monolithic React frontend as well as building smaller NextJS based bespoke microapps for client requirements",
-        "Leading efforts to improve developer experience and raise code quality standards using language upgrades, linting, formatting, CI/CD checks",
-        "Mentoring, leading and guiding junior developers across projects"
+        "Leading efforts to improve developer experience and raise code quality standards using language upgrades, linting, formatting, CI/CD checks"
       ],
       "position": "Senior Software Engineer",
       "location": "Bengaluru, India",
@@ -53,38 +62,23 @@
     },
     {
       "name": "eSthenos Technologies",
-      "summary": "Promoted to Technical Lead leading a team working on upgrading projects and improving developer experience.",
+      "summary": "Joined as a Python Developer maintaining and iterating on multiple client facing financial web applications providing financial services to remote corners of the country. Later promoted to Technical Lead",
       "highlights": [
-        "Developed a unified external services platform for company-wide use integrating with third-party SMS, Credit reporting and Money transfer services",
-        "Leading efforts to upgrade older apps to modern standards using new dependency tools, 12-factor practices, containerization, deploying on AWS Fargate",
-        "Developed internal tools easing developer experience such as a PDF previewer for frontend developers",
-        "Mentoring, leading and guiding junior developers across projects"
-      ],
-      "position": "Technical Lead (Promoted)",
-      "location": "Bengaluru, India",
-      "startDate": "2020-09",
-      "endDate": "2021-05"
-    },
-    {
-      "name": "eSthenos Technologies",
-      "summary": "Joined as a Python Developer maintaining and iterating on multiple client facing financial web applications providing financial services to remote corners of the country.",
-      "highlights": [
-        "Owned client projects and lead teams contributing to new features, updates and bug fixes",
         "Planned processes to convert projects from Python 2 to 3 and updated multiple projects",
-        "Built integrations to Credit reporting, Money transfer and client CRM services for projects",
-        "Setup CI pipelines in Bitbucket to automate code health checks, tests and deployments"
+        "Developed a unified external services platform for company-wide use integrating with third-party SMS, Credit reporting and Money transfer services",
+        "Leading efforts to upgrade older apps to modern standards using new dependency tools, 12-factor practices, containerization, deploying on AWS Fargate"
       ],
-      "position": "Senior Python Developer",
+      "position": "Senior Python Developer/Technical Lead",
       "location": "Bengaluru, India",
       "startDate": "2018-12",
-      "endDate": "2020-08"
+      "endDate": "2021-05"
     },
     {
       "name": "Canopy (Mesitis)",
       "summary": "Employed as a contract developer for fast iterations on prototypes mandated directly by the CEO.",
       "highlights": [
         "Developed an API and frontend system to generate PPT files for financial presentations",
-        "Developed Python Analytics APIs that performed analytics from existing financial data",
+        "Developed Python Analytics APIs that served analytics data from existing financial data",
         "Rapid prototyping of various new frontend data displays for different datasets for clients"
       ],
       "position": "Contract Full Stack Developer",
@@ -111,8 +105,7 @@
       "highlights": [
         "Developed Blender Python scripts to import models from an online scene builder to be used to make realistic renders in Blender for clients like Urban Ladder",
         "Developed a custom CMS admin panel in AngularJS to manage a database of 3D models online for a client",
-        "Rewrote numerous Flash kids’ educational games in Javascript using the Phaser framework",
-        "Developed and managed company website"
+        "Rewrote numerous Flash kids’ educational games in Javascript using the Phaser framework"
       ],
       "position": "Web Developer",
       "location": "Bengaluru, India",

@@ -39,3 +39,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## Building resume file
+
+Remove the leading `_` character in front of the `_resume-dev.astro` file inside the `src/pages` directory and load the page at the `/resume-dev` path on the dev site. The site should load basic unstyled data from `src/content/resume.json`. The PDF file can be obtained by using the browser's "print" function which should apply the print styles configured. Once done, add the "_" back to not expose the file on the production website. Place the resume PDF file in the `public` directory as `resume.pdf`.
