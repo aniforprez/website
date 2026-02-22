@@ -114,6 +114,15 @@
       "categories": ["programming"],
       "link": "https://www.youtube.com/watch?v=vpSkBV5vydg",
       "type": "video"
+    },
+    {
+      "id": "13",
+      "author": "Colin Gorrie",
+      "title": "How far back in time can you understand English?",
+      "pubDate": "2026-02-22",
+      "description": "A fun exercise in demonstrating the evolution of the English language over the last millennium",
+      "categories": ["language"],
+      "link": "https://www.deadlanguagesociety.com/p/how-far-back-in-time-understand-english"
     }
   ]
 }
