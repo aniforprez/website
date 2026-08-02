@@ -1,5 +1,6 @@
 import { file, glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { z } from "astro/zod";
+import { defineCollection } from "astro:content";
 import { rssSchema } from "@astrojs/rss";
 
 // Recommended articles
@@ -36,9 +37,7 @@ const blog = defineCollection({
         type: z.enum(["blog"]).default("blog"),
       })
       .refine((val) =>
-        val.categories
-          ? val.categories.push("blog")
-          : (val.categories = ["blog"]),
+        val.categories ? val.categories.push("blog") : (val.categories = ["blog"]),
       ),
 });
 
@@ -57,19 +56,10 @@ const reviews = defineCollection({
         rating: z.number().max(10),
         draft: z.boolean().optional().default(false),
         type: z.enum(["review"]).default("review"),
-        mediaType: z.enum([
-          "manga",
-          "book",
-          "movie",
-          "video game",
-          "visual novel",
-          "tv show",
-        ]),
+        mediaType: z.enum(["manga", "book", "movie", "video game", "visual novel", "tv show"]),
       })
       .refine((val) =>
-        val.categories
-          ? val.categories.push("review")
-          : (val.categories = ["review"]),
+        val.categories ? val.categories.push("review") : (val.categories = ["review"]),
       ),
 });
 
