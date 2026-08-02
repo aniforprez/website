@@ -1,6 +1,6 @@
 {
   "$schema": "./articles.schema.json",
-  "earworm": "https://open.spotify.com/embed/track/3cEkZEJolMh66lcaXY1kOj?utm_source=generator",
+  "earworm": "https://open.spotify.com/embed/track/4IIkK8OgHmulyP7hHU2ZT8?utm_source=generator",
   "articles": [
     {
       "id": "1",
@@ -123,6 +123,15 @@
       "description": "A fun exercise in demonstrating the evolution of the English language over the last millennium",
       "categories": ["language"],
       "link": "https://www.deadlanguagesociety.com/p/how-far-back-in-time-understand-english"
+    },
+    {
+      "id": "14",
+      "author": "Sam Kriss",
+      "title": "Child’s Play",
+      "pubDate": "2026-03-01",
+      "link": "https://harpers.org/archive/2026/03/childs-play-sam-kriss-ai-startup-roy-lee/",
+      "categories": ["ai"],
+      "description": "The story of an interview with the vacuous founder of Cluely"
     }
   ]
 }
