@@ -1,0 +1,38 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+
+export const getStaticPaths = (async () => {
+  const blog_posts = (await getCollection("blog"))
+    .filter((post) => !post.data.draft)
+    .sort(
+      (a, b) =>
+        (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
+    );
+  const review_posts = (await getCollection("reviews"))
+    .filter((post) => !post.data.draft)
+    .sort(
+      (a, b) =>
+        (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0),
+    );
+
+  const uniqueTags = [
+    ...new Set(blog_posts.map((post) => post.data.categories).flat()),
+    ...new Set(review_posts.map((post) => post.data.categories).flat()),
+  ].filter((tag) => tag !== undefined);
+
+  console.log(
+    uniqueTags.flatMap((tag) => {
+      return { params: { tag } };
+    }),
+  );
+
+  return uniqueTags.flatMap((tag) => {
+    return { params: { tag } };
+  });
+}) satisfies GetStaticPaths;
+
+const { tag } = Astro.params;
+
+return Astro.redirect(`/blog/tags/${tag}/1`);
+---
