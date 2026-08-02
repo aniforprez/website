@@ -20,7 +20,6 @@ export default defineConfig({
   site: "https://aniforprez.dev",
   redirects: {
     "/blog/": "/blog/1",
-    "/blog/recommends": "/blog/recommends/[page]",
     "/blog/tags/[tag]": "/blog/tags/[tag]/[page]",
   },
 
