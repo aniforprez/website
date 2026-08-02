@@ -1,5 +1,5 @@
 ---
-import type { GetStaticPathsOptions } from "astro";
+import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 
 import BlogListItem from "@components/BlogListItem.astro";
@@ -11,7 +11,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import { BLOG_DESCRIPTION_LONG, BLOG_TITLE } from "../../consts";
 import recs from "../../content/articles.json";
 
-export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
+export const getStaticPaths = (async ({ paginate }) => {
   const posts = (await getCollection("blog")).filter(
     (post) => !post.data.draft,
   );
@@ -24,7 +24,7 @@ export const getStaticPaths = async ({ paginate }: GetStaticPathsOptions) => {
   );
 
   return paginate(combined, { pageSize: 10 });
-};
+}) satisfies GetStaticPaths;
 
 const recommends = (await getCollection("articles")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
