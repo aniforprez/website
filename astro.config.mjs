@@ -7,6 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 import expressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
 import remarkSectionize from "remark-sectionize";
+import { unified } from "@astrojs/markdown-remark";
 
 let adapter = netlify();
 
@@ -19,11 +20,15 @@ export default defineConfig({
   site: "https://aniforprez.dev",
   redirects: {
     "/blog/": "/blog/1",
-    "/blog/recommends": "/blog/recommends/1",
-    "/blog/tags/[tag]": "/blog/tags/[tag]/1",
+    "/blog/recommends": "/blog/recommends/[page]",
+    "/blog/tags/[tag]": "/blog/tags/[tag]/[page]",
   },
 
-  markdown: { remarkPlugins: [remarkSectionize] },
+  markdown: {
+    processor: unified({
+      remarkPlugins: [remarkSectionize],
+    }),
+  },
 
   integrations: [
     expressiveCode({

@@ -6,10 +6,10 @@ heroImage: "../../assets/images/dotbot-to-chezmoi.jpg"
 categories: ["dotfiles", "chezmoi"]
 ---
 
-import InsertThought from "@components/InsertThought.astro"
+import InsertThought from "@components/InsertThought.astro";
 
 Every software developer likes to have their own custom configuration for all their tools and most tools are configured using "dotfiles", hidden files prefixed by a `.` character. I'd been using [dotbot](https://github.com/anishathalye/dotbot) to configure and sync my dotfiles across multiple machines and configure new work laptops but it had been missing a lot of features and was quite cumbersome to work with.
-Not only did I regularly need to manage the git repo, having to commit changes and push to my GitHub remote *every single time* I made any changes, I was also regularly fiddling with annoying YAML files any time I wanted to add or remove a new dotfile. It also required that I install dotbot into the repository as a [submodule](https://github.com/anishathalye/dotbot#integrate-with-existing-dotfiles) which also extended to any other directories I wanted to sync between installations. Managing submodules is quite annoying since you need to manually update them when there are upstream changes in the submodule. This meant that if I wasn't touching the repo at all for a while, the submodules would be completely out of date which meant outdated plugins and an outdated dotbot. It also didn't have many features for cross-platform management such as running certain scripts only in a MacOS or Linux machine. This wasn't critical to my needs since I always use a MacBook to code generally but I would at least like the option. Say I was using a Linux server that I was using to host services and apps, I could customise the shell to my liking and create a familiar environment. Dotbot is also just a Python project that doesn't install well as a shell program that can be run anywhere on your system. I would have to go to my dotfiles repo every time to make any changes.
+Not only did I regularly need to manage the git repo, having to commit changes and push to my GitHub remote _every single time_ I made any changes, I was also regularly fiddling with annoying YAML files any time I wanted to add or remove a new dotfile. It also required that I install dotbot into the repository as a [submodule](https://github.com/anishathalye/dotbot#integrate-with-existing-dotfiles) which also extended to any other directories I wanted to sync between installations. Managing submodules is quite annoying since you need to manually update them when there are upstream changes in the submodule. This meant that if I wasn't touching the repo at all for a while, the submodules would be completely out of date which meant outdated plugins and an outdated dotbot. It also didn't have many features for cross-platform management such as running certain scripts only in a MacOS or Linux machine. This wasn't critical to my needs since I always use a MacBook to code generally but I would at least like the option. Say I was using a Linux server that I was using to host services and apps, I could customise the shell to my liking and create a familiar environment. Dotbot is also just a Python project that doesn't install well as a shell program that can be run anywhere on your system. I would have to go to my dotfiles repo every time to make any changes.
 
 Enter [chezmoi](https://www.chezmoi.io/), an extremely powerful configuration and dotfiles manager that uses git under the hood and has all the features I felt were missing in dotbot. Since it also installs as a globally available script rather than only in the repo, I can add, edit and remove files from wherever I please when I feel like it. It also has options to automatically commit and push files to my remote repository every time I edit and save my dotfiles. Configuration is extremely easy and very powerful and it uses file name prefixes rather than YAML configs to define the actions to be taken on your files. You can even add templates to have parts of scripts run or place files only if conditions are satisfied. It can even fill in env variables from password managers like 1Password or BitWarden. While trying to figure out ways to move my setup, I found that someone had already asked how they could migrate from a symlinks based setup to chezmoi in the chezmoi GitHub issues and the maintainer provided [some very helpful steps](https://github.com/twpayne/chezmoi/discussions/2330#discussioncomment-3530988).
 
@@ -43,7 +43,8 @@ chezmoi apply
 I followed these steps for all my files in my current dotbot repo such as my vim config, gitconfig. helix-config etc etc.
 
 <InsertThought>
-  I have to admit, removing the older symlinks and the files from my dotbot repo gave me a *strong* sense of satisfaction haha!
+  I have to admit, removing the older symlinks and the files from my dotbot repo
+  gave me a *strong* sense of satisfaction haha!
 </InsertThought>
 
 ## Migrating my oh-my-zsh plugins
@@ -65,7 +66,7 @@ This tells us that the `zsh-syntax-highlighting` archive from that URL on GitHub
 
 On a Mac machine, I'd like to install all my choice programs with brew. The best way is to use [chezmoi templates](https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/). All scripts in the chezmoi directory will run in alphabetical order and we can prefix the files so they can install under very specific conditions when you run `chezmoi apply`. I only want my installation script to run if I make any changes such as changing the brew casks or taps in the shell script.
 
-It is *highly* recommended that all scripts that you add here are idempotent i.e. after you run the scripts once, they should always return the same result. If all the packages are installed already, they should just not do anything. This means there should be no side effects to any of your scripts so it is best to strictly avoid things like copying files to relative paths and such.
+It is _highly_ recommended that all scripts that you add here are idempotent i.e. after you run the scripts once, they should always return the same result. If all the packages are installed already, they should just not do anything. This means there should be no side effects to any of your scripts so it is best to strictly avoid things like copying files to relative paths and such.
 
 To make sure the brew scripts only run on a Mac, we can wrap the brew installation within a chezmoi template string with the file extension as `.tmpl` like so.
 
@@ -100,7 +101,7 @@ Installing oh-my-zsh can be platform agnostic entirely and doesn't need to be wr
 
 ## Final steps
 
-The final thing I wanted to do was commit to the repo abd oush the new commit to the remote every time I edit a file in the chezmoi directory with `chezmoi edit --apply` so the last thing was to add the following to chezmoi's own configuration. In the same vein, we can make sure that chezmoi *always* sets up a chezmoi configuration file every time it is installed on a new system. We can do this by turning the chezmoi configuration itself into a template!
+The final thing I wanted to do was commit to the repo abd oush the new commit to the remote every time I edit a file in the chezmoi directory with `chezmoi edit --apply` so the last thing was to add the following to chezmoi's own configuration. In the same vein, we can make sure that chezmoi _always_ sets up a chezmoi configuration file every time it is installed on a new system. We can do this by turning the chezmoi configuration itself into a template!
 
 ```toml title="home/.chezmoi.toml.tmpl"
 progress = true
@@ -109,7 +110,7 @@ progress = true
     autoPush = true
 ```
 
-With this simple config change, chezmoi will autocommit the repo with a commit message stating the name of the file that was changed and automatically pushing to the remote repository. Some people might think this is dangerous but I highly doubt I'm making any permanently breaking changes when I make changes in the chezmoi directory. At worst I accidentally delete a file. *It'll be fine*.
+With this simple config change, chezmoi will autocommit the repo with a commit message stating the name of the file that was changed and automatically pushing to the remote repository. Some people might think this is dangerous but I highly doubt I'm making any permanently breaking changes when I make changes in the chezmoi directory. At worst I accidentally delete a file. _It'll be fine_.
 
 ## Conclusion
 
