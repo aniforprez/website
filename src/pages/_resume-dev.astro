@@ -8,8 +8,8 @@ import "../styles/print.css";
 ---
 
 <html>
-  <body class="w-lvw font-sans text-stone-950 print:p-6">
-    <h1 class="font-serif text-4xl font-semibold tracking-wide">
+  <body class="w-lvw font-sans text-stone-950 print:px-6 print:py-8">
+    <h1 class="font-serif text-4xl font-semibold tracking-wide pb-2">
       {resume.basics.name}
     </h1>
     <h2 class="font-serif text-2xl text-stone-600">{resume.basics.label}</h2>
@@ -95,12 +95,12 @@ import "../styles/print.css";
         </a>
       </span>
     </div>
-    <hr class="mt-4 mb-2 h-[1px] w-full border-dashed border-stone-300" />
+    <hr class="mt-4 mb-2 h-px w-full border-dashed border-stone-300" />
     <div>
       <h2 class="font-serif text-xl font-semibold tracking-wide">Summary</h2>
       <p class="pt-2 text-sm">{resume.basics.summary}</p>
     </div>
-    <hr class="mt-4 mb-2 h-[1px] w-full border-dashed border-stone-300" />
+    <hr class="mt-4 mb-2 h-px w-full border-dashed border-stone-300" />
     <div>
       <h2 class="font-serif text-xl font-semibold tracking-wide">Skills</h2>
       <div class="pt-2 text-sm">
@@ -112,7 +112,7 @@ import "../styles/print.css";
         ))}
       </div>
     </div>
-    <hr class="mt-4 mb-2 h-[1px] w-full border-dashed border-stone-300" />
+    <hr class="mt-4 mb-2 h-px w-full border-dashed border-stone-300" />
     <div>
       <h2 class="font-serif text-xl font-semibold tracking-wide">Experience</h2>
       <div class="pt-2 text-sm">
@@ -126,7 +126,7 @@ import "../styles/print.css";
                   parse(exp.startDate, "yyyy-MM", new Date()),
                   "LLL, yyyy",
                 )}{" "}
-                —{" "}
+                -{" "}
                 {exp.endDate
                   ? format(
                       parse(exp.endDate, "yyyy-MM", new Date()),
@@ -160,7 +160,7 @@ import "../styles/print.css";
                     parse(edu.startDate, "yyyy", new Date()),
                     "LLL, yyyy",
                   )}{" "}
-                  —{" "}
+                  -{" "}
                   {edu.endDate
                     ? format(
                         parse(edu.endDate, "yyyy", new Date()),

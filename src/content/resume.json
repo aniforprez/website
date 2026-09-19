@@ -28,7 +28,9 @@
       "name": "lululemon",
       "summary": "Working on building an IDP for lululemon",
       "highlights": [
-        "Leading a team to build an IDP (Internal Developer Portal) for internal use"
+        "Leading a team to build an IDP (Internal Developer Portal) for internal use based on the Backstage framework",
+        "Building plugins and features to bridge numerous integrations and enterprise tools",
+        "Planning and coordinating technical tasks across the team to ensure consistent delivery"
       ],
       "position": "Senior Software Engineer",
       "location": "Bengaluru, India",
@@ -128,11 +130,11 @@
   "skills": [
     {
       "name": "Programming Languages",
-      "keywords": ["Python", "NodeJS", "Golang", "Ruby"]
+      "keywords": ["NodeJS", "Python", "Golang", "Ruby"]
     },
     {
       "name": "Frameworks",
-      "keywords": ["Django", "Flask", "Express", "NextJS", "React", "Rails"]
+      "keywords": ["Backstage", "React", "Django", "Flask", "Express", "NextJS", "Rails"]
     },
     {
       "name": "Databases",
