@@ -1,7 +1,6 @@
 import { file, glob } from "astro/loaders";
 import { z } from "astro/zod";
-import { defineCollection } from "astro:content";
-import { rssSchema } from "@astrojs/rss";
+import { defineCollection, type SchemaContext } from "astro:content";
 
 // Recommended articles
 const articles = defineCollection({
@@ -26,15 +25,17 @@ const blog = defineCollection({
   // Load Markdown and MDX files in the `src/content/blog/` directory.
   loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
   // Type-check frontmatter using a schema
-  schema: ({ image }) =>
-    rssSchema
-      .extend({
+  schema: ({ image }: SchemaContext) =>
+    z
+      .object({
         title: z.string(),
+        description: z.string().optional(),
         pubDate: z.coerce.date(),
         updatedDate: z.coerce.date().optional(),
         heroImage: image(),
+        categories: z.array(z.string()),
         draft: z.boolean().optional().default(false),
-        type: z.enum(["blog"]).default("blog"),
+        type: z.enum(["blog"]).optional().default("blog"),
       })
       .refine((val) =>
         val.categories ? val.categories.push("blog") : (val.categories = ["blog"]),
@@ -46,16 +47,18 @@ const reviews = defineCollection({
   // Load Markdown and MDX files in the `src/content/blog/` directory.
   loader: glob({ base: "./src/content/reviews", pattern: "**/*.{md,mdx}" }),
   // Type-check frontmatter using a schema
-  schema: ({ image }) =>
-    rssSchema
-      .extend({
+  schema: ({ image }: SchemaContext) =>
+    z
+      .object({
         title: z.string(),
+        description: z.string().optional(),
         pubDate: z.coerce.date(),
         updatedDate: z.coerce.date().optional(),
         heroImage: image(),
+        categories: z.array(z.string()),
         rating: z.number().max(10),
         draft: z.boolean().optional().default(false),
-        type: z.enum(["review"]).default("review"),
+        type: z.enum(["review"]).optional().default("review"),
         mediaType: z.enum(["manga", "book", "movie", "video game", "visual novel", "tv show"]),
       })
       .refine((val) =>

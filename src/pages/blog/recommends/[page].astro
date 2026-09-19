@@ -24,36 +24,28 @@ const { page } = Astro.props;
   description={"Recommended cool articles and videos from around the web"}
 >
   <div>
-    <div
-      class="border-theme container m-auto border-x px-6 py-12 sm:justify-start md:px-12"
-    >
+    <div class="border-theme container m-auto border-x px-6 py-12 sm:justify-start md:px-12">
       <h1 class="font-cursive border-theme text-3xl font-semibold">
         Recommends
       </h1>
     </div>
   </div>
   <div>
-    <section
-      class="border-theme relative container m-auto h-fit min-h-[80lvh] w-full items-start border-x p-0"
-    >
+    <section class="border-theme relative container m-auto h-fit min-h-[80lvh] w-full items-start border-x p-0">
       <ul class="border-theme grid w-full grid-cols-1 md:grid-cols-2">
-        {
-          page.data.map((rec) => (
-            <li class="border-theme border-b hover:z-1 hover:shadow-xl max-md:last:border-b-0 md:odd:border-r dark:shadow-stone-950/75">
-              <RecommendListItem rec={rec.data} />
-            </li>
-          ))
-        }
+        {page.data.map((rec) => (
+          <li class="border-theme border-b hover:z-1 hover:shadow-xl max-md:last:border-b-0 md:odd:border-r dark:shadow-stone-950/75">
+            <RecommendListItem rec={rec.data} />
+          </li>
+        ))}
       </ul>
-      {
-        page.lastPage > 1 && (
-          <div class="relative w-full">
-            <div class="bg-pattern absolute inset-0 -z-10 h-full" />
+      {page.lastPage > 1 && (
+        <div class="relative w-full">
+          <div class="bg-pattern absolute inset-0 -z-10 h-full" />
 
-            <Pagination class="mx-auto" {...page} />
-          </div>
-        )
-      }
+          <Pagination class="mx-auto" {...page} />
+        </div>
+      )}
     </section>
   </div>
 </BaseLayout>

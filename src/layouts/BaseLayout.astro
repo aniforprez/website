@@ -34,13 +34,9 @@ Astro.response.headers.set(
     />
     <slot name="extra-headers" />
   </head>
-  <body
-    class="bg-theme font-mono text-stone-900 transition-colors [--pattern-color:var(--color-stone-300)] dark:text-stone-100 dark:[--pattern-color:var(--color-stone-700)]"
-  >
+  <body class="bg-theme font-mono text-stone-900 transition-colors [--pattern-color:var(--color-stone-300)] dark:text-stone-100 dark:[--pattern-color:var(--color-stone-700)]">
     <Header />
-    <main
-      class="transition-colors *:border-b *:border-stone-300 *:px-3 dark:*:border-stone-700"
-    >
+    <main class="transition-colors *:border-b *:border-stone-300 *:px-3 dark:*:border-stone-700">
       <slot />
     </main>
     <Footer />

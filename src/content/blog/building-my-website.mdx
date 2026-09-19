@@ -6,7 +6,7 @@ heroImage: "../../assets/images/building-my-website.jpg"
 categories: ["programming", "astro", "js"]
 ---
 
-import InsertThought from "@components/InsertThought.astro"
+import InsertThought from "@components/InsertThought.astro";
 
 _Repository for the website is on [GitHub](https://github.com/aniforprez/website)._
 
@@ -45,18 +45,18 @@ This took some time to come together, mostly due to inertia and some level of an
 import resume from "../content/resume.json";
 ---
 
-{
-  resume["work"].map((work) => (
-    <div>
-      <h3 class="text-xl">{work.name}</h3>
-      <p class="text-sm">{work.position}</p>
-    </div>
-  ))
-}
+{resume["work"].map((work) => (
+  <div>
+    <h3 class="text-xl">{work.name}</h3>
+    <p class="text-sm">{work.position}</p>
+  </div>
+))}
 ```
 
 <InsertThought>
-Astro is flexible and powerful enough that you can basically import any file that can be read by Javascript and it will let you use it in your template. This is the kind of shenanigans you miss with something like Zola. Very nice!
+  Astro is flexible and powerful enough that you can basically import any file
+  that can be read by Javascript and it will let you use it in your template.
+  This is the kind of shenanigans you miss with something like Zola. Very nice!
 </InsertThought>
 
 ### Blog
@@ -69,11 +69,10 @@ const blog = defineCollection({
   // Load Markdown and MDX files in the `src/content/blog/` directory.
   loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
   // Type-check frontmatter using a schema
-  schema: rssSchema
-    .extend({
-      updatedDate: z.coerce.date().optional(),
-      heroImage: z.string().optional(),
-    }),
+  schema: rssSchema.extend({
+    updatedDate: z.coerce.date().optional(),
+    heroImage: z.string().optional(),
+  }),
 });
 ```
 
@@ -90,21 +89,19 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <ul>
-  {
-    posts.map((post) => (
-      <li>
-        <a href={`/blog/${post.id}/`}>
-          <div>
-            <img width={800} height={400} src={post.data.heroImage} />
-          </div>
-          <div>
-            <p>{ post.data.pubDate }</p>
-            <h4>{post.data.title}</h4>
-          </div>
-        </a>
-      </li>
-    ))
-  }
+  {posts.map((post) => (
+    <li>
+      <a href={`/blog/${post.id}/`}>
+        <div>
+          <img width={800} height={400} src={post.data.heroImage} />
+        </div>
+        <div>
+          <p>{post.data.pubDate}</p>
+          <h4>{post.data.title}</h4>
+        </div>
+      </a>
+    </li>
+  ))}
 </ul>
 ```
 
@@ -118,7 +115,7 @@ import { getCollection } from "astro:content";
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
 
-  return posts.map((post, index) => ({params: { slug: post.id },}));
+  return posts.map((post, index) => ({ params: { slug: post.id } }));
 }
 
 const { post } = Astro.props;
@@ -166,12 +163,12 @@ The rest of the page would simply be the same as the list of posts from the inde
 
 With this, you get a fully functional blog page but I wanted a few more things to make it really fancy and polished.
 
-* [Dark mode](#dark-mode)
-* [A personal list of recommended articles from around the internet](#recommended-articles-list)
-* [Pagination for blog posts and tags pages](#pagination)
-* [Table of contents for each post](#pagination)
-* [View transitions](#view-transitions)
-* [Better code highlighting](#better-code-highlighting)
+- [Dark mode](#dark-mode)
+- [A personal list of recommended articles from around the internet](#recommended-articles-list)
+- [Pagination for blog posts and tags pages](#pagination)
+- [Table of contents for each post](#pagination)
+- [View transitions](#view-transitions)
+- [Better code highlighting](#better-code-highlighting)
 
 This would end up being what I'd spend the most time on with good reason. 90% of what I wanted was done. A simple index page, about page, a list of blog posts fetched from Markdown files, pages for the blog posts, and tag pages. The last 10% would be what would take me the rest of the way there and it would take the longest time which is what I expected. So I strapped in.
 
@@ -199,7 +196,7 @@ I'd store a JSON in `src/content/articles.json` in the following format
       "description": "A great breakdown of how a single frame is rendered in Deus Ex: Human Revolution",
       "link": "https://www.adriancourreges.com/blog/2015/03/10/deus-ex-human-revolution-graphics-study/",
       "pubDate": "2025-05-31"
-    },
+    }
     //...
   ]
 }
@@ -208,7 +205,6 @@ I'd store a JSON in `src/content/articles.json` in the following format
 Now we set up an Astro collection to fetch the list of articles and render it in the blog list page.
 
 ```js title="src/content.config.js"
-
 const articles = defineCollection({
   loader: file("./src/content/articles.json", {
     // This fetches the field "articles" in the JSON file
@@ -229,7 +225,12 @@ const articles = defineCollection({
 ```
 
 <InsertThought>
-This kind of stuff is why I like Astro so much. With this simple change we get validation of the content and if I make any error in the JSON or any of the frontmatter in the markdown files, it's going to shut the whole build down with an error. This also gives type safety in the templates when rendering the posts because we can simply fetch this collection and iterate on the returned data to display them in a list.
+  This kind of stuff is why I like Astro so much. With this simple change we get
+  validation of the content and if I make any error in the JSON or any of the
+  frontmatter in the markdown files, it's going to shut the whole build down
+  with an error. This also gives type safety in the templates when rendering the
+  posts because we can simply fetch this collection and iterate on the returned
+  data to display them in a list.
 </InsertThought>
 
 To use the collection, I just fetch all the posts from it and map through them.
@@ -369,11 +370,11 @@ const { Content } = await render(post);
       Table of Contents
     </h2>
     <ul class="list-inside py-2">
-      {
-        headings.map((heading) => (
-          <li><a href={heading.slug}>{heading.text}</a></li>
-        ))
-      }
+      {headings.map((heading) => (
+        <li>
+          <a href={heading.slug}>{heading.text}</a>
+        </li>
+      ))}
     </ul>
   </nav>
 </table-of-contents>
@@ -391,22 +392,22 @@ To transition elements or titles between pages, you use the `transition:name` pr
 
 ```html title="/src/pages/blog/[page].astro"
 <img
-  width={800}
-  height={400}
-  src={post.data.heroImage}
-  alt={post.data.title}
-  transition:name={`blog-hero-image-${post.id}`}
+  width="{800}"
+  height="{400}"
+  src="{post.data.heroImage}"
+  alt="{post.data.title}"
+  transition:name="{`blog-hero-image-${post.id}`}"
 />
 ```
 
 ```html title="/src/pages/blog/[page].astro"
 <img
-  width={1020}
-  height={510}
-  src={heroImage}
-  alt={title}
+  width="{1020}"
+  height="{510}"
+  src="{heroImage}"
+  alt="{title}"
   class="border-theme m-auto aspect-2/1 xl:border-x"
-  transition:name={`blog-hero-image-${id}`}
+  transition:name="{`blog-hero-image-${id}`}"
 />
 ```
 

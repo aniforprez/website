@@ -29,14 +29,10 @@ const { id, post } = Astro.props;
     <p class="text-muted text-xs lg:text-sm">
       {post.pubDate ? <FormattedDate date={post.pubDate} /> : "No Date"}
     </p>
-    <h4
-      class="line-clamp-1 text-lg font-bold group-hover:text-blue-600 lg:text-xl group-hover:dark:text-blue-400"
-    >
+    <h4 class="line-clamp-1 text-lg font-bold group-hover:text-blue-600 lg:text-xl group-hover:dark:text-blue-400">
       {post.title}
     </h4>
-    <p
-      class="line-clamp-3 text-sm font-extralight text-pretty lg:text-base xl:line-clamp-2"
-    >
+    <p class="line-clamp-3 text-sm font-extralight text-pretty lg:text-base xl:line-clamp-2">
       {post.description}
     </p>
   </div>

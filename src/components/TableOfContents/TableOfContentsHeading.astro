@@ -22,13 +22,11 @@ const { heading, scrollspy } = Astro.props;
   >
     {heading.text}
   </a>
-  {
-    heading.children.length > 0 && (
-      <ul class="pl-4">
-        {heading.children.map((child) => (
-          <Astro.self heading={child} scrollspy={scrollspy} />
-        ))}
-      </ul>
-    )
-  }
+  {heading.children.length > 0 && (
+    <ul class="pl-4">
+      {heading.children.map((child) => (
+        <Astro.self heading={child} scrollspy={scrollspy} />
+      ))}
+    </ul>
+  )}
 </li>

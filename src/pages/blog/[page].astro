@@ -35,9 +35,7 @@ const { page } = Astro.props;
 
 <BaseLayout title={BLOG_TITLE} description={BLOG_DESCRIPTION_LONG}>
   <div>
-    <div
-      class="border-theme container m-auto flex w-full items-center justify-center border-x p-6 sm:justify-start md:p-12"
-    >
+    <div class="border-theme container m-auto flex w-full items-center justify-center border-x p-6 sm:justify-start md:p-12">
       <h1 class="font-cursive border-theme text-3xl font-semibold">Blog</h1>
       <div class="ml-auto flex gap-2">
         <!-- <a
@@ -59,56 +57,48 @@ const { page } = Astro.props;
         <a
           href="/rss.xml"
           class="border-theme text-muted border-2 p-1 hover:bg-stone-100 hover:text-stone-950 hover:shadow-md hover:dark:bg-stone-700 hover:dark:text-stone-100"
-          ><svg
+        >
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
             class="size-6"
-            ><path
-              d="M3 3C12.9411 3 21 11.0589 21 21H18C18 12.7157 11.2843 6 3 6V3ZM3 10C9.07513 10 14 14.9249 14 21H11C11 16.5817 7.41828 13 3 13V10ZM3 17C5.20914 17 7 18.7909 7 21H3V17Z"
-            ></path></svg
-          ></a
-        >
+          >
+            <path d="M3 3C12.9411 3 21 11.0589 21 21H18C18 12.7157 11.2843 6 3 6V3ZM3 10C9.07513 10 14 14.9249 14 21H11C11 16.5817 7.41828 13 3 13V10ZM3 17C5.20914 17 7 18.7909 7 21H3V17Z"></path>
+          </svg>
+        </a>
       </div>
     </div>
   </div>
   <div class="w-full">
-    <section
-      class="border-theme relative container m-auto grid h-fit grow-0 grid-cols-1 flex-col items-start border-x p-0 md:grid-cols-[1fr_300px] lg:grid-cols-[1fr_400px]"
-    >
+    <section class="border-theme relative container m-auto grid h-fit grow-0 grid-cols-1 flex-col items-start border-x p-0 md:grid-cols-[1fr_300px] lg:grid-cols-[1fr_400px]">
       <!-- <div class="bg-pattern absolute inset-0 -z-10 h-full"></div> -->
       <div>
         <ul class="grid grid-cols-1 lg:grid-cols-2">
-          {
-            page.data.map((post) =>
-              post.data.type === "blog" ? (
-                <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
-                  <BlogListItem post={post.data} id={post.id} />
-                </li>
-              ) : (
-                <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
-                  <ReviewListItem post={post.data} id={post.id} />
-                </li>
-              ),
-            )
-          }
+          {page.data.map((post) =>
+            post.data.type === "blog" ? (
+              <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
+                <BlogListItem post={post.data} id={post.id} />
+              </li>
+            ) : (
+              <li class="border-theme border-b hover:z-1 hover:shadow-xl lg:odd:border-r dark:shadow-stone-950/75">
+                <ReviewListItem post={post.data} id={post.id} />
+              </li>
+            ),
+          )}
         </ul>
-        {
-          page.lastPage > 1 && (
-            <div class="relative w-full">
-              <div class="bg-pattern absolute inset-0 -z-10 h-full" />
+        {page.lastPage > 1 && (
+          <div class="relative w-full">
+            <div class="bg-pattern absolute inset-0 -z-10 h-full" />
 
-              <Pagination class="mx-auto" {...page} />
-            </div>
-          )
-        }
+            <Pagination class="mx-auto" {...page} />
+          </div>
+        )}
       </div>
       <div class="border-theme relative flex h-full flex-col md:border-l">
         <div class="bg-pattern absolute inset-0 -z-10 h-full"></div>
 
-        <div
-          class="border-theme bg-theme flex items-center gap-3 border-b p-3 text-lg font-semibold md:text-xl"
-        >
+        <div class="border-theme bg-theme flex items-center gap-3 border-b p-3 text-lg font-semibold md:text-xl">
           Current Earworm
           <div title="My current music obsession">
             <svg
@@ -116,10 +106,9 @@ const { page } = Astro.props;
               viewBox="0 0 24 24"
               fill="currentColor"
               class="size-4"
-              ><path
-                d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 9.5C12.8284 9.5 13.5 8.82843 13.5 8C13.5 7.17157 12.8284 6.5 12 6.5C11.1716 6.5 10.5 7.17157 10.5 8C10.5 8.82843 11.1716 9.5 12 9.5ZM14 15H13V10.5H10V12.5H11V15H10V17H14V15Z"
-              ></path></svg
             >
+              <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 9.5C12.8284 9.5 13.5 8.82843 13.5 8C13.5 7.17157 12.8284 6.5 12 6.5C11.1716 6.5 10.5 7.17157 10.5 8C10.5 8.82843 11.1716 9.5 12 9.5ZM14 15H13V10.5H10V12.5H11V15H10V17H14V15Z"></path>
+            </svg>
           </div>
         </div>
         <div class="border-theme bg-theme border-b p-2">
@@ -130,12 +119,11 @@ const { page } = Astro.props;
             height="152"
             allowfullscreen=""
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            title="My current earworm"></iframe>
+            title="My current earworm"
+          ></iframe>
         </div>
 
-        <div
-          class="border-theme bg-theme flex items-center gap-3 border-b p-3 text-lg font-semibold md:text-xl"
-        >
+        <div class="border-theme bg-theme flex items-center gap-3 border-b p-3 text-lg font-semibold md:text-xl">
           Recommends
           <div title="Recommended articles or videos from my regular browsing">
             <svg
@@ -143,35 +131,30 @@ const { page } = Astro.props;
               viewBox="0 0 24 24"
               fill="currentColor"
               class="size-4"
-              ><path
-                d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 9.5C12.8284 9.5 13.5 8.82843 13.5 8C13.5 7.17157 12.8284 6.5 12 6.5C11.1716 6.5 10.5 7.17157 10.5 8C10.5 8.82843 11.1716 9.5 12 9.5ZM14 15H13V10.5H10V12.5H11V15H10V17H14V15Z"
-              ></path></svg
             >
+              <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 9.5C12.8284 9.5 13.5 8.82843 13.5 8C13.5 7.17157 12.8284 6.5 12 6.5C11.1716 6.5 10.5 7.17157 10.5 8C10.5 8.82843 11.1716 9.5 12 9.5ZM14 15H13V10.5H10V12.5H11V15H10V17H14V15Z"></path>
+            </svg>
           </div>
         </div>
 
         <ul class="grid grid-cols-1">
-          {
-            recommends.slice(0, 10).map((rec) => (
-              <li class="border-theme border-b last:border-b-0 hover:z-1 hover:shadow-xl dark:shadow-stone-950/75">
-                <RecommendListItem rec={{ ...rec.data, id: rec.id }} />
-              </li>
-            ))
-          }
+          {recommends.slice(0, 10).map((rec) => (
+            <li class="border-theme border-b last:border-b-0 hover:z-1 hover:shadow-xl dark:shadow-stone-950/75">
+              <RecommendListItem rec={{ ...rec.data, id: rec.id }} />
+            </li>
+          ))}
         </ul>
 
-        {
-          recommends.length > 10 && (
-            <div>
-              <a
-                href="/blog/recommends/1"
-                class="border-theme bg-theme flex justify-center gap-3 border-t border-b p-3 text-sm font-semibold hover:bg-stone-100 hover:shadow-md max-lg:border-b-0 dark:shadow-stone-950/75 hover:dark:bg-stone-800"
-              >
-                More...
-              </a>
-            </div>
-          )
-        }
+        {recommends.length > 10 && (
+          <div>
+            <a
+              href="/blog/recommends/1"
+              class="border-theme bg-theme flex justify-center gap-3 border-t border-b p-3 text-sm font-semibold hover:bg-stone-100 hover:shadow-md max-lg:border-b-0 dark:shadow-stone-950/75 hover:dark:bg-stone-800"
+            >
+              More...
+            </a>
+          </div>
+        )}
       </div>
     </section>
   </div>
