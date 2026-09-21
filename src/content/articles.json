@@ -1,12 +1,16 @@
 {
   "$schema": "./articles.schema.json",
-  "earworm": "https://open.spotify.com/embed/track/4IIkK8OgHmulyP7hHU2ZT8?utm_source=generator",
+  "earworm": "https://open.spotify.com/embed/track/2fplVRbbr1cBG7K5xt1hTE?utm_source=generator",
   "articles": [
     {
       "id": "1",
       "title": "Deus Ex: Human Revolution - Graphics Study",
       "author": "Adrian Courrèges",
-      "categories": ["graphics", "technical", "gaming"],
+      "categories": [
+        "graphics",
+        "technical",
+        "gaming"
+      ],
       "description": "A great breakdown of how a single frame is rendered in Deus Ex: Human Revolution",
       "link": "https://www.adriancourreges.com/blog/2015/03/10/deus-ex-human-revolution-graphics-study/",
       "pubDate": "2025-05-31"
@@ -17,7 +21,10 @@
       "title": "Dear Player: I love you, let's talk",
       "description": "A letter from a game designer to players on how to give feedback respectfully",
       "link": "https://www.polygon.com/2019/12/26/20976550/developers-players-video-games-empathy",
-      "categories": ["gaming", "community"],
+      "categories": [
+        "gaming",
+        "community"
+      ],
       "pubDate": "2025-05-30"
     },
     {
@@ -26,7 +33,11 @@
       "title": "Casual Viewing",
       "description": "An excellent dive into Netflix's history and why their content is formulaic",
       "link": "https://www.nplusonemag.com/issue-49/essays/casual-viewing/",
-      "categories": ["netflix", "business", "history"],
+      "categories": [
+        "netflix",
+        "business",
+        "history"
+      ],
       "pubDate": "2025-05-28"
     },
     {
@@ -35,7 +46,10 @@
       "title": "Everyone is cheating their way through college",
       "pubDate": "2025-05-07",
       "description": "An extremely depressing investigation into college students' rampant usage of OpenAI and AI products",
-      "categories": ["ai", "cheating"],
+      "categories": [
+        "ai",
+        "cheating"
+      ],
       "link": "https://nymag.com/intelligencer/article/openai-chatgpt-ai-cheating-education-college-students-school.html"
     },
     {
@@ -44,7 +58,10 @@
       "title": "Yakuza Cinema and Like a Dragon | Video Essay",
       "pubDate": "2025-05-07",
       "description": "The history of Yakuza films and how it applies to the Yakuza series of games",
-      "categories": ["ai", "cheating"],
+      "categories": [
+        "ai",
+        "cheating"
+      ],
       "link": "https://www.youtube.com/watch?v=_d3trbVD50U",
       "type": "video"
     },
@@ -54,7 +71,10 @@
       "title": "The Slop Society",
       "pubDate": "2025-04-29",
       "description": "A scathing takedown of the coverage of Meta and Mark Zuckerberg",
-      "categories": ["internet", "meta"],
+      "categories": [
+        "internet",
+        "meta"
+      ],
       "link": "https://www.wheresyoured.at/the-slop-society/"
     },
     {
@@ -63,7 +83,9 @@
       "title": "Diabolus Ex Machina",
       "pubDate": "2025-06-04",
       "description": "A series of screenshots of ChatGPT and its responses to being asked to read links",
-      "categories": ["ai"],
+      "categories": [
+        "ai"
+      ],
       "link": "https://amandaguinzburg.substack.com/p/diabolus-ex-machina"
     },
     {
@@ -72,7 +94,11 @@
       "title": "I Cannot Stop Thinking About Syril Karn’s Final Act in Andor",
       "pubDate": "2025-06-05",
       "description": "An examination of Syril Karn, a character from Andor. Spoilers for S1 and S2 of the show Andor",
-      "categories": ["tv", "andor", "essay"],
+      "categories": [
+        "tv",
+        "andor",
+        "essay"
+      ],
       "link": "https://www.rewinder.co.uk/i-cannot-stop-thinking-about-syril-karns-final-act-in-andor/"
     },
     {
@@ -81,7 +107,9 @@
       "title": "Why Recipes are holding you back from learning how to cook",
       "pubDate": "2025-06-14",
       "description": "Expanding on a different way of thinking about food from making fixed recipes to using what is in your fridge/pantry",
-      "categories": ["cooking"],
+      "categories": [
+        "cooking"
+      ],
       "link": "https://www.youtube.com/watch?v=srMEoe_5y6g",
       "type": "video"
     },
@@ -91,7 +119,9 @@
       "title": "Marathon | Reveal Cinematic Short",
       "pubDate": "2025-07-04",
       "description": "A gorgeously shot and animated cinematic trailer for the upcoming extraction shooter Marathon",
-      "categories": ["animation"],
+      "categories": [
+        "animation"
+      ],
       "link": "https://www.youtube.com/watch?v=fvbEnWLRo1s",
       "type": "video"
     },
@@ -101,7 +131,9 @@
       "title": "Francis Bebey at Real World Studios",
       "pubDate": "2025-10-12",
       "description": "A beautiful, short video about a very unique way of making music",
-      "categories": ["music"],
+      "categories": [
+        "music"
+      ],
       "link": "https://www.youtube.com/watch?v=c6T6suvnhco",
       "type": "video"
     },
@@ -111,7 +143,9 @@
       "title": "UTF-8, Explained Simply",
       "pubDate": "2025-10-13",
       "description": "Diving deep into the history and the functioning of UTF-8",
-      "categories": ["programming"],
+      "categories": [
+        "programming"
+      ],
       "link": "https://www.youtube.com/watch?v=vpSkBV5vydg",
       "type": "video"
     },
@@ -121,7 +155,9 @@
       "title": "How far back in time can you understand English?",
       "pubDate": "2026-02-22",
       "description": "A fun exercise in demonstrating the evolution of the English language over the last millennium",
-      "categories": ["language"],
+      "categories": [
+        "language"
+      ],
       "link": "https://www.deadlanguagesociety.com/p/how-far-back-in-time-understand-english"
     },
     {
@@ -130,7 +166,9 @@
       "title": "Child’s Play",
       "pubDate": "2026-03-01",
       "link": "https://harpers.org/archive/2026/03/childs-play-sam-kriss-ai-startup-roy-lee/",
-      "categories": ["ai"],
+      "categories": [
+        "ai"
+      ],
       "description": "The story of an interview with the vacuous founder of Cluely"
     }
   ]
