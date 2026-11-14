@@ -170,6 +170,17 @@
         "ai"
       ],
       "description": "The story of an interview with the vacuous founder of Cluely"
+    },
+    {
+      "id": "15",
+      "author": "Brendan Keogh",
+      "title": "AI is history",
+      "pubDate": "2026-11-14",
+      "link": "https://brkeogh.com/2026/11/11/ai-is-history/",
+      "categories": [
+        "ai"
+      ],
+      "description": "A great look at the history of capital and how it relates to the current technological zeitgeist"
     }
   ]
 }
